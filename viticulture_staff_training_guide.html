@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viticulture Staff Training Guide | Board Game Cafe</title>
+  <style>
+    :root {
+      --wine: #7a1f2b;
+      --grape: #4f2b60;
+      --cream: #fff8ea;
+      --paper: #fffdf7;
+      --green: #3f6b46;
+      --gold: #d59b2d;
+      --ink: #2d2520;
+      --muted: #6f6259;
+      --line: #ead9bd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top, #fff5dc, #f6e3c2 45%, #ead1a2);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 253, 247, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .topbar {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand h1 { margin: 0; color: var(--wine); font-size: clamp(1.4rem, 2.5vw, 2.1rem); }
+    .brand p { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+    .toggle {
+      display: flex;
+      gap: 8px;
+      background: #f5ead4;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+    .toggle button {
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .toggle button.active { background: var(--wine); color: white; }
+    main { max-width: 1180px; margin: auto; padding: 24px 20px 60px; }
+    .hero {
+      background: linear-gradient(135deg, rgba(122,31,43,0.95), rgba(79,43,96,0.92));
+      color: white;
+      padding: 34px;
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(80,40,20,0.18);
+      margin-bottom: 22px;
+    }
+    .hero h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 3rem); }
+    .hero p { max-width: 850px; margin: 8px 0 0; font-size: 1.08rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .badge { background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); padding: 8px 12px; border-radius: 999px; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(95,57,24,0.08);
+    }
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    h2, h3 { color: var(--wine); line-height: 1.2; }
+    h2 { margin: 0 0 14px; font-size: 1.7rem; }
+    h3 { margin: 20px 0 8px; font-size: 1.25rem; }
+    ul, ol { padding-left: 1.2rem; }
+    li { margin: 6px 0; }
+    .quick-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; }
+    .quick-table th, .quick-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .quick-table th { background: #f6ead2; color: var(--wine); text-align: left; }
+    .season { border-left: 7px solid var(--gold); }
+    .summer { border-left-color: #d6a32f; }
+    .winter { border-left-color: #5380b8; }
+    .spring { border-left-color: #65a35f; }
+    .fall { border-left-color: #c7723b; }
+    .tip { background: #f8f0df; border-left: 5px solid var(--green); padding: 12px 14px; border-radius: 12px; margin: 12px 0; }
+    .warning { background: #fff1f1; border-left: 5px solid var(--wine); padding: 12px 14px; border-radius: 12px; margin: 12px 0; }
+    .script { background: #f3ead8; border: 1px dashed #c7ab79; border-radius: 16px; padding: 14px; font-style: italic; }
+    .lang { display: none; }
+    .lang.active { display: block; }
+    details { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: #fffaf0; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 800; color: var(--wine); }
+    footer { text-align: center; color: var(--muted); padding: 30px 20px; }
+    @media (max-width: 860px) { .span-8, .span-6, .span-4 { grid-column: span 12; } .hero { padding: 24px; } }
+    @media print { header { position: static; } .toggle { display: none; } body { background: white; } .card, .hero { box-shadow: none; } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>Viticulture Staff Training Guide</h1>
+      <p>For board game cafe staff in Kochi, Kerala</p>
+    </div>
+    <div class="toggle" aria-label="Language toggle">
+      <button id="enBtn" class="active" onclick="setLang('en')">English</button>
+      <button id="mlBtn" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="en" class="lang active">
+    <div class="hero">
+      <h2>Viticulture: A cozy strategy game about running a vineyard</h2>
+      <p>Guests are not literally making wine. They are managing workers, planting vines, harvesting grapes, making wine tokens, and completing wine orders to become the most successful winery owner.</p>
+      <div class="badge-row">
+        <span class="badge">1–6 players</span><span class="badge">45–90 minutes</span><span class="badge">Worker placement</span><span class="badge">Goal: 20+ victory points</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card span-8">
+        <h2>1. What is the game?</h2>
+        <p><strong>Viticulture</strong> is a medium-weight strategy board game. Each player owns a small vineyard in Tuscany. On their turn, they place workers on the board to take actions. The catch is simple: most action spaces are limited, so players must choose timing carefully.</p>
+        <p>The game is not about luck only. Cards help, but planning matters more. Players need vines, structures, grapes, wine, and wine orders to score well.</p>
+        <div class="script">Staff explanation: “Think of it like building a winery business. You send workers to plant vines, harvest grapes, make wine, and fulfill orders. The first player to reach 20 points triggers the ending, then highest points wins.”</div>
+      </section>
+
+      <section class="card span-4">
+        <h2>At a glance</h2>
+        <table class="quick-table">
+          <tr><th>Best for</th><td>Guests who like planning and engine-building</td></tr>
+          <tr><th>Complexity</th><td>Medium</td></tr>
+          <tr><th>Teaching time</th><td>12–18 minutes</td></tr>
+          <tr><th>First game advice</th><td>Tell guests to focus on orders, not only grapes</td></tr>
+        </table>
+      </section>
+
+      <section class="card span-12">
+        <h2>2. The main idea in one flow</h2>
+        <ol>
+          <li><strong>Draw vine cards</strong> so you know what grapes you can grow.</li>
+          <li><strong>Build needed structures</strong> like trellis, irrigation, or better cellars.</li>
+          <li><strong>Plant vines</strong> into your fields.</li>
+          <li><strong>Harvest fields</strong> to create grape tokens on your crush pad.</li>
+          <li><strong>Make wine</strong> by moving grape tokens into your cellar as wine tokens.</li>
+          <li><strong>Fill wine orders</strong> to gain victory points and residual income.</li>
+        </ol>
+        <div class="tip"><strong>Key staff line:</strong> “Vines make grapes. Grapes make wine. Wine fills orders. Orders score points.”</div>
+      </section>
+
+      <section class="card span-6">
+        <h2>3. Game setup</h2>
+        <ol>
+          <li>Place the main board in the centre.</li>
+          <li>Shuffle the small decks separately: green vine cards, yellow summer visitors, purple wine orders, blue winter visitors.</li>
+          <li>Each player takes a vineyard mat, workers, grande worker, rooster, cork VP marker, residual payment marker, and structures in one colour.</li>
+          <li>Each player starts with three field cards on their vineyard mat.</li>
+          <li>Randomly choose first player.</li>
+          <li>Deal starting mama/papa cards if using Essential Edition setup. They give each player starting workers, cards, money, and maybe a structure choice.</li>
+        </ol>
+      </section>
+
+      <section class="card span-6">
+        <h2>4. Components staff should recognize</h2>
+        <ul>
+          <li><strong>Workers:</strong> used to take actions. Each worker can be used once per year.</li>
+          <li><strong>Grande worker:</strong> can take an action even if all spaces for that action are full.</li>
+          <li><strong>Rooster:</strong> chooses wake-up position in spring.</li>
+          <li><strong>Grape/wine tokens:</strong> glass tokens placed on crush pad or cellar.</li>
+          <li><strong>Residual tracker:</strong> income gained every year after completing orders.</li>
+          <li><strong>Lira:</strong> money used for structures, workers, etc.</li>
+        </ul>
+      </section>
+
+      <section class="card span-12">
+        <h2>5. How a year works</h2>
+        <p>The game is played over several years. Each year has four seasons.</p>
+        <div class="grid">
+          <div class="card span-6 season spring"><h3>Spring</h3><p>Players choose a wake-up slot. Earlier slots act sooner. Later slots give better bonuses like cards, money, VP, or a temporary worker.</p></div>
+          <div class="card span-6 season summer"><h3>Summer</h3><p>Players place workers on yellow/summer actions: draw vine cards, plant vines, build structures, give tours, sell grapes or fields, and play summer visitors.</p></div>
+          <div class="card span-6 season fall"><h3>Fall</h3><p>Each player draws a visitor card, usually either summer or winter visitor. No worker is placed.</p></div>
+          <div class="card span-6 season winter"><h3>Winter</h3><p>Players place workers on blue/winter actions: harvest fields, make wine, draw orders, fill orders, train workers, and play winter visitors.</p></div>
+        </div>
+      </section>
+
+      <section class="card span-6">
+        <h2>6. Worker placement rules</h2>
+        <ul>
+          <li>On your turn, place one worker on an available action space in the current season.</li>
+          <li>You must be able to perform the action you choose.</li>
+          <li>A worker used in summer cannot be used again in winter of the same year.</li>
+          <li>Once you pass in a season, you cannot place more workers that season.</li>
+          <li>Bonus spaces give the printed bonus in addition to the action.</li>
+          <li>The grande worker is special: it can go to an action even when that action is full.</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <h2>7. Important card types</h2>
+        <ul>
+          <li><strong>Vine cards:</strong> tell what grapes the vine produces. Some need trellis or irrigation before planting.</li>
+          <li><strong>Wine order cards:</strong> show which wine tokens are needed and what VP/residual income you get.</li>
+          <li><strong>Summer visitors:</strong> one-time yellow cards usually helping growth, money, planting, or structures.</li>
+          <li><strong>Winter visitors:</strong> one-time blue cards usually helping harvesting, wine-making, orders, or workers.</li>
+        </ul>
+      </section>
+
+      <section class="card span-12">
+        <h2>8. Vines, grapes, and wine — the part guests ask about most</h2>
+        <h3>Planting vines</h3>
+        <p>A player plants a vine card into one of their fields. Fields have max values, usually 5, 6, or 7. Add the grape values on all vines in a field; the total cannot go above that field’s max unless a card specifically allows it.</p>
+        <h3>Harvesting fields</h3>
+        <p>When harvesting, add all red grape icons in that field to make one red grape token. Add all white grape icons to make one white grape token. The vine cards stay in the field. They are not discarded.</p>
+        <h3>Making wine</h3>
+        <p>To make wine, move grape tokens from the crush pad to the cellar. Red grape becomes red wine. White grape becomes white wine. Red + white can combine into blush wine if the player has the right cellar. Sparkling wine needs two red grapes and one white grape, and requires a large cellar.</p>
+        <div class="warning"><strong>Common mistake:</strong> Players cannot combine two red grapes to make one stronger red wine. One red grape becomes one red wine of that value, limited by cellar space.</div>
+      </section>
+
+      <section class="card span-6">
+        <h2>9. Structures in plain language</h2>
+        <ul>
+          <li><strong>Trellis / Irrigation:</strong> unlock better vine cards.</li>
+          <li><strong>Medium cellar:</strong> allows wine values 4–6 and blush wine.</li>
+          <li><strong>Large cellar:</strong> allows wine values 7–9 and sparkling wine. Medium cellar must come first.</li>
+          <li><strong>Yoke:</strong> private action to uproot a vine or harvest a field.</li>
+          <li><strong>Windmill:</strong> gives VP when planting vines, max once per year.</li>
+          <li><strong>Tasting room:</strong> gives VP when giving a tour, but only if the player has wine in the cellar.</li>
+          <li><strong>Cottage:</strong> gives extra visitor card draw in fall.</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <h2>10. End of year</h2>
+        <ol>
+          <li>Age grape and wine tokens by moving them up one value, if space allows.</li>
+          <li>Return all workers to players.</li>
+          <li>Pay residual income from completed orders.</li>
+          <li>Rotate the first-player marker counter-clockwise.</li>
+          <li>If anyone has reached 20 or more VP, the game ends now and highest VP wins.</li>
+        </ol>
+      </section>
+
+      <section class="card span-12">
+        <h2>11. Teaching script for cafe staff</h2>
+        <p class="script">“You’re all running vineyards. Every year has spring, summer, fall, and winter. In spring you choose turn order. In summer you mostly build and plant. In fall you get visitors. In winter you harvest, make wine, and complete wine orders. Each worker can be used only once per year, so don’t spend all workers too early. Complete wine orders to score points. First to 20 points triggers the end of the game.”</p>
+      </section>
+
+      <section class="card span-12">
+        <h2>12. Staff FAQ</h2>
+        <details><summary>Can a worker be reused in the same year?</summary><p>No. A worker placed in summer is unavailable in winter. All workers return only at year end.</p></details>
+        <details><summary>Can I place a worker on an action if I cannot do the action?</summary><p>No. You must be able to perform the action.</p></details>
+        <details><summary>What does the grande worker do?</summary><p>It lets you use an action even if the normal action spaces are already full.</p></details>
+        <details><summary>Do vine cards get removed when harvested?</summary><p>No. Vines stay planted. Harvesting only creates grape tokens.</p></details>
+        <details><summary>What is residual income?</summary><p>It is yearly income from completed wine orders. After you fill orders, your residual tracker may move up, giving money every year end.</p></details>
+        <details><summary>When does the game end?</summary><p>When any player reaches 20 or more VP, finish the current year. Then highest VP wins. Ties are broken by most lira, then wine value, then grape value.</p></details>
+      </section>
+    </div>
+  </section>
+
+  <section id="ml" class="lang">
+    <div class="hero">
+      <h2>Viticulture: ഒരു വൈൻയാർഡ് നടത്താനുള്ള സുഖമുള്ള സ്ട്രാറ്റജി ഗെയിം</h2>
+      <p>ഈ ഗെയിമിൽ കളിക്കാർ ശരിക്കും വൈൻ ഉണ്ടാക്കുന്നില്ല. അവർ തൊഴിലാളികളെ ഉപയോഗിച്ച് മുന്തിരിവള്ളി നടും, മുന്തിരി കൊയ്യും, വൈൻ ടോക്കൺ ഉണ്ടാക്കും, വൈൻ ഓർഡറുകൾ പൂർത്തിയാക്കി പോയിന്റ് നേടും.</p>
+      <div class="badge-row">
+        <span class="badge">1–6 കളിക്കാർ</span><span class="badge">45–90 മിനിറ്റ്</span><span class="badge">Worker placement</span><span class="badge">ലക്ഷ്യം: 20+ victory points</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card span-8">
+        <h2>1. ഗെയിം എന്താണ്?</h2>
+        <p><strong>Viticulture</strong> ഒരു medium-weight strategy board game ആണ്. ഓരോ കളിക്കാരനും Tuscany-യിലെ ഒരു ചെറിയ വൈൻയാർഡ് ഉടമയാണ്. തങ്ങളുടെ ടേണിൽ worker-നെ board-ൽ വെച്ച് action എടുക്കണം. പക്ഷേ action spaces കുറവായിരിക്കും. അതുകൊണ്ട് timing പ്രധാനമാണ്.</p>
+        <p>ഇത് മുഴുവൻ luck game അല്ല. Cards സഹായിക്കും, പക്ഷേ നല്ല planning ആണ് വിജയത്തിന്റെ പ്രധാന കാരണം.</p>
+        <div class="script">Staff explanation: “ഇത് ഒരു winery business build ചെയ്യുന്നതുപോലെയാണ്. Workers-നെ അയച്ച് vines നടണം, grapes harvest ചെയ്യണം, wine ഉണ്ടാക്കണം, orders complete ചെയ്യണം. 20 points എത്തുമ്പോൾ ending trigger ചെയ്യും.”</div>
+      </section>
+
+      <section class="card span-4">
+        <h2>Quick view</h2>
+        <table class="quick-table">
+          <tr><th>ആർക്കാണ് നല്ലത്</th><td>Planning, strategy, engine-building ഇഷ്ടമുള്ള guests</td></tr>
+          <tr><th>Difficulty</th><td>Medium</td></tr>
+          <tr><th>Teach time</th><td>12–18 മിനിറ്റ്</td></tr>
+          <tr><th>First game tip</th><td>Grapes മാത്രം നോക്കാതെ orders ശ്രദ്ധിക്കണം</td></tr>
+        </table>
+      </section>
+
+      <section class="card span-12">
+        <h2>2. Main flow</h2>
+        <ol>
+          <li><strong>Vine cards draw ചെയ്യുക</strong> — ഏത് grapes grow ചെയ്യാമെന്ന് അറിയാൻ.</li>
+          <li><strong>Structures build ചെയ്യുക</strong> — trellis, irrigation, cellar upgrades എന്നിവ.</li>
+          <li><strong>Vines plant ചെയ്യുക</strong> — field-ൽ vine cards വെക്കുക.</li>
+          <li><strong>Fields harvest ചെയ്യുക</strong> — crush pad-ൽ grape tokens ഉണ്ടാകും.</li>
+          <li><strong>Wine make ചെയ്യുക</strong> — grapes cellar-ലേക്ക് wine ആയി മാറ്റുക.</li>
+          <li><strong>Wine orders fill ചെയ്യുക</strong> — victory points, residual income നേടുക.</li>
+        </ol>
+        <div class="tip"><strong>Staff line:</strong> “Vines grapes ഉണ്ടാക്കും. Grapes wine ആക്കും. Wine orders complete ചെയ്യും. Orders points തരും.”</div>
+      </section>
+
+      <section class="card span-6">
+        <h2>3. Setup</h2>
+        <ol>
+          <li>Main board നടുവിൽ വെക്കുക.</li>
+          <li>Small decks വേർതിരിച്ച് shuffle ചെയ്യുക: green vine, yellow summer visitor, purple wine order, blue winter visitor.</li>
+          <li>ഓരോ player-നും vineyard mat, workers, grande worker, rooster, VP cork, residual marker, structures എന്നിവ കൊടുക്കുക.</li>
+          <li>ഓരോ player-നും മൂന്ന് field cards vineyard mat-ൽ വെക്കുക.</li>
+          <li>First player random ആയി തിരഞ്ഞെടുക്കുക.</li>
+          <li>Essential Edition setup ആണെങ്കിൽ mama/papa cards ഉപയോഗിച്ച് starting workers, cards, money, structure choice നൽകുക.</li>
+        </ol>
+      </section>
+
+      <section class="card span-6">
+        <h2>4. Components മനസ്സിലാക്കുക</h2>
+        <ul>
+          <li><strong>Workers:</strong> actions എടുക്കാൻ. ഓരോ worker-യും ഒരു year-ൽ ഒരിക്കൽ മാത്രം.</li>
+          <li><strong>Grande worker:</strong> action full ആയാലും അവിടെ action എടുക്കാൻ കഴിയും.</li>
+          <li><strong>Rooster:</strong> spring-ൽ wake-up order തിരഞ്ഞെടുക്കാൻ.</li>
+          <li><strong>Grape/wine tokens:</strong> crush pad അല്ലെങ്കിൽ cellar-ൽ വെക്കുന്ന glass tokens.</li>
+          <li><strong>Residual tracker:</strong> orders പൂർത്തിയാക്കിയതിന് ശേഷം ഓരോ year-end-ലും കിട്ടുന്ന income.</li>
+          <li><strong>Lira:</strong> game money.</li>
+        </ul>
+      </section>
+
+      <section class="card span-12">
+        <h2>5. ഒരു year എങ്ങനെ പോകും?</h2>
+        <p>Game പല years ആയി നടക്കും. ഓരോ year-നും നാല് seasons ഉണ്ട്.</p>
+        <div class="grid">
+          <div class="card span-6 season spring"><h3>Spring</h3><p>Players wake-up slot തിരഞ്ഞെടുക്കും. Early slot ആണെങ്കിൽ turn order നല്ലത്. Late slot ആണെങ്കിൽ bonus നല്ലത്.</p></div>
+          <div class="card span-6 season summer"><h3>Summer</h3><p>Yellow actions: vine cards draw, vines plant, structures build, tour, grapes/fields sell, summer visitors play.</p></div>
+          <div class="card span-6 season fall"><h3>Fall</h3><p>ഓരോ player-നും visitor card draw ചെയ്യാം. Worker place ചെയ്യേണ്ട.</p></div>
+          <div class="card span-6 season winter"><h3>Winter</h3><p>Blue actions: fields harvest, wine make, orders draw/fill, workers train, winter visitors play.</p></div>
+        </div>
+      </section>
+
+      <section class="card span-6">
+        <h2>6. Worker placement rules</h2>
+        <ul>
+          <li>തന്റെ turn-ൽ current season-ലെ ഒരു available action space-ൽ worker വെക്കുക.</li>
+          <li>Action ചെയ്യാൻ കഴിയണം. വെറുതെ block ചെയ്യാൻ മാത്രം പാടില്ല.</li>
+          <li>Summer-ൽ ഉപയോഗിച്ച worker ആ same year winter-ൽ വീണ്ടും ഉപയോഗിക്കാനാവില്ല.</li>
+          <li>Season-ൽ pass ചെയ്താൽ ആ season-ൽ ഇനി worker place ചെയ്യാനാവില്ല.</li>
+          <li>Bonus spaces action കൂടെ extra bonus നൽകും.</li>
+          <li>Grande worker action full ആയാലും ഉപയോഗിക്കാം.</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <h2>7. Card types</h2>
+        <ul>
+          <li><strong>Vine cards:</strong> ഏത് grapes produce ചെയ്യും എന്ന് കാണിക്കും. ചിലതിന് trellis/irrigation വേണം.</li>
+          <li><strong>Wine order cards:</strong> ഏത് wine tokens വേണം, എത്ര VP/income കിട്ടും എന്ന് കാണിക്കും.</li>
+          <li><strong>Summer visitors:</strong> Yellow one-time help cards.</li>
+          <li><strong>Winter visitors:</strong> Blue one-time help cards.</li>
+        </ul>
+      </section>
+
+      <section class="card span-12">
+        <h2>8. Vines, grapes, wine — guests കൂടുതലായി ചോദിക്കുന്ന ഭാഗം</h2>
+        <h3>Vines plant ചെയ്യൽ</h3>
+        <p>Vine card ഒരു field-ൽ plant ചെയ്യാം. Fields-ന് max value ഉണ്ട്: 5, 6, 7 പോലുള്ളത്. ആ field-ലെ vine values കൂട്ടുമ്പോൾ field max കടക്കാൻ പാടില്ല, card ability പ്രത്യേകം പറയുന്നില്ലെങ്കിൽ.</p>
+        <h3>Fields harvest ചെയ്യൽ</h3>
+        <p>Harvest ചെയ്യുമ്പോൾ field-ലെ red grape icons കൂട്ടി ഒരു red grape token ഉണ്ടാക്കും. White grape icons കൂട്ടി ഒരു white grape token ഉണ്ടാക്കും. Vine cards field-ൽ തന്നെ തുടരും.</p>
+        <h3>Wine make ചെയ്യൽ</h3>
+        <p>Grape tokens crush pad-ൽ നിന്ന് cellar-ലേക്ക് wine tokens ആയി മാറ്റും. Red grape red wine. White grape white wine. Red + white ചേർന്ന് blush wine ഉണ്ടാക്കാം, പക്ഷേ ശരിയായ cellar വേണം. Sparkling wine-ന് രണ്ട് red grapes + ഒരു white grape, കൂടാതെ large cellar വേണം.</p>
+        <div class="warning"><strong>Common mistake:</strong> രണ്ട് red grapes ചേർത്ത് strong red wine ഉണ്ടാക്കാൻ പാടില്ല. ഒരു red grape ഒരു red wine ആയി മാത്രം മാറും.</div>
+      </section>
+
+      <section class="card span-6">
+        <h2>9. Structures simple ആയി</h2>
+        <ul>
+          <li><strong>Trellis / Irrigation:</strong> better vine cards plant ചെയ്യാൻ unlock ചെയ്യും.</li>
+          <li><strong>Medium cellar:</strong> value 4–6 wine, blush wine allow ചെയ്യും.</li>
+          <li><strong>Large cellar:</strong> value 7–9 wine, sparkling wine allow ചെയ്യും. ആദ്യം medium cellar വേണം.</li>
+          <li><strong>Yoke:</strong> private action: vine uproot ചെയ്യാം അല്ലെങ്കിൽ field harvest ചെയ്യാം.</li>
+          <li><strong>Windmill:</strong> vines plant ചെയ്താൽ VP, max once per year.</li>
+          <li><strong>Tasting room:</strong> tour action എടുക്കുമ്പോൾ VP, പക്ഷേ cellar-ൽ wine ഉണ്ടായിരിക്കണം.</li>
+          <li><strong>Cottage:</strong> fall-ൽ extra visitor draw.</li>
+        </ul>
+      </section>
+
+      <section class="card span-6">
+        <h2>10. Year end</h2>
+        <ol>
+          <li>Grape/wine tokens age ചെയ്യുക, space ഉണ്ടെങ്കിൽ value one step up.</li>
+          <li>Workers എല്ലാം players-ലേക്ക് return ചെയ്യുക.</li>
+          <li>Residual income pay ചെയ്യുക.</li>
+          <li>First-player marker counter-clockwise rotate ചെയ്യുക.</li>
+          <li>ആർക്കെങ്കിലും 20+ VP ആയാൽ game ends. Highest VP wins.</li>
+        </ol>
+      </section>
+
+      <section class="card span-12">
+        <h2>11. Cafe staff teaching script</h2>
+        <p class="script">“നിങ്ങൾ ഓരോരുത്തരും ഒരു vineyard നടത്തുകയാണ്. ഒരു year-ൽ spring, summer, fall, winter ഉണ്ട്. Spring-ൽ turn order തിരഞ്ഞെടുക്കും. Summer-ൽ build/plant ചെയ്യും. Fall-ൽ visitors കിട്ടും. Winter-ൽ harvest, wine making, orders complete ചെയ്യൽ. ഓരോ worker-യും ഒരു year-ൽ ഒരിക്കൽ മാത്രം, അതിനാൽ workers സൂക്ഷിച്ച് ഉപയോഗിക്കുക. Wine orders complete ചെയ്താണ് points കൂടുതലായി കിട്ടുന്നത്.”</p>
+      </section>
+
+      <section class="card span-12">
+        <h2>12. Staff FAQ</h2>
+        <details><summary>Worker same year വീണ്ടും ഉപയോഗിക്കാമോ?</summary><p>ഇല്ല. Summer-ൽ വെച്ച worker winter-ൽ ഉപയോഗിക്കാനാവില്ല. Year end-ൽ മാത്രമേ workers തിരികെ വരൂ.</p></details>
+        <details><summary>Action ചെയ്യാൻ കഴിയില്ലെങ്കിൽ അവിടെ worker വെക്കാമോ?</summary><p>ഇല്ല. ആ action ചെയ്യാൻ കഴിയണം.</p></details>
+        <details><summary>Grande worker എന്താണ് ചെയ്യുന്നത്?</summary><p>Normal spaces full ആയാലും ആ action എടുക്കാൻ grande worker സഹായിക്കും.</p></details>
+        <details><summary>Harvest ചെയ്യുമ്പോൾ vine cards discard ആകുമോ?</summary><p>ഇല്ല. Vines field-ൽ തന്നെ തുടരും.</p></details>
+        <details><summary>Residual income എന്താണ്?</summary><p>Wine orders complete ചെയ്തതിന് ശേഷം ഓരോ year end-ലും കിട്ടുന്ന income ആണ്.</p></details>
+        <details><summary>Game എപ്പോൾ അവസാനിക്കും?</summary><p>ആർക്കെങ്കിലും 20+ VP കിട്ടിയാൽ current year finish ചെയ്യുക. പിന്നെ highest VP wins. Tie-breaker: lira, cellar wine value, crush pad grape value.</p></details>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Staff training guide for cafe use. Keep the official rulebook nearby for exact card text and rare edge cases.
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.getElementById('en').classList.toggle('active', lang === 'en');
+    document.getElementById('ml').classList.toggle('active', lang === 'ml');
+    document.getElementById('enBtn').classList.toggle('active', lang === 'en');
+    document.getElementById('mlBtn').classList.toggle('active', lang === 'ml');
+    document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+  }
+</script>
+</body>
+</html>

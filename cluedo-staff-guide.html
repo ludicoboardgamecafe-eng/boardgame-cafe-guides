@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cluedo Staff Training Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scarlet: #8B1A1A;
+    --scarlet-light: #C0392B;
+    --gold: #B8860B;
+    --gold-light: #D4A017;
+    --cream: #FAF3E8;
+    --dark-brown: #1C1008;
+    --mid-brown: #3D2B1F;
+    --parchment: #EDE0C4;
+    --ink: #2C1810;
+    --green-felt: #1A3D2B;
+    --mustard: #8B6914;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark-brown);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(139,26,26,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(184,134,11,0.08) 0%, transparent 50%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.01) 40px,
+        rgba(255,255,255,0.01) 41px
+      );
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .masthead {
+    background: linear-gradient(135deg, #0D0604 0%, #1C1008 40%, #2A0808 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(184,134,11,0.06) 28px, rgba(184,134,11,0.06) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(184,134,11,0.06) 28px, rgba(184,134,11,0.06) 29px);
+  }
+  .masthead-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+  .cafe-label {
+    font-family: 'Crimson Pro', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 12px;
+  }
+  .game-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(139,26,26,0.6), 3px 3px 0px rgba(0,0,0,0.5);
+  }
+  .game-title span { color: var(--scarlet-light); }
+  .subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--parchment);
+    opacity: 0.7;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+  .divider-ornament {
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 12px;
+    margin: 16px 0;
+  }
+
+  /* LANGUAGE TOGGLE */
+  .toggle-bar {
+    background: var(--mid-brown);
+    border-bottom: 2px solid rgba(184,134,11,0.3);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'Crimson Pro', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 10px 32px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .lang-btn:first-child { border-radius: 4px 0 0 4px; }
+  .lang-btn:last-child { border-radius: 0 4px 4px 0; }
+  .lang-btn.active {
+    background: var(--scarlet);
+    border-color: var(--scarlet);
+    color: var(--cream);
+    box-shadow: 0 0 20px rgba(139,26,26,0.5);
+  }
+  .lang-btn:not(.active):hover {
+    background: rgba(184,134,11,0.1);
+  }
+
+  /* MAIN CONTENT */
+  .content { display: none; }
+  .content.active { display: block; }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: var(--cream);
+    border-radius: 6px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+    border: 1px solid rgba(184,134,11,0.2);
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section-card:nth-child(1) { animation-delay: 0.05s; }
+  .section-card:nth-child(2) { animation-delay: 0.1s; }
+  .section-card:nth-child(3) { animation-delay: 0.15s; }
+  .section-card:nth-child(4) { animation-delay: 0.2s; }
+  .section-card:nth-child(5) { animation-delay: 0.25s; }
+  .section-card:nth-child(6) { animation-delay: 0.3s; }
+  .section-card:nth-child(7) { animation-delay: 0.35s; }
+
+  .section-header {
+    background: linear-gradient(135deg, var(--scarlet) 0%, #5C0F0F 100%);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-header.gold-header {
+    background: linear-gradient(135deg, var(--mustard) 0%, #5C3D00 100%);
+  }
+  .section-header.green-header {
+    background: linear-gradient(135deg, var(--green-felt) 0%, #0D2218 100%);
+  }
+  .section-header.dark-header {
+    background: linear-gradient(135deg, #2A1F3D 0%, #0D0A1C 100%);
+  }
+  .section-icon { font-size: 24px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .section-body { padding: 24px; }
+
+  p { font-size: 17px; line-height: 1.75; color: var(--ink); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* COLLAPSIBLE */
+  .collapsible-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+  }
+  .collapsible-trigger:focus { outline: none; }
+  .caret {
+    margin-left: auto;
+    font-size: 18px;
+    color: var(--cream);
+    opacity: 0.7;
+    transition: transform 0.3s;
+  }
+  .collapsible-trigger.open .caret { transform: rotate(180deg); }
+  .collapsible-body { display: none; padding: 0 24px 24px; }
+  .collapsible-body.open { display: block; }
+
+  /* GRID LAYOUTS */
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+  .suspect-card {
+    background: linear-gradient(135deg, #FDF6E8, #F0E0C0);
+    border: 1.5px solid rgba(139,26,26,0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .suspect-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .suspect-info strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--ink);
+    display: block;
+  }
+  .suspect-info span { font-size: 13px; color: #6B4C3B; font-style: italic; }
+
+  .weapon-item {
+    background: linear-gradient(135deg, #F5EDD8, #E8D5B0);
+    border: 1px solid rgba(139,105,20,0.25);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .weapon-icon { font-size: 20px; }
+
+  .room-item {
+    background: linear-gradient(135deg, #EEF5EE, #D8EDD8);
+    border: 1px solid rgba(26,61,43,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #1A2E1A;
+  }
+  .room-icon { font-size: 20px; }
+
+  /* STEPS */
+  .step-list { list-style: none; counter-reset: steps; }
+  .step-item {
+    counter-increment: steps;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--scarlet);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+    box-shadow: 0 2px 8px rgba(139,26,26,0.4);
+  }
+  .step-text { font-size: 17px; line-height: 1.7; color: var(--ink); }
+  .step-text strong { color: var(--scarlet); }
+
+  /* TIPS */
+  .tip-box {
+    background: linear-gradient(135deg, #FFFBF0, #FFF5D6);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .tip-box strong { color: var(--mustard); }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid rgba(139,26,26,0.1);
+    padding: 14px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--scarlet);
+    margin-bottom: 6px;
+  }
+  .faq-a { font-size: 16px; color: var(--ink); line-height: 1.65; }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    background: var(--scarlet);
+    color: var(--cream);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge.gold { background: var(--gold); }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: linear-gradient(135deg, #FFF0F0, #FFE0E0);
+    border: 1.5px solid rgba(139,26,26,0.25);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .highlight strong { color: var(--scarlet); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(184,134,11,0.5);
+  }
+
+  /* QUICK REF BANNER */
+  .quick-ref {
+    background: linear-gradient(135deg, #0D0604, #1A1008);
+    border: 1px solid rgba(184,134,11,0.3);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+  .qr-item { text-align: center; }
+  .qr-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .qr-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--parchment); opacity: 0.6; }
+
+  @media (max-width: 600px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .quick-ref { gap: 12px; }
+    .qr-num { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="cafe-label">☕ Board Game Café · Staff Training Guide · Kochi</div>
+    <div class="game-title">CLUE<span>DO</span></div>
+    <div class="subtitle">Indian Edition · The Classic Murder Mystery</div>
+    <div class="divider-ornament">✦ ✦ ✦</div>
+  </div>
+</div>
+
+<div class="toggle-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">🇮🇳 English</button>
+  <button class="lang-btn" onclick="setLang('ml')" id="btn-ml">മലയാളം</button>
+</div>
+
+<!-- ════════════════ ENGLISH ════════════════ -->
+<div id="content-en" class="content active">
+<div class="page">
+
+  <!-- QUICK STATS -->
+  <div class="quick-ref">
+    <div class="qr-item"><div class="qr-num">3–6</div><div class="qr-label">Players</div></div>
+    <div class="qr-item"><div class="qr-num">45–75</div><div class="qr-label">Minutes</div></div>
+    <div class="qr-item"><div class="qr-num">8+</div><div class="qr-label">Age</div></div>
+    <div class="qr-item"><div class="qr-num">6</div><div class="qr-label">Suspects</div></div>
+    <div class="qr-item"><div class="qr-num">6</div><div class="qr-label">Weapons</div></div>
+    <div class="qr-item"><div class="qr-num">9</div><div class="qr-label">Rooms</div></div>
+  </div>
+
+  <!-- WHAT IS THE GAME -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <span class="section-title">What Is Cluedo?</span>
+    </div>
+    <div class="section-body">
+      <p>Cluedo (called <em>Clue</em> in North America) is the ultimate murder mystery board game. Imagine you're a detective in a grand mansion — someone has been murdered, and it's your job to figure out <strong>who did it, with what weapon, and in which room</strong>.</p>
+      <p>The game was invented by a British guy named Anthony Pratt way back in 1943 and has been a worldwide hit ever since. The Indian edition sold in India is published by Hasbro and features the classic Cluedo characters, rooms, and weapons — just like the original!</p>
+      <div class="highlight">
+        <strong>The Big Goal:</strong> Be the first player to correctly solve the mystery — name the right suspect, the right weapon, and the right room. Get all three right and you win! 🎉
+      </div>
+      <p>It's a game of logic, deduction, and a little bit of bluffing. Perfect for people who love puzzles, whodunnit stories, or just outwitting their friends!</p>
+    </div>
+  </div>
+
+  <!-- WHAT'S IN THE BOX -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header gold-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">📦</span>
+        <span class="section-title">What's in the Box?</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open" style="margin-top: 0;">
+      <div style="height:20px;"></div>
+      <p>Before the game starts, help guests find all these pieces:</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🗺️</span> <span><strong>1 Game Board</strong> — the mansion map with 9 rooms and hallways</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🪆</span> <span><strong>6 Suspect Tokens</strong> — coloured playing pieces</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🔫</span> <span><strong>6 Weapon Pieces</strong> — miniature props</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🃏</span> <span><strong>21 Cards</strong> — 6 Suspect cards + 6 Weapon cards + 9 Room cards</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>📋</span> <span><strong>Detective Notepads</strong> — one per player for tracking clues</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>✉️</span> <span><strong>1 Secret Envelope (Solve Envelope)</strong> — holds the 3 mystery cards</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🎲</span> <span><strong>2 Dice</strong></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUSPECTS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🕵️</span>
+        <span class="section-title">The 6 Suspects</span>
+        <span class="caret" style="color:var(--cream);">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>Every player takes on the role of one of these suspects. Anyone could be the murderer — including the character you're playing!</p>
+      <div class="grid-2" style="margin-top:12px;">
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#DC143C;"></div>
+          <div class="suspect-info"><strong>Miss Scarlett</strong><span>Starts near the Hallway. Usually goes first!</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#DAA520;"></div>
+          <div class="suspect-info"><strong>Colonel Mustard</strong><span>The retired military officer. Bold and strategic.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#EEEEEE; border: 1px solid #ccc;"></div>
+          <div class="suspect-info"><strong>Mrs. White</strong><span>The housekeeper. Knows the mansion inside-out.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#228B22;"></div>
+          <div class="suspect-info"><strong>Reverend Green</strong><span>Also called Mr. Green. The local clergyman.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#191970;"></div>
+          <div class="suspect-info"><strong>Mrs. Peacock</strong><span>The posh socialite. Starts near the conservatory.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#800080;"></div>
+          <div class="suspect-info"><strong>Professor Plum</strong><span>The academic with a suspicious alibi.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEAPONS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header gold-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🔪</span>
+        <span class="section-title">The 6 Weapons</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>At the start, one weapon is placed in each room (randomly). One weapon card is secretly in the envelope — that's the murder weapon!</p>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="weapon-item"><span class="weapon-icon">🕯️</span> Candlestick</div>
+        <div class="weapon-item"><span class="weapon-icon">🗡️</span> Dagger / Knife</div>
+        <div class="weapon-item"><span class="weapon-icon">🔫</span> Revolver</div>
+        <div class="weapon-item"><span class="weapon-icon">🔧</span> Lead Pipe</div>
+        <div class="weapon-item"><span class="weapon-icon">🔩</span> Wrench / Spanner</div>
+        <div class="weapon-item"><span class="weapon-icon">🪢</span> Rope</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROOMS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header green-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🏛️</span>
+        <span class="section-title">The 9 Rooms</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>The mansion has 9 rooms. You can only make a suggestion when you're <strong>inside</strong> a room — not in the hallways!</p>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="room-item"><span class="room-icon">🎱</span> Billiard Room</div>
+        <div class="room-item"><span class="room-icon">🌿</span> Conservatory</div>
+        <div class="room-item"><span class="room-icon">🍽️</span> Dining Room</div>
+        <div class="room-item"><span class="room-icon">🎵</span> Ballroom</div>
+        <div class="room-item"><span class="room-icon">🚪</span> Hall</div>
+        <div class="room-item"><span class="room-icon">📚</span> Library</div>
+        <div class="room-item"><span class="room-icon">🛋️</span> Lounge</div>
+        <div class="room-item"><span class="room-icon">🍳</span> Kitchen</div>
+        <div class="room-item"><span class="room-icon">📖</span> Study</div>
+      </div>
+      <div class="tip-box" style="margin-top:16px;">
+        <strong>💡 Secret Passages:</strong> Some corner rooms are connected by secret passages — e.g., the Kitchen ↔ Study, and the Lounge ↔ Conservatory. Using one lets you teleport to the other room without rolling dice!
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="section-card">
+    <div class="section-header dark-header">
+      <span class="section-icon">🎬</span>
+      <span class="section-title">Setting Up the Game</span>
+    </div>
+    <div class="section-body">
+      <ol class="step-list">
+        <li class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Lay out the board</strong> in the middle of the table so everyone can reach it.</div></li>
+        <li class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Sort the cards</strong> into 3 separate piles: Suspects, Weapons, and Rooms.</div></li>
+        <li class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Shuffle each pile separately</strong> — keep them face down so nobody peeks!</div></li>
+        <li class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Slip one card from each pile</strong> into the secret Solve Envelope — without looking. Seal it and place it in the centre of the board. These 3 cards are the answer!</div></li>
+        <li class="step-item"><div class="step-num">5</div><div class="step-text"><strong>Shuffle the remaining 18 cards together</strong> and deal them out (face down) to all players as equally as possible. Some players might get one extra card — that's fine!</div></li>
+        <li class="step-item"><div class="step-num">6</div><div class="step-text"><strong>Place the suspect tokens</strong> on their starting squares shown on the board. Place all 6 tokens, even if not all are being played.</div></li>
+        <li class="step-item"><div class="step-num">7</div><div class="step-text"><strong>Place one weapon in each room</strong> at random. You can spread them out however you like!</div></li>
+        <li class="step-item"><div class="step-num">8</div><div class="step-text"><strong>Give everyone a Detective Notepad</strong> and a pencil. Everyone looks at their own cards privately and marks them off on the notepad.</div></li>
+        <li class="step-item"><div class="step-num">9</div><div class="step-text"><strong>Decide who goes first</strong> — everyone rolls the dice and the highest roller starts. Play goes clockwise.</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🎲</span>
+      <span class="section-title">How to Play — Your Turn</span>
+    </div>
+    <div class="section-body">
+      <p>Each turn has up to 3 phases:</p>
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Roll the Dice & Move</strong><br>
+            Roll both dice and move your token that many spaces on the board. You can go up, down, left, right — but never diagonally. You cannot pass through other tokens. You can enter a room through its doorway (the gap in the wall).
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Make a Suggestion</strong> (if you're in a room)<br>
+            Once inside a room, you can suggest who you think did it, with which weapon, in <em>this room</em>. Say it out loud: e.g., <em>"I suggest it was Mrs. Peacock, in the Library, with the Candlestick!"</em><br><br>
+            Now move the named suspect token and weapon piece into that room (even if they were elsewhere). The player to your <strong>left</strong> must look at their cards and show you ONE card from their hand that matches any part of your suggestion (suspect, weapon, or room) — privately. If they have no matching cards, the next player to the left checks, and so on around the table. The first person with a matching card shows it only to you.
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Make an Accusation</strong> (optional, when you're sure!)<br>
+            When you're confident you know all three answers, you can make a Final Accusation on your turn. You can accuse any room — you don't need to be in it. <em>Secretly</em> check the Solve Envelope. If you're right — you win! Show everyone the cards as proof. If you're wrong — you're out of the game, but you keep playing to answer other people's suggestions (you just can't make any more suggestions or accusations yourself).
+          </div>
+        </li>
+      </ol>
+      <div class="tip-box">
+        <strong>🚀 Secret Passage Shortcut:</strong> If your token is in a corner room with a secret passage, you can use it instead of rolling — just move your token to the connected room. Then make a suggestion from there!
+      </div>
+      <div class="tip-box">
+        <strong>🏠 Staying in a Room:</strong> If you're already in a room and don't want to leave, you can stay and make a suggestion from there again. But you can't use the same room twice in a row on your own turns without leaving and re-entering.
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTEPAD TIPS -->
+  <div class="section-card">
+    <div class="section-header gold-header">
+      <span class="section-icon">📋</span>
+      <span class="section-title">Using the Detective Notepad</span>
+    </div>
+    <div class="section-body">
+      <p>The notepad is your best friend! It lists all suspects, weapons, and rooms. Here's how to use it:</p>
+      <div class="tip-box"><strong>✅ Cross off cards you hold:</strong> The cards in your own hand are definitely NOT in the envelope. Cross them off immediately.</div>
+      <div class="tip-box"><strong>✅ Cross off cards shown to you:</strong> When another player shows you a card, that card is not in the envelope. Cross it off!</div>
+      <div class="tip-box"><strong>✅ Watch what others suggest:</strong> Even when it's not your turn, pay attention! If Player A suggests Colonel Mustard, and Player B shows a card, you can start guessing what B showed based on context.</div>
+      <div class="tip-box"><strong>✅ Process of elimination:</strong> Once you've eliminated all but one suspect, weapon, and room — you know the answer! Make your accusation.</div>
+    </div>
+  </div>
+
+  <!-- WINNING -->
+  <div class="section-card">
+    <div class="section-header green-header">
+      <span class="section-icon">🏆</span>
+      <span class="section-title">Winning & Losing</span>
+    </div>
+    <div class="section-body">
+      <div class="highlight"><strong>To Win:</strong> Make a Final Accusation on your turn. Secretly open the envelope and check the 3 cards. If your suspect, weapon, AND room all match — you win! Show everyone the cards as proof.</div>
+      <div class="highlight" style="background: linear-gradient(135deg, #F5F0FF, #EDE0FF); border-color: rgba(128,0,128,0.2);"><strong>If You're Wrong:</strong> You're eliminated from making moves/suggestions. But you still show cards to others when they make suggestions — so keep paying attention! The game continues with remaining players.</div>
+      <p><strong>The game ends</strong> when someone correctly solves the mystery or all players have made wrong accusations (in which case the mystery remains unsolved — reveal the cards so everyone sees the answer).</p>
+    </div>
+  </div>
+
+  <!-- STRATEGY TIPS -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <span class="section-title">Smart Strategy Tips (Tell Your Guests!)</span>
+    </div>
+    <div class="section-body">
+      <div class="tip-box"><strong>🎯 Suggest your own cards:</strong> Suggest things you already know — like a weapon card you're holding. If someone shows that card to disprove it, you learn nothing new. But you confuse the other players who don't know you have it!</div>
+      <div class="tip-box"><strong>🗺️ Move efficiently:</strong> Try to visit rooms you haven't eliminated yet. Plan your path — rooms with secret passages let you cover two rooms in two turns without much dice luck.</div>
+      <div class="tip-box"><strong>👀 Watch who shows cards:</strong> If you suggest Colonel Mustard and the player to your left passes (shows nothing), but the third player shows a card — you know player 2 holds none of: Mustard, your weapon, or your room. That's useful info!</div>
+      <div class="tip-box"><strong>⚡ Don't rush the accusation:</strong> One wrong accusation and you're basically out. Only accuse when you're 100% sure of all three answers!</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-card">
+    <div class="section-header dark-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">Common Guest Questions — FAQ</span>
+    </div>
+    <div class="section-body">
+      <div class="faq-item">
+        <div class="faq-q">Can I make an accusation from any room?</div>
+        <div class="faq-a">Yes! A Final Accusation can name any room — you don't need to be inside it. Suggestions (the regular turn action) must match the room you're currently in.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if nobody can disprove my suggestion?</div>
+        <div class="faq-a">If every other player checks and none of them have a matching card, great news — at least two of your three guesses are probably correct! Take careful notes. You're getting closer.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I suggest my own character?</div>
+        <div class="faq-a">Absolutely! Your character can be the murderer too. Suggest yourself to throw others off the scent.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I have to move every turn?</div>
+        <div class="faq-a">If you're already in a room, you can choose not to roll and not to move — but then you can't make a suggestion that turn either. You must move to make a suggestion. Alternatively, use a secret passage instead of rolling!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if two people have the same number of cards?</div>
+        <div class="faq-a">That's completely normal! When 18 cards are dealt to 3–6 players, some get one more than others. It doesn't affect the game.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can we look at the envelope before the game ends?</div>
+        <div class="faq-a">Only when someone makes a Final Accusation — and only that player looks (secretly). No peeking during the game!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this the same as the classic Cluedo?</div>
+        <div class="faq-a">Yes! The Indian edition sold in India has the same classic characters, weapons, and gameplay as the original. The Hasbro version available here follows standard Cluedo rules.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- end English -->
+
+<!-- ════════════════ MALAYALAM ════════════════ -->
+<div id="content-ml" class="content">
+<div class="page">
+
+  <!-- QUICK STATS -->
+  <div class="quick-ref">
+    <div class="qr-item"><div class="qr-num">3–6</div><div class="qr-label">കളിക്കാർ</div></div>
+    <div class="qr-item"><div class="qr-num">45–75</div><div class="qr-label">മിനിട്ടുകൾ</div></div>
+    <div class="qr-item"><div class="qr-num">8+</div><div class="qr-label">പ്രായം</div></div>
+    <div class="qr-item"><div class="qr-num">6</div><div class="qr-label">സംശയക്കാർ</div></div>
+    <div class="qr-item"><div class="qr-num">6</div><div class="qr-label">ആയുധങ്ങൾ</div></div>
+    <div class="qr-item"><div class="qr-num">9</div><div class="qr-label">മുറികൾ</div></div>
+  </div>
+
+  <!-- WHAT IS THE GAME -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <span class="section-title">Cluedo എന്താണ്?</span>
+    </div>
+    <div class="section-body">
+      <p>Cluedo എന്നത് ഒരു ക്ലാസ്സിക് കൊലപാതക mystery board game ആണ്. ഒരു വലിയ മാളിക (mansion) ൽ ഒരു കൊലപാതകം നടന്നു — <strong>ആരാണ് ചെയ്തത്, ഏത് ആയുധം ഉപയോഗിച്ചു, ഏത് മുറിയിൽ ചെയ്തു</strong> എന്ന് കണ്ടുപിടിക്കലാണ് കളി!</p>
+      <p>1943-ൽ Anthony Pratt എന്ന ബ്രിട്ടീഷ് ആൾ ഉണ്ടാക്കിയ ഈ game 1949 മുതൽ ലോകമെങ്ങും വൻ ഹിറ്റ് ആണ്. ഇന്ത്യയിൽ Hasbro ആണ് ഈ game വിൽക്കുന്നത് — classic characters, rooms, weapons ഒക്കെ original ആണ്!</p>
+      <div class="highlight">
+        <strong>ലക്ഷ്യം:</strong> ശരിയായ suspect, ആയുധം, മുറി — ഈ 3 കാര്യങ്ങൾ ആദ്യം കണ്ടുപിടിക്കുന്ന ആൾ ജയിക്കുന്നു! 🎉
+      </div>
+      <p>Logic, deduction, ഒരിത്തിരി bluffing — ഇവ ഒക്കെ ഉള്ള ഒരു രസകരമായ game. Mystery stories ഇഷ്ടമുള്ളവർക്കും puzzle fans നും perfectly suited!</p>
+    </div>
+  </div>
+
+  <!-- WHAT'S IN THE BOX -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header gold-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">📦</span>
+        <span class="section-title">Box-ൽ എന്തൊക്കെ ഉണ്ട്?</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open" style="margin-top: 0;">
+      <div style="height:20px;"></div>
+      <p>Game തുടങ്ങുന്നതിനു മുമ്പ് ഈ pieces ഒക്കെ ഉണ്ടോ എന്ന് ഒന്ന് നോക്കൂ:</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🗺️</span> <span><strong>1 Game Board</strong> — 9 മുറികളുള്ള mansion map</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🪆</span> <span><strong>6 Suspect Tokens</strong> — വ്യത്യസ്ത നിറങ്ങളിലുള്ള playing pieces</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🔫</span> <span><strong>6 Weapon Pieces</strong> — miniature ആയുധങ്ങൾ</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🃏</span> <span><strong>21 Cards</strong> — 6 Suspect + 6 Weapon + 9 Room cards</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>📋</span> <span><strong>Detective Notepads</strong> — ഓരോ player-നും clues note ചെയ്യാൻ</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>✉️</span> <span><strong>1 Secret Envelope (Solve Envelope)</strong> — 3 mystery cards ഇതിലാണ്</span></li>
+        <li style="display:flex; gap:10px; font-size:16px;"><span>🎲</span> <span><strong>2 Dice</strong></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUSPECTS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🕵️</span>
+        <span class="section-title">6 സംശയക്കാർ</span>
+        <span class="caret" style="color:var(--cream);">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>ഓരോ player-ഉം ഈ characters-ൽ ഒരാളെ play ചെയ്യുന്നു. ഏതു character-ഉം killer ആകാം — നിങ്ങൾ play ചെയ്യുന്ന character-ഉം!</p>
+      <div class="grid-2" style="margin-top:12px;">
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#DC143C;"></div>
+          <div class="suspect-info"><strong>Miss Scarlett</strong><span>ചുവന്ന token. Hallway-ക്ക് അടുത്ത് start ചെയ്യുന്നു. സാധാരണ ആദ്യം കളിക്കുന്നു!</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#DAA520;"></div>
+          <div class="suspect-info"><strong>Colonel Mustard</strong><span>മഞ്ഞ token. Retired military officer. Bold ആയ strategy-ക്കാരൻ.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#EEEEEE; border:1px solid #ccc;"></div>
+          <div class="suspect-info"><strong>Mrs. White</strong><span>വെള്ള token. Housekeeper. Mansion-ന്റെ ഓരോ കോണും അറിയാം.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#228B22;"></div>
+          <div class="suspect-info"><strong>Reverend Green</strong><span>പച്ച token. Mr. Green എന്നും അറിയപ്പെടുന്നു.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#191970;"></div>
+          <div class="suspect-info"><strong>Mrs. Peacock</strong><span>നീല token. Conservatory-ക്ക് അടുത്ത് start ചെയ്യുന്നു.</span></div>
+        </div>
+        <div class="suspect-card">
+          <div class="suspect-dot" style="background:#800080;"></div>
+          <div class="suspect-info"><strong>Professor Plum</strong><span>വയലറ്റ് token. Suspicious alibi-ഉള്ള professor.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEAPONS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header gold-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🔪</span>
+        <span class="section-title">6 ആയുധങ്ങൾ</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>Game തുടങ്ങുമ്പോൾ ഓരോ ആയുധവും ഓരോ മുറിയിൽ randomly വെക്കുന്നു. ഒരു ആയുധം card envelope-ൽ hidden ആണ് — അതാണ് murder weapon!</p>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="weapon-item"><span class="weapon-icon">🕯️</span> Candlestick (മെഴുകുതിരി)</div>
+        <div class="weapon-item"><span class="weapon-icon">🗡️</span> Dagger / Knife (കത്തി)</div>
+        <div class="weapon-item"><span class="weapon-icon">🔫</span> Revolver (തോക്ക്)</div>
+        <div class="weapon-item"><span class="weapon-icon">🔧</span> Lead Pipe</div>
+        <div class="weapon-item"><span class="weapon-icon">🔩</span> Wrench / Spanner</div>
+        <div class="weapon-item"><span class="weapon-icon">🪢</span> Rope (കയർ)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROOMS -->
+  <div class="section-card">
+    <button class="collapsible-trigger" onclick="toggleCollapse(this)">
+      <div class="section-header green-header" style="flex:1; border-radius:0; margin:-16px -24px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+        <span class="section-icon">🏛️</span>
+        <span class="section-title">9 മുറികൾ</span>
+        <span class="caret">▼</span>
+      </div>
+    </button>
+    <div class="collapsible-body open">
+      <div style="height:16px;"></div>
+      <p>Mansion-ൽ 9 മുറികൾ ഉണ്ട്. ഒരു മുറിക്ക് <strong>ഉള്ളിൽ</strong> ആയിരിക്കുമ്പോൾ മാത്രമേ suggestion ചെയ്യാൻ പറ്റൂ — hallway-ൽ നിന്ന് പറ്റില്ല!</p>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="room-item"><span class="room-icon">🎱</span> Billiard Room</div>
+        <div class="room-item"><span class="room-icon">🌿</span> Conservatory</div>
+        <div class="room-item"><span class="room-icon">🍽️</span> Dining Room</div>
+        <div class="room-item"><span class="room-icon">🎵</span> Ballroom</div>
+        <div class="room-item"><span class="room-icon">🚪</span> Hall</div>
+        <div class="room-item"><span class="room-icon">📚</span> Library</div>
+        <div class="room-item"><span class="room-icon">🛋️</span> Lounge</div>
+        <div class="room-item"><span class="room-icon">🍳</span> Kitchen</div>
+        <div class="room-item"><span class="room-icon">📖</span> Study</div>
+      </div>
+      <div class="tip-box" style="margin-top:16px;">
+        <strong>💡 Secret Passages:</strong> ചില corner rooms secret passages-ൽ connect ആണ്! Kitchen ↔ Study, Lounge ↔ Conservatory. ഈ passages ഉപയോഗിച്ചാൽ dice roll ഇല്ലാതെ directly ആ മുറിയിൽ എത്താം!
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="section-card">
+    <div class="section-header dark-header">
+      <span class="section-icon">🎬</span>
+      <span class="section-title">Game Setup — തുടക്കം</span>
+    </div>
+    <div class="section-body">
+      <ol class="step-list">
+        <li class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Board നടുവിൽ വെക്കൂ</strong> — എല്ലാർക്കും reach ആകുന്ന form-ൽ.</div></li>
+        <li class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Cards 3 piles ആക്കൂ:</strong> Suspects, Weapons, Rooms — separately.</div></li>
+        <li class="step-item"><div class="step-num">3</div><div class="step-text"><strong>ഓരോ pile-ഉം separately shuffle ചെയ്യൂ</strong> — face down ആക്കൂ, ആരും നോക്കരുത്!</div></li>
+        <li class="step-item"><div class="step-num">4</div><div class="step-text"><strong>ഓരോ pile-ൽ നിന്നും ഒരു card</strong> നോക്കാതെ secret envelope-ൽ ഇടൂ. Board-ന്റെ center-ൽ വെക്കൂ. ഇതാണ് answer!</div></li>
+        <li class="step-item"><div class="step-num">5</div><div class="step-text"><strong>ബാക്കി 18 cards</strong> ഒരുമിച്ച് shuffle ചെയ്ത് players-ന് face down ആയി deal ചെയ്യൂ. ചിലർക്ക് ഒരു card extra കിട്ടിയേക്കാം — OK ആണ്!</div></li>
+        <li class="step-item"><div class="step-num">6</div><div class="step-text"><strong>Suspect tokens</strong> board-ൽ കാണിച്ചിരിക്കുന്ന starting squares-ൽ വെക്കൂ. 6 tokens ഉം വെക്കണം, play ചെയ്യുന്നില്ലെങ്കിലും.</div></li>
+        <li class="step-item"><div class="step-num">7</div><div class="step-text"><strong>Weapons randomly</strong> 6 different rooms-ൽ ഒരോന്നാക്കി വെക്കൂ.</div></li>
+        <li class="step-item"><div class="step-num">8</div><div class="step-text"><strong>ഓരോ player-നും Detective Notepad</strong> ഒന്ന് കൊടുക്കൂ. Players their own cards privately നോക്കി notepad-ൽ mark ചെയ്യൂ.</div></li>
+        <li class="step-item"><div class="step-num">9</div><div class="step-text"><strong>ആദ്യം കളിക്കുന്നത്:</strong> Dice roll ചെയ്ത് highest score കിട്ടുന്ന ആൾ. Clockwise ആയി game proceed ചെയ്യും.</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🎲</span>
+      <span class="section-title">കളിക്കുന്ന വിധം — Your Turn</span>
+    </div>
+    <div class="section-body">
+      <p>ഓരോ turn-ലും 3 phases ഉണ്ടാകാം:</p>
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Dice Roll & Move</strong><br>
+            Dice roll ചെയ്ത് ആ count-ന്റെ spaces move ആകൂ. Up, down, left, right — OK. Diagonally move ആകരുത്. Doorway (wall-ലെ gap) ദ്വാരത്തിലൂടെ rooms-ൽ enter ചെയ്യൂ.
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Suggestion ചെയ്യൂ</strong> (ഒരു room-ൽ ആണെങ്കിൽ)<br>
+            Room-ൽ ആണ് ഉള്ളത് എങ്കിൽ suggestion ചെയ്യാം. Loud ആയി പറയൂ: <em>"ഞാൻ suggest ചെയ്യുന്നു — Mrs. Peacock, Library-ൽ, Candlestick ഉപയോഗിച്ച്!"</em><br><br>
+            ആ suspect token-ഉം weapon-ഉം ആ room-ൽ move ചെയ്യൂ. <strong>ഇടതുവശത്തുള്ള player</strong> their cards check ചെയ്ത് ഒരു matching card (privately!) നിങ്ങൾക്ക് കാണിക്കണം. അവർക്ക് ഇല്ലെങ്കിൽ next player check ചെയ്യും.
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Final Accusation</strong> (ഉറപ്പ് ആയി എന്ന് തോന്നുമ്പോൾ!)<br>
+            3 answers-ഉം ഉറപ്പ് ആണ് എന്ന് തോന്നുമ്പോൾ Final Accusation ചെയ്യൂ. ഏത് room-ഉം accuse ചെയ്യാം — ആ room-ൽ ആയിരിക്കണം എന്നില്ല. <em>Secretly</em> envelope check ചെയ്യൂ. ശരി ആണ് — ജയിച്ചു! തെറ്റ് ആണ് — game-ൽ നിന്ന് eliminate. But still others-ന്റെ suggestions-ന് cards show ചെയ്യണം.
+          </div>
+        </li>
+      </ol>
+      <div class="tip-box">
+        <strong>🚀 Secret Passage Shortcut:</strong> Corner room-ൽ ആണ് ഉള്ളത് എങ്കിൽ dice roll ചെയ്യാതെ secret passage ഉപയോഗിച്ച് connected room-ൽ directly ചെല്ലൂ! ആ room-ൽ നിന്ന് suggestion ചെയ്യൂ.
+      </div>
+      <div class="tip-box">
+        <strong>🏠 Room-ൽ Stay ചെയ്യൽ:</strong> ഒരു room-ൽ ഉണ്ടെങ്കിൽ move ചെയ്യാൻ ആഗ്രഹിക്കുന്നില്ല എങ്കിൽ stay ചെയ്യൂ. പക്ഷേ move ഇല്ലെങ്കിൽ suggestion-ഉം ഇല്ല. Secret passage ഉണ്ടെങ്കിൽ അത് use ചെയ്യൂ!
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTEPAD TIPS -->
+  <div class="section-card">
+    <div class="section-header gold-header">
+      <span class="section-icon">📋</span>
+      <span class="section-title">Detective Notepad ഉപയോഗിക്കുന്ന വിധം</span>
+    </div>
+    <div class="section-body">
+      <p>Notepad നിങ്ങളുടെ best friend ആണ്! All suspects, weapons, rooms list ആണ് അതിൽ. ഇങ്ങനെ use ചെയ്യൂ:</p>
+      <div class="tip-box"><strong>✅ നിങ്ങളുടെ cards cross off ചെയ്യൂ:</strong> Hand-ലെ cards envelope-ൽ ഇല്ല — ഉടൻ cross off ചെയ്യൂ.</div>
+      <div class="tip-box"><strong>✅ കിട്ടുന്ന cards cross off ചെയ്യൂ:</strong> Someone shows ചെയ്ത card envelope-ൽ ഇല്ല.</div>
+      <div class="tip-box"><strong>✅ Others-ന്റെ suggestions ശ്രദ്ധിക്കൂ:</strong> A suggest ചെയ്ത്, B card show ചെയ്ത — B-ക്ക് ഏത് card ഉണ്ട് എന്ന് guess ചെയ്യൂ!</div>
+      <div class="tip-box"><strong>✅ Process of elimination:</strong> ഒരു suspect, ഒരു weapon, ഒരു room — ഇവ മാത്രം ബാക്കി ആകുമ്പോൾ accusation ചെയ്യൂ!</div>
+    </div>
+  </div>
+
+  <!-- WINNING -->
+  <div class="section-card">
+    <div class="section-header green-header">
+      <span class="section-icon">🏆</span>
+      <span class="section-title">ജയം & തോൽവി</span>
+    </div>
+    <div class="section-body">
+      <div class="highlight"><strong>ജയിക്കാൻ:</strong> Final Accusation ചെയ്ത് envelope secretly check ചെയ്യൂ. Suspect, weapon, AND room — 3 ഉം ശരി ആണ് എങ്കിൽ ജയം! Everyone-ന് cards കാണിക്കൂ.</div>
+      <div class="highlight" style="background: linear-gradient(135deg, #F5F0FF, #EDE0FF); border-color: rgba(128,0,128,0.2);"><strong>തെറ്റ് ആണ് എങ്കിൽ:</strong> Game moves/suggestions ചെയ്യൽ നിർത്തണം. But others-ന്റെ suggestions-ന് cards show ചെയ്യണം. Attentive ആയി ഇരിക്കൂ!</div>
+      <p><strong>Game end ആകുന്നത്:</strong> ഒരാൾ mystery solve ചെയ്യുമ്പോൾ, അല്ലെങ്കിൽ all players wrong accusation ചെയ്യുമ്പോൾ. ആർക്കും answer കിട്ടിയില്ലെങ്കിൽ envelope open ചെയ്ത് everyone-ഉം answer കാണൂ.</div>
+    </div>
+  </div>
+
+  <!-- STRATEGY TIPS -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <span class="section-title">Smart Strategy Tips (Guests-ന് പറഞ്ഞുകൊടുക്കൂ!)</span>
+    </div>
+    <div class="section-body">
+      <div class="tip-box"><strong>🎯 Own cards suggest ചെയ്യൂ:</strong> നിങ്ങളുടെ hand-ൽ ഉള്ള cards suggest ചെയ്താൽ others confuse ആകും — അവർക്ക് ആ card envelope-ൽ ഉണ്ടോ ഇല്ലയോ അറിയില്ല!</div>
+      <div class="tip-box"><strong>🗺️ Efficiently move ചെയ്യൂ:</strong> Eliminate ആകാത്ത rooms visit ചെയ്യൂ. Secret passages — 2 turns-ൽ 2 rooms visit ചെയ്യൂ.</div>
+      <div class="tip-box"><strong>👀 Card show ചെയ്യാത്തത് ശ്രദ്ധിക്കൂ:</strong> Someone-ന് ഒരു card show ചെയ്യാൻ ഇല്ലെങ്കിൽ — ആ 3 cards (suspect, weapon, room) ഒന്നും ആ player-ന്റെ hand-ൽ ഇല്ല!</div>
+      <div class="tip-box"><strong>⚡ Rush ചെയ്യരുത്:</strong> ഒരു wrong accusation — basically game over. 3 ഉം 100% ഉറപ്പ് ആകുമ്പോൾ മാത്രം accuse ചെയ്യൂ!</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-card">
+    <div class="section-header dark-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">Guests ചോദിക്കുന്ന Common Questions — FAQ</span>
+    </div>
+    <div class="section-body">
+      <div class="faq-item">
+        <div class="faq-q">ഏത് room-ൽ നിന്നും accusation ചെയ്യാൻ പറ്റുമോ?</div>
+        <div class="faq-a">അതെ! Final Accusation ഏത് room-ഉം name ചെയ്യാം — ആ room-ൽ ആകണം എന്നില്ല. Regular suggestions-ന് (turn action) ആ room-ൽ ഉണ്ടാകണം.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">ആരും my suggestion disprove ചെയ്തില്ലെങ്കിൽ?</div>
+        <div class="faq-a">Great sign! നിങ്ങളുടെ guess-ൽ 2 or 3 parts ശരി ആകാൻ chance കൂടുതൽ. Carefully note ചെയ്യൂ. Closer ആകുന്നു!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">സ്വന്തം character-നെ suspect ആക്കി suggest ചെയ്യാൻ പറ്റുമോ?</div>
+        <div class="faq-a">തീർച്ചയായും! Your character-ഉം murderer ആകാം. Others confuse ആക്കാൻ suggest ചെയ്യൂ.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Every turn-ഉം move ചെയ്യണോ?</div>
+        <div class="faq-a">Room-ൽ ഉണ്ടെങ്കിൽ roll ഇല്ലാതെ stay ചെയ്യൂ — but then suggestion-ഉം ഇല്ല. Move ചെയ്യണം suggestion ചെയ്യാൻ. Secret passage ഉണ്ടെങ്കിൽ use ചെയ്യൂ!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Cards deal ചെയ്യുമ്പോൾ equal ആകോ?</div>
+        <div class="faq-a">18 cards 3-6 players-ന് deal ചെയ്യുമ്പോൾ ചിലർക്ക് ഒന്ന് extra കിട്ടും. Perfectly normal. Game-നെ affect ചെയ്യില്ല.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Game-ൽ envelope nOK ആകണോ?</div>
+        <div class="faq-a">Final Accusation ചെയ്യുന്ന ആൾ മാത്രം — secretly look ചെയ്യൂ. Game-ൽ peek ചെയ്യരുത്!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">ഇത് classic Cluedo-ന്റെ same ആണോ?</div>
+        <div class="faq-a">അതെ! ഇന്ത്യയിൽ Hasbro വഴി വരുന്ന edition-ൽ same classic characters, weapons, gameplay ഒക്കെ ഉണ്ട്. Standard Cluedo rules-ഉം same!</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- end Malayalam -->
+
+<div class="footer">
+  ✦ Board Game Café Kochi · Staff Reference Guide · Cluedo Indian Edition ✦
+</div>
+
+<script>
+  function setLang(lang) {
+    document.getElementById('content-en').classList.toggle('active', lang === 'en');
+    document.getElementById('content-ml').classList.toggle('active', lang === 'ml');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ml').classList.toggle('active', lang === 'ml');
+    // Re-trigger animations
+    const cards = document.querySelectorAll('#content-' + lang + ' .section-card');
+    cards.forEach((c, i) => {
+      c.style.animation = 'none';
+      requestAnimationFrame(() => {
+        c.style.animation = '';
+        c.style.animationDelay = (i * 0.05) + 's';
+      });
+    });
+  }
+
+  function toggleCollapse(btn) {
+    btn.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
+    body.style.display = body.classList.contains('open') ? 'block' : 'none';
+  }
+
+  // Init all collapsible bodies to visible
+  document.querySelectorAll('.collapsible-body').forEach(b => { b.style.display = 'block'; });
+</script>
+</body>
+</html>
