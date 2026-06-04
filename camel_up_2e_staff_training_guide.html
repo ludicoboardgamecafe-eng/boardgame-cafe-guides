@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camel Up (2nd Ed) Staff Training Guide | English + Malayalam</title>
+  <style>
+    :root{
+      --bg:#fff8e7; --card:#ffffff; --ink:#2d2118; --muted:#6f5d4b; --accent:#d88924; --accent2:#3f7f6b; --danger:#b34a2f; --line:#ead9bd;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fff1c9 0%,var(--bg) 260px);color:var(--ink);line-height:1.58}
+    header{position:sticky;top:0;z-index:10;background:rgba(255,248,231,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .bar{max-width:1120px;margin:auto;padding:14px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;font-size:1.05rem;letter-spacing:.2px}.brand small{display:block;font-weight:600;color:var(--muted);font-size:.75rem}
+    .toggle{display:flex;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;box-shadow:0 3px 15px rgba(88,57,20,.08)}
+    .toggle button{border:0;background:transparent;border-radius:999px;padding:9px 15px;font-weight:800;cursor:pointer;color:var(--muted)}
+    .toggle button.active{background:var(--accent);color:#fff}
+    main{max-width:1120px;margin:auto;padding:30px 20px 60px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:22px;align-items:stretch}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 8px 25px rgba(94,61,24,.08)}
+    h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:0 0 12px}h2{font-size:1.55rem;margin:0 0 12px;border-left:6px solid var(--accent);padding-left:12px}h3{font-size:1.12rem;margin:22px 0 8px;color:#3a2a1d}p{margin:8px 0}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.pill{background:#fff4d9;border:1px solid #efd59e;border-radius:999px;padding:7px 11px;font-weight:800;font-size:.9rem;color:#5a3a15}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.toc a{display:block;color:var(--ink);text-decoration:none;padding:9px 0;border-bottom:1px dashed var(--line);font-weight:700}.toc a:hover{color:var(--accent)}
+    ul,ol{padding-left:22px;margin:8px 0}li{margin:6px 0}.callout{border-left:5px solid var(--accent2);background:#eef8f4;border-radius:14px;padding:14px 16px;margin:14px 0}.warning{border-left-color:var(--danger);background:#fff0ea}.script{background:#2f2118;color:#fff;border-radius:16px;padding:16px;margin-top:12px}.script strong{color:#ffd78a}.tag{display:inline-block;background:#f0f7f4;color:#245f4f;border-radius:6px;padding:2px 7px;font-size:.78rem;font-weight:900;margin-right:5px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:16px;margin:12px 0}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#fff0cc;font-weight:900}tr:last-child td{border-bottom:0}.lang{display:none}.lang.active{display:block}.footer{font-size:.9rem;color:var(--muted);text-align:center;margin-top:28px}.camel{font-size:3rem;letter-spacing:.15rem;line-height:1.2}.mini{font-size:.92rem;color:var(--muted)}.kbd{font-family:ui-monospace,Consolas,monospace;background:#f8ead0;border:1px solid #e9c98f;border-radius:6px;padding:1px 6px;font-weight:700}
+    @media(max-width:800px){.hero,.grid,.three{grid-template-columns:1fr}.bar{align-items:flex-start}.toggle{width:100%;justify-content:center}.toggle button{flex:1}.card{padding:19px}}
+    @media print{header{position:static}.toggle{display:none}body{background:#fff}.card{box-shadow:none;break-inside:avoid}.lang:not(.active){display:none!important}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">Camel Up (2nd Edition) Staff Training Guide<small>Board Game Cafe | Kochi, Kerala</small></div>
+    <div class="toggle" aria-label="Language toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+      <button id="btn-ml" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="lang active" id="en">
+    <div class="hero">
+      <div class="card">
+        <h1>Camel Up<br><span style="color:var(--accent)">(2nd Edition)</span></h1>
+        <p><strong>Staff goal:</strong> teach guests a chaotic camel-racing betting game in 5 minutes, then help them with stacking, crazy camel, and scoring questions without slowing the table down.</p>
+        <div class="pillrow"><span class="pill">3-8 players</span><span class="pill">30-45 minutes</span><span class="pill">Light strategy</span><span class="pill">Best for groups</span><span class="pill">Betting, dice, race</span></div>
+      </div>
+      <div class="card toc">
+        <h2>Staff quick menu</h2>
+        <a href="#en-overview">What is the game?</a><a href="#en-components">Components</a><a href="#en-setup">Setup</a><a href="#en-turn">Turn options</a><a href="#en-movement">Movement & stacking</a><a href="#en-scoring">Scoring</a><a href="#en-teach">5-minute teach</a><a href="#en-faq">Common questions</a>
+      </div>
+    </div>
+
+    <section id="en-overview" class="card" style="margin-top:18px">
+      <h2>1. What is Camel Up?</h2>
+      <p>Camel Up is a funny race game where nobody owns a camel. Everyone is just watching the race and betting on which camel will do well.</p>
+      <p>The twist is that camels can land on top of each other. When a lower camel moves, it carries the camels sitting on top of it. So one die roll can suddenly change the whole race.</p>
+      <p>In the 2nd Edition, there are also two <strong>crazy camels</strong>, black and white. They move in the opposite direction and can carry racing camels backwards. This makes the game more unpredictable and very funny for cafe groups.</p>
+      <div class="callout"><strong>One-line pitch to guests:</strong> “It’s a camel race where you bet during the race, but the camels stack and carry each other, so the leader can change in one hilarious roll.”</div>
+    </section>
+
+    <section id="en-components" class="card" style="margin-top:18px">
+      <h2>2. Components staff should know</h2>
+      <div class="grid three">
+        <div><h3>Racing camels</h3><p>Five coloured camels race clockwise around the track.</p></div>
+        <div><h3>Crazy camels</h3><p>Black and white camels move counter-clockwise. They do not win the race; they only cause chaos.</p></div>
+        <div><h3>Pyramid & dice</h3><p>The pyramid releases one random die at a time. The die colour tells which camel moves, and the number says how many spaces.</p></div>
+        <div><h3>Leg betting tickets</h3><p>Tickets for who will be leading at the end of the current leg. Earlier tickets pay more.</p></div>
+        <div><h3>Winner/loser cards</h3><p>Cards used to secretly bet on the overall race winner or overall race loser.</p></div>
+        <div><h3>Desert/spectator tiles</h3><p>Each player has a tile that can move a camel stack one space forward or backward when landed on.</p></div>
+      </div>
+    </section>
+
+    <section id="en-setup" class="card" style="margin-top:18px">
+      <h2>3. Setup checklist</h2>
+      <ol>
+        <li>Place the board in the middle and assemble/place the pyramid.</li>
+        <li>Sort the leg betting tickets by camel colour. Put the highest-value ticket on top of each colour stack.</li>
+        <li>Give each player their character cards for race winner/loser betting and one spectator/desert tile.</li>
+        <li>Give each player starting money. Keep the bank nearby.</li>
+        <li>Put the five racing camel dice and the crazy camel die/dice into the pyramid as instructed by your copy’s rulebook.</li>
+        <li>Set the starting positions of racing camels and crazy camels using the setup rolls. Racing camels face clockwise; crazy camels face counter-clockwise.</li>
+        <li>Youngest player starts, or for cafe flow, choose the guest who last rode in an auto/taxi.</li>
+      </ol>
+      <div class="warning callout"><strong>Staff reminder:</strong> Before teaching, quickly check that all dice are inside the pyramid. Missing dice are the most common setup issue.</div>
+    </section>
+
+    <section id="en-turn" class="card" style="margin-top:18px">
+      <h2>4. What can a player do on their turn?</h2>
+      <p>On your turn, choose <strong>one</strong> action:</p>
+      <div class="tablewrap"><table><thead><tr><th>Action</th><th>What it means</th><th>When guests choose it</th></tr></thead><tbody>
+        <tr><td><strong>Take a leg betting ticket</strong></td><td>Bet on which racing camel will be first at the end of this leg.</td><td>When they think they know the current leader after the remaining dice.</td></tr>
+        <tr><td><strong>Place/move your spectator tile</strong></td><td>Put your tile on an empty allowed track space. Choose +1 or -1 side.</td><td>To mess with the race and earn money if camels land there.</td></tr>
+        <tr><td><strong>Take a pyramid ticket and roll</strong></td><td>Use the pyramid to reveal one die, move that camel, and earn 1 coin.</td><td>When they want safe money or want more information before betting.</td></tr>
+        <tr><td><strong>Bet on overall winner</strong></td><td>Secretly place one colour card on the winner pile.</td><td>Earlier correct bets pay better, but wrong bets lose money.</td></tr>
+        <tr><td><strong>Bet on overall loser</strong></td><td>Secretly place one colour card on the loser pile.</td><td>Good when a camel is clearly far behind or trapped by crazy camels.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="en-movement" class="card" style="margin-top:18px">
+      <h2>5. Movement, stacking, and ranking</h2>
+      <h3>Normal racing camels</h3>
+      <ul><li>When a coloured die comes out, move the matching racing camel forward clockwise.</li><li>If the camel has other camels on top of it, move the whole stack above it together.</li><li>If a camel stack lands on another camel or stack, it goes on top of that stack.</li></ul>
+      <h3>Ranking rule</h3>
+      <p>If two or more racing camels are on the same space, the camel on top is considered ahead of the camel below it. This matters for betting and scoring.</p>
+      <h3>Crazy camels</h3>
+      <ul><li>Black and white crazy camels move counter-clockwise, the opposite way around the track.</li><li>They cannot win or lose the race for scoring; they are not valid betting choices.</li><li>If a crazy camel carries racing camels, those racing camels can be dragged backwards.</li><li>When a crazy camel moves, move any camels stacked on top of it with it.</li></ul>
+      <h3>Spectator/desert tile</h3>
+      <ul><li>A player may place their tile on an allowed empty space, not on a space with camels and not directly next to another spectator tile.</li><li>If a camel or stack lands on the tile, the tile owner earns 1 coin.</li><li>The stack then moves one extra space forward if the tile shows +1, or one space backward if it shows -1.</li><li>When moving because of a +1 tile, the moving camel/stack goes on top of any camels on the destination space. When moving because of a -1 tile, it usually goes underneath the camels on the destination space. Staff should check the rulebook if guests challenge this detail.</li></ul>
+      <div class="callout"><strong>Easy way to explain stacks:</strong> “Think of it like piggyback. If the bottom camel moves, everyone sitting on it travels. If the top camel moves, only that camel and anything above it move.”</div>
+    </section>
+
+    <section id="en-scoring" class="card" style="margin-top:18px">
+      <h2>6. End of leg and end of game scoring</h2>
+      <h3>When does a leg end?</h3><p>A leg ends after all dice for that leg have been rolled from the pyramid. Then score leg betting tickets and reset for the next leg.</p>
+      <h3>Leg betting scoring</h3>
+      <ul><li>If your ticket’s camel is currently first, you earn the value shown on the ticket.</li><li>If your ticket’s camel is currently second, you usually earn 1 coin.</li><li>If your ticket’s camel is not first or second, you lose 1 coin.</li><li>Pyramid tickets usually give 1 coin each.</li></ul>
+      <h3>When does the race end?</h3><p>The game ends immediately when at least one racing camel crosses the finish line. Finish the current movement, then score the final winner and loser bets.</p>
+      <h3>Overall winner/loser scoring</h3>
+      <p>Reveal the winner and loser piles in order. The earliest correct bets pay the most. Wrong cards usually cost 1 coin each. After all final scoring, the player with the most money wins.</p>
+      <div class="warning callout"><strong>Cafe tip:</strong> For first-time guests, staff can handle scoring aloud. It avoids confusion and makes the game feel smooth.</div>
+    </section>
+
+    <section id="en-teach" class="card" style="margin-top:18px">
+      <h2>7. 5-minute staff teaching script</h2>
+      <div class="script">
+        <p><strong>Start:</strong> “In this game, we are all betting on a camel race. Nobody owns a camel. Your goal is to finish with the most money.”</p>
+        <p><strong>Show stacks:</strong> “Camels can sit on top of each other. If the lower camel moves, it carries everyone above it. The top camel is ahead.”</p>
+        <p><strong>Show turn actions:</strong> “On your turn, do one thing: bet on this round, place your tile, roll a die for safe money, or make a secret final winner/loser bet.”</p>
+        <p><strong>Explain legs:</strong> “A round, called a leg, ends after the dice have all come out. Then we pay leg bets and continue.”</p>
+        <p><strong>Explain final:</strong> “When a racing camel crosses the finish line, we score final winner and loser bets. Most money wins.”</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>8. Staff strategy notes</h2>
+      <ul><li><span class="tag">Beginner tip</span> Early in a leg, rolling is safe because it gives 1 coin and more information.</li><li><span class="tag">Bet timing</span> Earlier leg bets pay more, but are riskier.</li><li><span class="tag">Watch dice</span> Once a camel’s die has already come out, that camel will not move again this leg.</li><li><span class="tag">Stacks matter</span> A camel behind can suddenly jump ahead if carried by a lower camel.</li><li><span class="tag">Crazy camels</span> They can ruin “obvious” bets by pulling a stack backward.</li></ul>
+    </section>
+
+    <section id="en-faq" class="card" style="margin-top:18px">
+      <h2>9. Common guest questions</h2>
+      <h3>Do players own camels?</h3><p>No. Everyone can bet on any racing camel.</p>
+      <h3>Can black or white crazy camel win?</h3><p>No. They are only troublemakers. Do not include them in winner/loser bets.</p>
+      <h3>Who is ahead when camels are stacked?</h3><p>The camel on top is ahead.</p>
+      <h3>Can I bet more than once on the overall winner or loser?</h3><p>Yes, but each colour card can only be used once by that player. Once played, it stays in that pile.</p>
+      <h3>Can a player have negative money?</h3><p>Usually yes, if they must pay and cannot cover it, track it clearly. For cafe play, use a small paper note if needed.</p>
+      <h3>What if there is a tie for most money?</h3><p>Check the rulebook for your copy. Many groups simply share the win or use “most correct final bets” as a fun cafe tiebreaker if everyone agrees before the game.</p>
+    </section>
+  </section>
+
+  <section class="lang" id="ml">
+    <div class="hero">
+      <div class="card">
+        <h1>കാമൽ അപ്പ്<br><span style="color:var(--accent)">(രണ്ടാം പതിപ്പ്)</span></h1>
+        <p><strong>സ്റ്റാഫ് ലക്ഷ്യം:</strong> അതിഥികൾക്ക് 5 മിനിറ്റിൽ ഒരു രസകരമായ ഒട്ടക റേസ് ബെറ്റിംഗ് ഗെയിം പഠിപ്പിക്കുക. പിന്നെ stacking, crazy camel, scoring തുടങ്ങിയ സംശയങ്ങൾക്ക് പെട്ടെന്ന് മറുപടി നൽകാൻ കഴിയണം.</p>
+        <div class="pillrow"><span class="pill">3-8 കളിക്കാർ</span><span class="pill">30-45 മിനിറ്റ്</span><span class="pill">ലൈറ്റ് സ്ട്രാറ്റജി</span><span class="pill">ഗ്രൂപ്പുകൾക്ക് സൂപ്പർ</span><span class="pill">ബെറ്റിംഗ്, ഡൈസ്, റേസ്</span></div>
+      </div>
+      <div class="card toc">
+        <h2>സ്റ്റാഫ് ക്വിക്ക് മെനു</h2>
+        <a href="#ml-overview">ഗെയിം എന്താണ്?</a><a href="#ml-components">കമ്പോണന്റുകൾ</a><a href="#ml-setup">സെറ്റപ്പ്</a><a href="#ml-turn">ടേൺ ഓപ്ഷനുകൾ</a><a href="#ml-movement">മൂവ്‌മെന്റ് & സ്റ്റാക്കിംഗ്</a><a href="#ml-scoring">സ്കോറിംഗ്</a><a href="#ml-teach">5 മിനിറ്റ് ടീച്ച്</a><a href="#ml-faq">സാധാരണ ചോദ്യങ്ങൾ</a>
+      </div>
+    </div>
+
+    <section id="ml-overview" class="card" style="margin-top:18px">
+      <h2>1. Camel Up എന്താണ്?</h2>
+      <p>Camel Up ഒരു കോമഡി റേസ് ഗെയിം ആണ്. ആരും ഒരു ഒട്ടകത്തിന്റെ ഉടമയല്ല. എല്ലാവരും റേസ് നോക്കി ഏത് ഒട്ടകം മുന്നിൽ വരും എന്ന് ബെറ്റ് ചെയ്യുകയാണ്.</p>
+      <p>മെയിൻ ട്വിസ്റ്റ്: ഒട്ടകങ്ങൾ ഒന്ന് മറ്റൊന്നിന്റെ മുകളിൽ കയറും. താഴെയുള്ള ഒട്ടകം നീങ്ങിയാൽ, അതിന്റെ മുകളിലുള്ള ഒട്ടകങ്ങളെയും കൂടെ കൊണ്ടുപോകും. അതുകൊണ്ട് ഒരു ഡൈസ് റോൾ കൊണ്ട് തന്നെ റേസ് മുഴുവൻ മാറാം.</p>
+      <p>രണ്ടാം പതിപ്പിൽ <strong>crazy camels</strong> ആയ കറുപ്പ്, വെള്ള ഒട്ടകങ്ങളും ഉണ്ട്. ഇവ വിപരീത ദിശയിൽ പോകും. ചിലപ്പോൾ റേസിംഗ് ഒട്ടകങ്ങളെ പിന്നിലേക്ക് കൊണ്ടുപോകും. അതാണ് കളിയിലെ വലിയ തമാശ.</p>
+      <div class="callout"><strong>അതിഥികൾക്ക് പറയാനുള്ള one-line pitch:</strong> “ഇത് ഒരു ഒട്ടക റേസ് ആണ്. നാം റേസിനിടയിൽ ബെറ്റ് ചെയ്യും. പക്ഷേ ഒട്ടകങ്ങൾ ഒന്ന് മറ്റൊന്നിനെ carry ചെയ്യുന്നതിനാൽ ലീഡർ ഇടയ്ക്കിടെ മാറും!”</div>
+    </section>
+
+    <section id="ml-components" class="card" style="margin-top:18px">
+      <h2>2. സ്റ്റാഫ് അറിയേണ്ട കമ്പോണന്റുകൾ</h2>
+      <div class="grid three">
+        <div><h3>റേസിംഗ് ഒട്ടകങ്ങൾ</h3><p>അഞ്ച് നിറത്തിലുള്ള ഒട്ടകങ്ങൾ ട്രാക്കിൽ clockwise ആയി റേസ് ചെയ്യും.</p></div>
+        <div><h3>Crazy camels</h3><p>കറുപ്പ്, വെള്ള ഒട്ടകങ്ങൾ counter-clockwise ആയി പോകും. ഇവ ജയിക്കില്ല; chaos ഉണ്ടാക്കാനാണ്.</p></div>
+        <div><h3>Pyramid & dice</h3><p>Pyramid-ൽ നിന്ന് ഒരു random die പുറത്തുവരും. നിറം ഏത് ഒട്ടകം നീങ്ങണം എന്ന് കാണിക്കും; നമ്പർ എത്ര spaces എന്ന് കാണിക്കും.</p></div>
+        <div><h3>Leg betting tickets</h3><p>ഇപ്പോഴത്തെ leg/round അവസാനിക്കുമ്പോൾ ഏത് ഒട്ടകം മുന്നിലായിരിക്കും എന്ന് ബെറ്റ് ചെയ്യാനുള്ള tickets.</p></div>
+        <div><h3>Winner/loser cards</h3><p>മുഴുവൻ റേസിൽ winner അല്ലെങ്കിൽ loser ആരായിരിക്കും എന്ന് രഹസ്യമായി ബെറ്റ് ചെയ്യാനുള്ള cards.</p></div>
+        <div><h3>Desert/spectator tiles</h3><p>ഓരോ കളിക്കാരനും ഒരു tile ഉണ്ട്. ഒട്ടകം അതിൽ land ചെയ്താൽ stack ഒരു space മുന്നോട്ടോ പിന്നോട്ടോ പോകും.</p></div>
+      </div>
+    </section>
+
+    <section id="ml-setup" class="card" style="margin-top:18px">
+      <h2>3. Setup checklist</h2>
+      <ol>
+        <li>Board നടുവിൽ വെക്കുക. Pyramid assemble ചെയ്ത് വെക്കുക.</li>
+        <li>Leg betting tickets നിറം പ്രകാരം sort ചെയ്യുക. Highest value ticket മുകളിൽ വരണം.</li>
+        <li>ഓരോ കളിക്കാരനും character cards, winner/loser betting cards, ഒരു spectator/desert tile കൊടുക്കുക.</li>
+        <li>ഓരോ കളിക്കാരനും starting money കൊടുക്കുക. Bank അടുത്ത് വെക്കുക.</li>
+        <li>റേസിംഗ് ഒട്ടകങ്ങളുടെ dice-ഉം crazy camel die/dice-ഉം pyramid-ൽ ഇടുക. നിങ്ങളുടെ copy-യുടെ rulebook അനുസരിക്കുക.</li>
+        <li>Setup rolls ഉപയോഗിച്ച് racing camels, crazy camels എന്നിവയുടെ starting positions വെക്കുക. Racing camels clockwise നോക്കണം; crazy camels counter-clockwise നോക്കണം.</li>
+        <li>Youngest player തുടങ്ങാം. Cafe fun ആയി “ഇന്ന് അവസാനം auto/taxi കയറിയ ആളാണ് starter” എന്നും പറയാം.</li>
+      </ol>
+      <div class="warning callout"><strong>സ്റ്റാഫ് ഓർമ്മിക്കുക:</strong> പഠിപ്പിക്കുന്നതിന് മുൻപ് എല്ലാ dice-ഉം pyramid-ൽ ഉണ്ടോ എന്ന് നോക്കുക. Missing dice ആണ് common setup problem.</div>
+    </section>
+
+    <section id="ml-turn" class="card" style="margin-top:18px">
+      <h2>4. ഒരു player-ന്റെ turn-ൽ എന്ത് ചെയ്യാം?</h2>
+      <p>നിങ്ങളുടെ turn-ൽ <strong>ഒരു action</strong> മാത്രം തിരഞ്ഞെടുക്കുക:</p>
+      <div class="tablewrap"><table><thead><tr><th>Action</th><th>അർത്ഥം</th><th>എപ്പോൾ ചെയ്യാം?</th></tr></thead><tbody>
+        <tr><td><strong>Leg betting ticket എടുക്കുക</strong></td><td>ഈ leg അവസാനിക്കുമ്പോൾ ഏത് racing camel first ആയിരിക്കും എന്ന് ബെറ്റ് ചെയ്യുക.</td><td>Remaining dice നോക്കി leader guess ചെയ്യാൻ കഴിയുമ്പോൾ.</td></tr>
+        <tr><td><strong>Spectator tile വെക്കുക/മാറ്റുക</strong></td><td>Allowed empty track space-ൽ tile വെക്കുക. +1 അല്ലെങ്കിൽ -1 side തിരഞ്ഞെടുക്കുക.</td><td>Race influence ചെയ്യാനും, ഒട്ടകം land ചെയ്താൽ coin നേടാനും.</td></tr>
+        <tr><td><strong>Pyramid ticket എടുത്ത് roll ചെയ്യുക</strong></td><td>Pyramid-ൽ നിന്ന് ഒരു die പുറത്ത് വിടുക, ആ ഒട്ടകം നീക്കുക, 1 coin നേടുക.</td><td>Safe money വേണമെങ്കിൽ, അല്ലെങ്കിൽ ബെറ്റിന് മുൻപ് കൂടുതൽ വിവരം വേണമെങ്കിൽ.</td></tr>
+        <tr><td><strong>Overall winner bet</strong></td><td>Winner pile-ൽ ഒരു colour card രഹസ്യമായി വെക്കുക.</td><td>ആദ്യത്തിൽ correct ആണെങ്കിൽ കൂടുതൽ payout കിട്ടും; wrong ആയാൽ coin നഷ്ടം.</td></tr>
+        <tr><td><strong>Overall loser bet</strong></td><td>Loser pile-ൽ ഒരു colour card രഹസ്യമായി വെക്കുക.</td><td>ഒരു ഒട്ടകം വളരെ പിന്നിലാണെന്ന് തോന്നുമ്പോൾ.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="ml-movement" class="card" style="margin-top:18px">
+      <h2>5. Movement, stacking, ranking</h2>
+      <h3>Normal racing camels</h3>
+      <ul><li>ഒരു coloured die വന്നാൽ, അതേ നിറത്തിലുള്ള racing camel clockwise ആയി മുന്നോട്ട് നീങ്ങും.</li><li>ആ ഒട്ടകത്തിന്റെ മുകളിൽ മറ്റു ഒട്ടകങ്ങൾ ഉണ്ടെങ്കിൽ, മുകളിലുള്ള മുഴുവൻ stack കൂടി നീങ്ങും.</li><li>ഒരു stack മറ്റൊരു camel/stack ഉള്ള space-ൽ land ചെയ്താൽ, അത് ആ stack-ന്റെ മുകളിൽ പോകും.</li></ul>
+      <h3>Ranking rule</h3>
+      <p>ഒരേ space-ൽ പല racing camels ഉണ്ടെങ്കിൽ, മുകളിൽ ഇരിക്കുന്ന ഒട്ടകമാണ് മുന്നിൽ. Betting/scoring-ൽ ഇത് വളരെ പ്രധാനമാണ്.</p>
+      <h3>Crazy camels</h3>
+      <ul><li>Black, white crazy camels counter-clockwise ആയി നീങ്ങും.</li><li>ഇവ race winner/loser ആയി count ചെയ്യില്ല. ഇവയ്ക്ക് bet ചെയ്യരുത്.</li><li>Crazy camel racing camels-നെ carry ചെയ്താൽ, ആ racing camels പിന്നിലേക്ക് പോകാം.</li><li>Crazy camel move ചെയ്യുമ്പോൾ, അതിന്റെ മുകളിൽ ഉള്ള camels കൂടെ നീങ്ങും.</li></ul>
+      <h3>Spectator/desert tile</h3>
+      <ul><li>Player സ്വന്തം tile allowed empty space-ൽ വെക്കാം. Camels ഉള്ള space-ലോ മറ്റൊരു spectator tile-ന്റെ തൊട്ടടുത്തോ വെക്കരുത്.</li><li>ഒട്ടകം/stack tile-ൽ land ചെയ്താൽ, tile owner-ന് 1 coin കിട്ടും.</li><li>Tile +1 ആണെങ്കിൽ stack ഒരു space മുന്നോട്ട്. -1 ആണെങ്കിൽ ഒരു space പിന്നോട്ട്.</li><li>+1 മൂവിൽ destination-ൽ camels ഉണ്ടെങ്കിൽ മുകളിൽ പോകും. -1 മൂവിൽ സാധാരണ destination camels-ന്റെ അടിയിൽ പോകും. Guest challenge ചെയ്താൽ rulebook നോക്കി confirm ചെയ്യുക.</li></ul>
+      <div class="callout"><strong>Stack explain ചെയ്യാനുള്ള easy line:</strong> “Piggyback പോലെ ചിന്തിക്കാം. താഴെയുള്ള ഒട്ടകം നീങ്ങിയാൽ മുകളിൽ ഇരിക്കുന്നവരും പോകും. മുകളിലെ ഒട്ടകം നീങ്ങിയാൽ അത് മാത്രം, അതിന്റെ മുകളിൽ ആരെങ്കിലും ഉണ്ടെങ്കിൽ അവരും.”</div>
+    </section>
+
+    <section id="ml-scoring" class="card" style="margin-top:18px">
+      <h2>6. Leg end & game end scoring</h2>
+      <h3>Leg എപ്പോൾ അവസാനിക്കും?</h3><p>ആ leg-ലെ എല്ലാ dice-ഉം pyramid-ൽ നിന്ന് പുറത്തുവന്ന് movement കഴിഞ്ഞാൽ leg end. പിന്നെ leg betting tickets score ചെയ്ത് next leg തുടങ്ങും.</p>
+      <h3>Leg betting scoring</h3>
+      <ul><li>നിങ്ങളുടെ ticket-ലെ camel ഇപ്പോൾ first ആണെങ്കിൽ, ticket-ൽ കാണുന്ന value കിട്ടും.</li><li>നിങ്ങളുടെ camel second ആണെങ്കിൽ സാധാരണ 1 coin കിട്ടും.</li><li>First/second അല്ലെങ്കിൽ 1 coin നഷ്ടം.</li><li>Pyramid tickets സാധാരണ ഓരോന്നിനും 1 coin നൽകും.</li></ul>
+      <h3>Race എപ്പോൾ അവസാനിക്കും?</h3><p>ഒരു racing camel finish line cross ചെയ്താൽ game ഉടൻ അവസാനിക്കും. Current movement പൂർത്തിയാക്കി final winner/loser bets score ചെയ്യും.</p>
+      <h3>Overall winner/loser scoring</h3>
+      <p>Winner pile, loser pile ക്രമത്തിൽ reveal ചെയ്യുക. ആദ്യം വെച്ച correct bets-ന് കൂടുതൽ payout. Wrong cards സാധാരണ 1 coin നഷ്ടം. അവസാനം ഏറ്റവും കൂടുതൽ money ഉള്ള player ജയിക്കും.</p>
+      <div class="warning callout"><strong>Cafe tip:</strong> First-time guests ആണെങ്കിൽ scoring staff ശബ്ദമായി guide ചെയ്യുക. Confusion കുറയും, game flow smooth ആവും.</div>
+    </section>
+
+    <section id="ml-teach" class="card" style="margin-top:18px">
+      <h2>7. 5-minute staff teaching script</h2>
+      <div class="script">
+        <p><strong>Start:</strong> “ഈ game-ൽ നാം എല്ലാവരും ഒരു ഒട്ടക റേസിൽ ബെറ്റ് ചെയ്യുകയാണ്. ആരും ഒട്ടകത്തിന്റെ owner അല്ല. അവസാനം ഏറ്റവും കൂടുതൽ money ഉള്ള ആളാണ് winner.”</p>
+        <p><strong>Stacks കാണിക്കുക:</strong> “ഒട്ടകങ്ങൾ ഒന്ന് മറ്റൊന്നിന്റെ മുകളിൽ ഇരിക്കും. താഴെയുള്ള ഒട്ടകം നീങ്ങിയാൽ മുകളിലുള്ളവരെ carry ചെയ്യും. മുകളിലുള്ള ഒട്ടകമാണ് ahead.”</p>
+        <p><strong>Turn actions:</strong> “നിങ്ങളുടെ turn-ൽ ഒരു കാര്യം ചെയ്യാം: ഈ round-ൽ bet ചെയ്യാം, tile വെക്കാം, die roll ചെയ്ത് safe money എടുക്കാം, അല്ലെങ്കിൽ secret final winner/loser bet ഇടാം.”</p>
+        <p><strong>Legs:</strong> “Dice എല്ലാം പുറത്തുവന്നാൽ ഒരു leg/round തീരും. അപ്പോൾ leg bets pay ചെയ്യും.”</p>
+        <p><strong>Final:</strong> “ഒരു racing camel finish line cross ചെയ്താൽ game തീരും. Final winner/loser bets score ചെയ്യും. Most money wins.”</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>8. Staff strategy notes</h2>
+      <ul><li><span class="tag">Beginner tip</span> Leg-ന്റെ തുടക്കത്തിൽ roll ചെയ്യുന്നത് safe ആണ്. 1 coin കിട്ടും, കൂടെ കൂടുതൽ info കിട്ടും.</li><li><span class="tag">Bet timing</span> Early bets കൂടുതൽ payout നൽകും, പക്ഷേ risk കൂടുതലാണ്.</li><li><span class="tag">Dice ശ്രദ്ധിക്കുക</span> ഒരു camel-ന്റെ die ഇതിനകം വന്നാൽ, ആ camel ഈ leg-ൽ വീണ്ടും move ചെയ്യില്ല.</li><li><span class="tag">Stacks matter</span> പിന്നിലെ camel, താഴെയുള്ള camel carry ചെയ്താൽ പെട്ടെന്ന് മുന്നിലെത്തും.</li><li><span class="tag">Crazy camels</span> “ഇത് ഉറപ്പാണ്” എന്ന് തോന്നുന്ന bet പോലും crazy camels spoil ചെയ്യാം.</li></ul>
+    </section>
+
+    <section id="ml-faq" class="card" style="margin-top:18px">
+      <h2>9. അതിഥികളുടെ common questions</h2>
+      <h3>Players-ന് സ്വന്തം camels ഉണ്ടോ?</h3><p>ഇല്ല. എല്ലാവർക്കും ഏത് racing camel-ലും bet ചെയ്യാം.</p>
+      <h3>Black/white crazy camel ജയിക്കുമോ?</h3><p>ഇല്ല. അവ troublemakers മാത്രം. Winner/loser bet-ൽ അവയെ ഉപയോഗിക്കരുത്.</p>
+      <h3>Stack-ൽ ആരാണ് ahead?</h3><p>മുകളിൽ ഇരിക്കുന്ന ഒട്ടകമാണ് ahead.</p>
+      <h3>Overall winner/loser-ൽ ഒരാൾക്ക് ഒന്നിലധികം bet ഇടാമോ?</h3><p>അതെ. പക്ഷേ ഓരോ colour card-ും ഒരിക്കൽ മാത്രം ഉപയോഗിക്കാം. Play ചെയ്താൽ അത് pile-ൽ തന്നെ തുടരും.</p>
+      <h3>Player-ന് negative money വരാമോ?</h3><p>സാധാരണ വരാം. Pay ചെയ്യാൻ coin ഇല്ലെങ്കിൽ അത് വ്യക്തമായി track ചെയ്യുക. Cafe play-ൽ ചെറിയ paper note ഉപയോഗിക്കാം.</p>
+      <h3>Most money tie ആണെങ്കിൽ?</h3><p>നിങ്ങളുടെ copy-യുടെ rulebook നോക്കുക. Cafe fun game ആണെങ്കിൽ എല്ലാവരും game തുടങ്ങുന്നതിന് മുൻപ് agree ചെയ്താൽ shared win അല്ലെങ്കിൽ “കൂടുതൽ correct final bets” tiebreaker ആക്കാം.</p>
+    </section>
+  </section>
+  <div class="footer">Prepared for staff training. Keep the official rulebook nearby for rare edge cases and component-specific wording.</div>
+</main>
+<script>
+function setLang(lang){
+  document.querySelectorAll('.lang').forEach(el=>el.classList.remove('active'));
+  document.getElementById(lang).classList.add('active');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-ml').classList.toggle('active', lang==='ml');
+  document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coup Staff Training Guide | Board Game Cafe Kochi</title>
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --card: #ffffff;
+      --ink: #222222;
+      --muted: #666666;
+      --brand: #7b2d26;
+      --brand-dark: #4e1713;
+      --accent: #9a6a22;
+      --soft: #f4dfc2;
+      --line: #e4d4c3;
+      --good: #e7f5ed;
+      --warn: #fff1c6;
+      --bad: #ffe0dd;
+      --blue: #edf4ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff2df, var(--bg) 45%, #f8faf6);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 243, 236, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; color: var(--brand-dark); letter-spacing: .2px; }
+    .toggle {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 6px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    button {
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      background: transparent;
+      color: var(--muted);
+    }
+    button.active { background: var(--brand); color: white; }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px; }
+    .hero {
+      background: linear-gradient(135deg, #fff, #fff4e7);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 12px 35px rgba(70, 38, 10, .08);
+      margin-bottom: 24px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 14px; }
+    h2 { margin-top: 0; color: var(--brand-dark); font-size: 1.55rem; }
+    h3 { color: var(--accent); margin-bottom: 6px; }
+    .sub { font-size: 1.15rem; color: var(--muted); max-width: 850px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(70, 38, 10, .06);
+    }
+    @media (min-width: 800px) {
+      .half { grid-column: span 6; }
+      .third { grid-column: span 4; }
+      .two-third { grid-column: span 8; }
+    }
+    .tagrow { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .tag { background: var(--soft); color: var(--brand-dark); border-radius: 999px; padding: 7px 12px; font-weight: 700; font-size: .92rem; }
+    .flow { counter-reset: step; padding-left: 0; list-style: none; }
+    .flow li { position: relative; padding: 14px 14px 14px 54px; margin: 10px 0; border: 1px solid var(--line); border-radius: 16px; background: #fffdf9; }
+    .flow li::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: white; display: grid; place-items: center; font-weight: 800; }
+    .callout { padding: 15px 17px; border-radius: 16px; border: 1px solid var(--line); margin: 14px 0; }
+    .good { background: var(--good); }
+    .warn { background: var(--warn); }
+    .bad { background: var(--bad); }
+    .blue { background: var(--blue); }
+    .script { background: #fff8ed; border-left: 5px solid var(--accent); padding: 15px 18px; border-radius: 14px; font-style: italic; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; }
+    th, td { border: 1px solid var(--line); padding: 12px; vertical-align: top; }
+    th { background: #fff0e4; text-align: left; }
+    details { border: 1px solid var(--line); border-radius: 15px; padding: 13px 15px; background: #fffdf9; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 800; color: var(--brand-dark); }
+    .mini { font-size: .95rem; color: var(--muted); }
+    footer { color: var(--muted); font-size: .92rem; text-align: center; padding-top: 24px; }
+    .lang { display: none; }
+    .lang.active { display: block; }
+    .print-note { font-size: .92rem; color: var(--muted); }
+    @media print {
+      header { position: static; }
+      .toggle, .print-note { display: none; }
+      body { background: white; }
+      .card, .hero { box-shadow: none; break-inside: avoid; }
+      .lang { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Board Game Cafe Staff Guide: Coup</div>
+    <div class="toggle" aria-label="Language toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+      <button id="btn-ml" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="en" class="lang active" lang="en">
+      <div class="hero">
+        <h1>Coup</h1>
+        <p class="sub">A quick bluffing and deduction card game. Everyone has two hidden character cards, but players can claim almost any power. The fun is in lying confidently, catching lies, and surviving until everyone else loses their influence.</p>
+        <div class="tagrow">
+          <span class="tag">Bluffing game</span><span class="tag">2-6 players</span><span class="tag">About 15 minutes</span><span class="tag">Easy rules, spicy choices</span><span class="tag">Great for cafe groups</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. What is the game?</h2>
+          <p>Coup is a small-card social bluffing game. Each player starts with two face-down character cards. These cards are called your <strong>influence</strong>. If both your cards are revealed, you are out.</p>
+          <p>On your turn, you take one action. Some actions are always available, like taking 1 coin. Some actions need a character, like Duke taking 3 coins or Assassin attacking someone. The twist is: you do not have to actually own the character to claim the action. You can bluff.</p>
+          <div class="callout good"><strong>Staff mindset:</strong> Explain it as “poker face in 15 minutes”. Guests do not need heavy strategy knowledge, but they should enjoy bluffing and calling people out.</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. Quick facts for staff</h2>
+          <table>
+            <tr><th>Type</th><td>Bluffing, deduction, elimination card game</td></tr>
+            <tr><th>Players</th><td>2-6 players. Best at 4-6.</td></tr>
+            <tr><th>Time</th><td>Usually 10-20 minutes</td></tr>
+            <tr><th>Age</th><td>Teen/adult friendly. Better for groups comfortable with bluffing.</td></tr>
+            <tr><th>Teach difficulty</th><td>Easy, but staff should explain challenges and blocks clearly.</td></tr>
+            <tr><th>Best table</th><td>Friends, dates, regular gamers, college groups, office groups</td></tr>
+          </table>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. Components to check before giving the game</h2>
+          <ul>
+            <li>15 character cards: 3 each of Duke, Assassin, Captain, Ambassador, and Contessa.</li>
+            <li>Coins / money tokens.</li>
+            <li>Player aid cards, if included. These are very useful for new players.</li>
+            <li>Rulebook, if guests want to double-check.</li>
+          </ul>
+          <div class="callout warn"><strong>Cafe care:</strong> Count the 15 character cards before and after. Coup is tiny, so one missing card can spoil the whole game.</div>
+        </section>
+
+        <section class="card third">
+          <h2>Best pitch to guests</h2>
+          <p class="script">“This is a quick bluffing game. You have two secret cards, but you can pretend to be anyone. Others can challenge you. If they catch your lie, you lose a card. Last player alive wins.”</p>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>Shuffle all 15 character cards face down.</li>
+            <li>Deal 2 cards face down to each player. Players may look at their own cards but must keep them secret.</li>
+            <li>Put the remaining cards face down in the centre. This is the Court deck.</li>
+            <li>Give each player 2 coins. In a 2-player game, the starting player gets only 1 coin.</li>
+            <li>Choose a starting player. Turns go clockwise.</li>
+          </ol>
+          <div class="callout good"><strong>Important wording:</strong> Face-down cards are “influence”. Revealed cards are lost influence. A player with no face-down cards is eliminated.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. Goal of the game</h2>
+          <p>Be the last player with at least one face-down influence card. There is no second place. Once you are out, you can watch, laugh, and maybe remind people of their lies.</p>
+        </section>
+
+        <section class="card">
+          <h2>6. Turn structure</h2>
+          <ol class="flow">
+            <li>The active player announces one action.</li>
+            <li>Other players may challenge, if the action claims a character.</li>
+            <li>Other players may block, if the action can be blocked.</li>
+            <li>If nobody successfully stops it, the action happens.</li>
+            <li>Then the next player takes a turn.</li>
+          </ol>
+          <div class="callout blue"><strong>Simple staff line:</strong> “Say what you are doing. Give everyone a second to challenge or block. Then resolve it.”</div>
+        </section>
+
+        <section class="card">
+          <h2>7. Basic actions anyone can take</h2>
+          <table>
+            <tr><th>Action</th><th>What happens</th><th>Can it be challenged?</th><th>Can it be blocked?</th></tr>
+            <tr><td><strong>Income</strong></td><td>Take 1 coin from the bank.</td><td>No</td><td>No</td></tr>
+            <tr><td><strong>Foreign Aid</strong></td><td>Take 2 coins from the bank.</td><td>No</td><td>Yes, Duke can block it.</td></tr>
+            <tr><td><strong>Coup</strong></td><td>Pay 7 coins. Choose one player. They lose one influence.</td><td>No</td><td>No</td></tr>
+          </table>
+          <div class="callout bad"><strong>Mandatory Coup:</strong> If a player starts their turn with 10 or more coins, they must Coup. They cannot take any other action.</div>
+        </section>
+
+        <section class="card">
+          <h2>8. Character actions and blocks</h2>
+          <table>
+            <tr><th>Character</th><th>Action you can claim</th><th>Block power</th><th>Staff explanation</th></tr>
+            <tr><td><strong>Duke</strong></td><td>Tax: take 3 coins.</td><td>Blocks Foreign Aid.</td><td>Strong money card. Many players bluff Duke early.</td></tr>
+            <tr><td><strong>Assassin</strong></td><td>Pay 3 coins to assassinate another player. Target loses 1 influence unless blocked.</td><td>None.</td><td>Attack card. Risky if challenged.</td></tr>
+            <tr><td><strong>Contessa</strong></td><td>No action.</td><td>Blocks Assassination against yourself.</td><td>Pure defence. Often claimed when someone attacks you.</td></tr>
+            <tr><td><strong>Captain</strong></td><td>Steal 2 coins from another player.</td><td>Blocks stealing.</td><td>Money pressure card. Can be blocked by Captain or Ambassador.</td></tr>
+            <tr><td><strong>Ambassador</strong></td><td>Exchange: draw 2 cards from Court deck, choose which cards to keep, return 2.</td><td>Blocks stealing.</td><td>Useful to fix your cards or hide information.</td></tr>
+          </table>
+        </section>
+
+        <section class="card half">
+          <h2>9. Challenges</h2>
+          <p>A challenge means: “I don’t believe you have that character.” Any player can challenge a character claim.</p>
+          <ol class="flow">
+            <li>Player claims a character action or block.</li>
+            <li>Another player challenges.</li>
+            <li>The challenged player must prove it by revealing the matching character, or admit they do not have it.</li>
+            <li>If they have it: they reveal it, shuffle it into the Court deck, draw a replacement card, and the challenger loses 1 influence.</li>
+            <li>If they do not have it: the challenged player loses 1 influence. Their action or block fails.</li>
+          </ol>
+          <div class="callout warn"><strong>Key point:</strong> The winner of a challenge keeps two hidden cards if they still had two. They reveal the matching card only briefly, then replace it from the deck.</div>
+        </section>
+
+        <section class="card half">
+          <h2>10. Blocks</h2>
+          <p>A block is when a player says, “Your action does not work because I have this character.” Blocks are also character claims, so they can be challenged.</p>
+          <table>
+            <tr><th>Action</th><th>Who can block?</th></tr>
+            <tr><td>Foreign Aid</td><td>Duke</td></tr>
+            <tr><td>Assassination</td><td>Contessa, only the target can block</td></tr>
+            <tr><td>Steal</td><td>Captain or Ambassador, usually only the target blocks</td></tr>
+          </table>
+          <div class="callout good"><strong>Easy teach:</strong> “You can challenge both actions and blocks, because both may be lies.”</div>
+        </section>
+
+        <section class="card">
+          <h2>11. Losing influence</h2>
+          <ul>
+            <li>When you lose influence, you choose one of your own face-down cards and reveal it.</li>
+            <li>Revealed cards stay face up in front of you. They do not go back into the deck.</li>
+            <li>You cannot use a revealed character anymore.</li>
+            <li>If both your cards are revealed, you are out of the game.</li>
+          </ul>
+          <div class="callout blue"><strong>Staff tip:</strong> New players often ask, “Who chooses which card I lose?” Answer: the player losing influence chooses.</div>
+        </section>
+
+        <section class="card half">
+          <h2>12. Example round</h2>
+          <ol class="flow">
+            <li>Asha says, “I am the Duke. I take 3 coins.”</li>
+            <li>Basil thinks she is lying and says, “Challenge.”</li>
+            <li>Asha reveals Duke. She was telling the truth.</li>
+            <li>Asha shuffles Duke into the deck and draws a replacement card.</li>
+            <li>Basil loses one influence and reveals one of his two cards.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>13. Another example: assassination</h2>
+          <ol class="flow">
+            <li>Dev pays 3 coins and says, “Assassin on Nila.”</li>
+            <li>Anyone may challenge whether Dev has Assassin.</li>
+            <li>If no challenge, Nila may say, “I block with Contessa.”</li>
+            <li>Now anyone may challenge Nila’s Contessa claim.</li>
+            <li>If Nila’s block survives, she does not lose influence. If the block fails, she loses one influence.</li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h2>14. Staff teaching script: 2-minute version</h2>
+          <p class="script">“Everyone gets two secret cards. These are your lives. On your turn, take one action. Some actions are safe: Income gives 1 coin, Foreign Aid gives 2 coins, and Coup costs 7 to make someone lose a card. Other actions need characters, like Duke takes 3, Assassin attacks, Captain steals, Ambassador swaps cards, and Contessa blocks assassination. But you can lie. If someone thinks you’re lying, they can challenge. Whoever is wrong loses a card. Last player with a hidden card wins.”</p>
+        </section>
+
+        <section class="card half">
+          <h2>15. Common guest questions</h2>
+          <details><summary>Can I claim a character I do not have?</summary><p>Yes. That is the main fun of Coup. But if someone challenges you and you cannot show that character, you lose influence.</p></details>
+          <details><summary>Can I show my cards to prove something without a challenge?</summary><p>No. Cards should stay secret unless a rule forces a reveal.</p></details>
+          <details><summary>Can multiple people challenge at once?</summary><p>Usually the first clear challenge is resolved. Staff can say, “One challenge at a time.”</p></details>
+          <details><summary>Can I block a Coup?</summary><p>No. Coup cannot be blocked or challenged. If someone pays 7, the target loses one influence.</p></details>
+          <details><summary>Can I take Foreign Aid if someone has Duke revealed?</summary><p>A revealed Duke is dead and cannot block. Only a player claiming a hidden Duke can block.</p></details>
+          <details><summary>Can I steal if the target has only 1 coin?</summary><p>Yes. You take what they have, up to 2 coins.</p></details>
+          <details><summary>Can I assassinate with exactly 3 coins?</summary><p>Yes. Pay all 3 coins, then resolve the assassination.</p></details>
+          <details><summary>What if the Assassin is blocked by Contessa?</summary><p>The 3 coins are still paid. The attack just does not make the target lose influence.</p></details>
+          <details><summary>Can eliminated players talk?</summary><p>For cafe fun, light jokes are okay, but they should not reveal hidden information or coach players seriously.</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>16. Common mistakes to watch for</h2>
+          <ul>
+            <li>Players forgetting that 10+ coins means they must Coup.</li>
+            <li>Players trying to block Coup. Coup cannot be blocked.</li>
+            <li>Players thinking they must actually have a character to claim it. They can bluff.</li>
+            <li>Players revealing cards casually. Remind them cards stay secret.</li>
+            <li>Players returning lost influence to the deck. Lost influence stays face up.</li>
+            <li>Players forgetting to replace a proven card after winning a challenge.</li>
+          </ul>
+        </section>
+
+        <section class="card third">
+          <h2>17. Best player count</h2>
+          <p><strong>Best:</strong> 4-6 players. More bluffing, more table talk, more funny accusations.</p>
+          <p><strong>Okay:</strong> 3 players. Fast but slightly sharper.</p>
+          <p><strong>2 players:</strong> Works, but feels more tactical and less social.</p>
+        </section>
+
+        <section class="card third">
+          <h2>18. Cafe facilitation tips</h2>
+          <ul>
+            <li>Stay nearby for the first 2 rounds.</li>
+            <li>Remind guests to pause for challenges and blocks.</li>
+            <li>Give each player a reference card if available.</li>
+            <li>Encourage dramatic accusations; that is the vibe.</li>
+          </ul>
+        </section>
+
+        <section class="card third">
+          <h2>19. Who will enjoy Coup?</h2>
+          <ul>
+            <li>People who like bluffing, poker, Werewolf, Mafia, or Avalon.</li>
+            <li>Groups who want a quick “one more round” game.</li>
+            <li>Players who enjoy teasing friends and reading faces.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>20. Staff cheat sheet</h2>
+          <table>
+            <tr><th>Claim</th><th>Effect</th><th>Counter</th></tr>
+            <tr><td>Income</td><td>Take 1</td><td>No challenge, no block</td></tr>
+            <tr><td>Foreign Aid</td><td>Take 2</td><td>Duke blocks</td></tr>
+            <tr><td>Coup</td><td>Pay 7, target loses influence</td><td>No block, no challenge</td></tr>
+            <tr><td>Duke</td><td>Take 3</td><td>Can be challenged</td></tr>
+            <tr><td>Assassin</td><td>Pay 3, target loses influence</td><td>Can be challenged; Contessa blocks</td></tr>
+            <tr><td>Captain</td><td>Steal 2</td><td>Can be challenged; Captain/Ambassador blocks</td></tr>
+            <tr><td>Ambassador</td><td>Draw 2, keep any, return 2</td><td>Can be challenged</td></tr>
+            <tr><td>Contessa</td><td>No action</td><td>Blocks assassination; can be challenged</td></tr>
+          </table>
+        </section>
+      </div>
+    </section>
+
+    <section id="ml" class="lang" lang="ml">
+      <div class="hero">
+        <h1>Coup</h1>
+        <p class="sub">ഇത് ഒരു ചെറുതും കിടിലനുമായ bluffing card game ആണ്. ഓരോരുത്തർക്കും രണ്ട് രഹസ്യ character cards ഉണ്ടാകും. പക്ഷേ കൈയിൽ ഇല്ലാത്ത character ആണെങ്കിലും claim ചെയ്യാം. ആരാണ് സത്യം പറയുന്നത്, ആരാണ് bluff ചെയ്യുന്നത് എന്ന് കണ്ടെത്തിയാണ് കളിയുടെ fun.</p>
+        <div class="tagrow">
+          <span class="tag">Bluffing game</span><span class="tag">2-6 players</span><span class="tag">ഏകദേശം 15 മിനിറ്റ്</span><span class="tag">Rules simple</span><span class="tag">Cafe groups ന് super</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. Game എന്താണ്?</h2>
+          <p>Coup ഒരു social bluffing game ആണ്. ഓരോ player-നും രണ്ട് face-down character cards കിട്ടും. ഇതിനെ <strong>influence</strong> എന്ന് വിളിക്കുന്നു. രണ്ട് influence-ഉം reveal ആയാൽ ആ player game-ൽ നിന്ന് out.</p>
+          <p>Turn-ൽ ഒരു action ചെയ്യാം. ചില actions എല്ലാവർക്കും ചെയ്യാം, ഉദാ: 1 coin എടുക്കൽ. ചില actions character powers ആണ്, ഉദാ: Duke 3 coins എടുക്കും, Assassin attack ചെയ്യും. Twist എന്താണെന്നാൽ, ആ character കൈയിൽ ഇല്ലെങ്കിലും claim ചെയ്യാം. അതാണ് bluff.</p>
+          <div class="callout good"><strong>Staff mindset:</strong> Guests നോട് “15 മിനിറ്റിൽ poker face game” എന്ന് പറയാം. Strategy കാൾ bluffing-നും calling out-നും ആണ് importance.</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. Staff quick facts</h2>
+          <table>
+            <tr><th>Type</th><td>Bluffing, deduction, elimination card game</td></tr>
+            <tr><th>Players</th><td>2-6 players. Best 4-6.</td></tr>
+            <tr><th>Time</th><td>സാധാരണ 10-20 മിനിറ്റ്</td></tr>
+            <tr><th>Age</th><td>Teen/adult friendly. Bluffing comfortable ആയ groups-ന് best.</td></tr>
+            <tr><th>Teach difficulty</th><td>Easy. പക്ഷേ challenge, block രണ്ടും clear ആയി explain ചെയ്യണം.</td></tr>
+            <tr><th>Best table</th><td>Friends, dates, regular gamers, college groups, office groups</td></tr>
+          </table>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. Game കൊടുക്കുന്നതിന് മുൻപ് components check ചെയ്യുക</h2>
+          <ul>
+            <li>15 character cards: Duke, Assassin, Captain, Ambassador, Contessa - ഓരോന്നും 3 copies.</li>
+            <li>Coins / money tokens.</li>
+            <li>Player aid cards ഉണ്ടെങ്കിൽ അത് new players-ന് കൊടുക്കുക.</li>
+            <li>Rulebook, guests double-check ചെയ്യാൻ ആഗ്രഹിച്ചാൽ.</li>
+          </ul>
+          <div class="callout warn"><strong>Cafe care:</strong> Game കൊടുക്കുന്നതിന് മുൻപും തിരികെ വാങ്ങിയ ശേഷവും 15 character cards count ചെയ്യണം. ഒരു card പോയാൽ game balance പോകും.</div>
+        </section>
+
+        <section class="card third">
+          <h2>Guest pitch</h2>
+          <p class="script">“ഇത് ഒരു quick bluffing game ആണ്. നിങ്ങൾക്ക് രണ്ട് secret cards ഉണ്ട്, പക്ഷേ നിങ്ങൾക്ക് ആരായും pretend ചെയ്യാം. മറ്റുള്ളവർ challenge ചെയ്യാം. Bluff പിടിക്കപ്പെട്ടാൽ card lose ചെയ്യും. അവസാനം hidden card ബാക്കിയുള്ള player wins.”</p>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>15 character cards എല്ലാം face down ആയി shuffle ചെയ്യുക.</li>
+            <li>ഓരോ player-നും 2 cards face down ആയി deal ചെയ്യുക. സ്വന്തം cards നോക്കാം, പക്ഷേ secret ആയിരിക്കണം.</li>
+            <li>ബാക്കിയുള്ള cards centre-ൽ face down ആയി വെക്കുക. ഇത് Court deck.</li>
+            <li>ഓരോ player-നും 2 coins കൊടുക്കുക. 2-player game ആണെങ്കിൽ starting player-ന് 1 coin മാത്രം.</li>
+            <li>Starting player choose ചെയ്യുക. Turns clockwise.</li>
+          </ol>
+          <div class="callout good"><strong>Important wording:</strong> Face-down cards ആണ് “influence”. Reveal ആയ card lost influence. Face-down cards ഒന്നുമില്ലെങ്കിൽ player out.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. Game goal</h2>
+          <p>ഒരിക്കലും reveal ആകാത്ത കുറഞ്ഞത് ഒരു influence card എങ്കിലും ബാക്കി വെച്ച് അവസാനം survive ചെയ്യുക. Second place ഇല്ല. Out ആയ players കാണാം, ചിരിക്കാം, പക്ഷേ hidden info serious ആയി പറയരുത്.</p>
+        </section>
+
+        <section class="card">
+          <h2>6. Turn structure</h2>
+          <ol class="flow">
+            <li>Active player ഒരു action announce ചെയ്യും.</li>
+            <li>ആ action character claim ആണെങ്കിൽ മറ്റുള്ളവർ challenge ചെയ്യാം.</li>
+            <li>Action block ചെയ്യാൻ പറ്റുന്നതാണെങ്കിൽ eligible player block ചെയ്യാം.</li>
+            <li>ആരും successfully stop ചെയ്യാത്ത പക്ഷം action നടക്കും.</li>
+            <li>അടുത്ത player-ന്റെ turn.</li>
+          </ol>
+          <div class="callout blue"><strong>Simple staff line:</strong> “Action പറയുക. Challenge/block ഉണ്ടോ എന്ന് ഒരു second wait ചെയ്യുക. പിന്നെ resolve ചെയ്യുക.”</div>
+        </section>
+
+        <section class="card">
+          <h2>7. എല്ലാവർക്കും ചെയ്യാവുന്ന basic actions</h2>
+          <table>
+            <tr><th>Action</th><th>എന്താണ് നടക്കുന്നത്</th><th>Challenge?</th><th>Block?</th></tr>
+            <tr><td><strong>Income</strong></td><td>Bank-ൽ നിന്ന് 1 coin എടുക്കുക.</td><td>ഇല്ല</td><td>ഇല്ല</td></tr>
+            <tr><td><strong>Foreign Aid</strong></td><td>Bank-ൽ നിന്ന് 2 coins എടുക്കുക.</td><td>ഇല്ല</td><td>ഉണ്ട്, Duke block ചെയ്യും.</td></tr>
+            <tr><td><strong>Coup</strong></td><td>7 coins pay ചെയ്യുക. ഒരു player choose ചെയ്യുക. അവർ 1 influence lose ചെയ്യും.</td><td>ഇല്ല</td><td>ഇല്ല</td></tr>
+          </table>
+          <div class="callout bad"><strong>Mandatory Coup:</strong> Turn തുടങ്ങുമ്പോൾ 10 അല്ലെങ്കിൽ അതിലധികം coins ഉണ്ടെങ്കിൽ Coup ചെയ്യേണ്ടത് നിർബന്ധം. വേറെ action എടുക്കാൻ പറ്റില്ല.</div>
+        </section>
+
+        <section class="card">
+          <h2>8. Character actions and blocks</h2>
+          <table>
+            <tr><th>Character</th><th>Claim ചെയ്യാവുന്ന action</th><th>Block power</th><th>Staff explanation</th></tr>
+            <tr><td><strong>Duke</strong></td><td>Tax: 3 coins എടുക്കുക.</td><td>Foreign Aid block ചെയ്യാം.</td><td>Money കിട്ടാൻ strong card. പലരും early Duke bluff ചെയ്യും.</td></tr>
+            <tr><td><strong>Assassin</strong></td><td>3 coins pay ചെയ്ത് മറ്റൊരു player-നെ assassinate ചെയ്യുക.</td><td>Block power ഇല്ല.</td><td>Attack card. Challenge വന്നാൽ risky.</td></tr>
+            <tr><td><strong>Contessa</strong></td><td>Action ഇല്ല.</td><td>സ്വന്തത്തിനെതിരായ Assassination block ചെയ്യാം.</td><td>Defence card. Attack വന്നപ്പോൾ claim ചെയ്യാറുണ്ട്.</td></tr>
+            <tr><td><strong>Captain</strong></td><td>മറ്റൊരു player-ൽ നിന്ന് 2 coins steal ചെയ്യുക.</td><td>Stealing block ചെയ്യാം.</td><td>Money pressure card. Captain അല്ലെങ്കിൽ Ambassador block ചെയ്യും.</td></tr>
+            <tr><td><strong>Ambassador</strong></td><td>Court deck-ൽ നിന്ന് 2 cards draw ചെയ്യുക, keep ചെയ്യേണ്ടത് choose ചെയ്ത് 2 cards return ചെയ്യുക.</td><td>Stealing block ചെയ്യാം.</td><td>Cards മാറ്റാനും information hide ചെയ്യാനും useful.</td></tr>
+          </table>
+        </section>
+
+        <section class="card half">
+          <h2>9. Challenges</h2>
+          <p>Challenge എന്നത്: “നിനക്ക് ആ character ഉണ്ടെന്ന് ഞാൻ വിശ്വസിക്കുന്നില്ല” എന്ന് പറയുന്നതാണ്. Character claim ചെയ്താൽ ആരും challenge ചെയ്യാം.</p>
+          <ol class="flow">
+            <li>ഒരു player character action അല്ലെങ്കിൽ block claim ചെയ്യുന്നു.</li>
+            <li>മറ്റൊരു player challenge ചെയ്യുന്നു.</li>
+            <li>Challenged player matching character കാണിച്ച് prove ചെയ്യണം, അല്ലെങ്കിൽ card ഇല്ലെന്ന് സമ്മതിക്കണം.</li>
+            <li>Matching character ഉണ്ടെങ്കിൽ: ആ card കാണിച്ച് Court deck-ൽ shuffle ചെയ്ത് replacement card draw ചെയ്യും. Challenger 1 influence lose ചെയ്യും.</li>
+            <li>Matching character ഇല്ലെങ്കിൽ: challenged player 1 influence lose ചെയ്യും. Action/block fail ചെയ്യും.</li>
+          </ol>
+          <div class="callout warn"><strong>Key point:</strong> Challenge ജയിച്ച player matching card brief ആയി reveal ചെയ്ത് deck-ൽ shuffle ചെയ്ത് പുതിയ card എടുക്കും.</div>
+        </section>
+
+        <section class="card half">
+          <h2>10. Blocks</h2>
+          <p>Block എന്നത് “എനിക്ക് ഈ character ഉണ്ട്, അതുകൊണ്ട് നിന്റെ action work ചെയ്യില്ല” എന്നാണ്. Block-ഉം character claim ആയതിനാൽ challenge ചെയ്യാം.</p>
+          <table>
+            <tr><th>Action</th><th>ആരാണ് block ചെയ്യുന്നത്?</th></tr>
+            <tr><td>Foreign Aid</td><td>Duke</td></tr>
+            <tr><td>Assassination</td><td>Contessa, target player മാത്രം</td></tr>
+            <tr><td>Steal</td><td>Captain അല്ലെങ്കിൽ Ambassador, സാധാരണ target player</td></tr>
+          </table>
+          <div class="callout good"><strong>Easy teach:</strong> “Actions-ഉം blocks-ഉം challenge ചെയ്യാം, കാരണം രണ്ടും bluff ആയിരിക്കാം.”</div>
+        </section>
+
+        <section class="card">
+          <h2>11. Influence lose ചെയ്യുമ്പോൾ</h2>
+          <ul>
+            <li>Influence lose ചെയ്യുമ്പോൾ, സ്വന്തം face-down cards-ൽ ഒന്ന് player തന്നെ choose ചെയ്ത് reveal ചെയ്യും.</li>
+            <li>Reveal ചെയ്ത card face up ആയി player-ന്റെ മുന്നിൽ തന്നെ ഇരിക്കും. Deck-ലേക്ക് തിരികെ പോകില്ല.</li>
+            <li>Reveal ആയ character ഇനി use ചെയ്യാൻ പറ്റില്ല.</li>
+            <li>രണ്ട് cards-ഉം reveal ആയാൽ player out.</li>
+          </ul>
+          <div class="callout blue"><strong>Staff tip:</strong> New players ചോദിക്കും: “എന്റെ ഏത് card lose ചെയ്യണമെന്ന് ആര് decide ചെയ്യും?” Answer: influence lose ചെയ്യുന്ന player തന്നെ choose ചെയ്യും.</div>
+        </section>
+
+        <section class="card half">
+          <h2>12. Example round</h2>
+          <ol class="flow">
+            <li>Asha പറയുന്നു: “ഞാൻ Duke. 3 coins എടുക്കുന്നു.”</li>
+            <li>Basil അവൾ bluff ആണെന്ന് കരുതി “Challenge” പറയുന്നു.</li>
+            <li>Asha Duke reveal ചെയ്യുന്നു. അവൾ സത്യം പറഞ്ഞതാണ്.</li>
+            <li>Asha Duke deck-ൽ shuffle ചെയ്ത് replacement card draw ചെയ്യും.</li>
+            <li>Basil 1 influence lose ചെയ്ത് തന്റെ cards-ൽ ഒന്ന് reveal ചെയ്യും.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>13. Example: assassination</h2>
+          <ol class="flow">
+            <li>Dev 3 coins pay ചെയ്ത് “Assassin on Nila” എന്ന് പറയുന്നു.</li>
+            <li>Dev-ന് Assassin ഉണ്ടോ എന്ന് ആരും challenge ചെയ്യാം.</li>
+            <li>Challenge ഇല്ലെങ്കിൽ Nila “Contessa കൊണ്ട് block” എന്ന് പറയാം.</li>
+            <li>ഇപ്പോൾ Nila-യുടെ Contessa claim ആരും challenge ചെയ്യാം.</li>
+            <li>Nila-യുടെ block survive ചെയ്താൽ influence lose ഇല്ല. Block fail ആയാൽ 1 influence lose ചെയ്യും.</li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h2>14. Staff teaching script: 2-minute version</h2>
+          <p class="script">“ഓരോരുത്തർക്കും രണ്ട് secret cards. ഇവയാണ് നിങ്ങളുടെ lives. Turn-ൽ ഒരു action എടുക്കാം. Safe actions: Income 1 coin, Foreign Aid 2 coins, Coup 7 coins pay ചെയ്ത് ഒരാളെ card lose ചെയ്യിക്കും. Character actions: Duke 3 coins, Assassin attack, Captain steal, Ambassador cards swap, Contessa assassination block. പക്ഷേ നിങ്ങൾക്ക് lie ചെയ്യാം. ആരെങ്കിലും challenge ചെയ്താൽ തെറ്റായ ആളാണ് card lose ചെയ്യുന്നത്. Hidden card ഉള്ള അവസാന player wins.”</p>
+        </section>
+
+        <section class="card half">
+          <h2>15. Common guest questions</h2>
+          <details><summary>കൈയിൽ ഇല്ലാത്ത character claim ചെയ്യാമോ?</summary><p>അതെ. അതാണ് Coup-ന്റെ main fun. പക്ഷേ challenge വന്നിട്ട് prove ചെയ്യാൻ പറ്റിയില്ലെങ്കിൽ influence lose ചെയ്യും.</p></details>
+          <details><summary>Challenge ഇല്ലാതെ cards കാണിച്ച് prove ചെയ്യാമോ?</summary><p>ഇല്ല. Rule force ചെയ്യുമ്പോൾ മാത്രം card reveal ചെയ്യുക.</p></details>
+          <details><summary>ഒരേ സമയം പലരും challenge ചെയ്താൽ?</summary><p>ആദ്യം clear ആയി challenge പറഞ്ഞ player-നെ resolve ചെയ്യുക. Staff പറയാം: “One challenge at a time.”</p></details>
+          <details><summary>Coup block ചെയ്യാമോ?</summary><p>ഇല്ല. Coup block ചെയ്യാനും challenge ചെയ്യാനും പറ്റില്ല. 7 coins pay ചെയ്താൽ target 1 influence lose ചെയ്യും.</p></details>
+          <details><summary>ഒരു player-ന്റെ Duke already reveal ആയാൽ അവർക്ക് Foreign Aid block ചെയ്യാമോ?</summary><p>ഇല്ല. Revealed Duke dead ആണ്. Hidden Duke claim ചെയ്യുന്ന player-ന് മാത്രമേ block ചെയ്യാൻ പറ്റൂ.</p></details>
+          <details><summary>Target-ന് 1 coin മാത്രം ഉണ്ടെങ്കിൽ steal ചെയ്യാമോ?</summary><p>അതെ. Available coins എടുക്കാം, maximum 2 coins വരെ.</p></details>
+          <details><summary>Exactly 3 coins ഉണ്ടെങ്കിൽ assassinate ചെയ്യാമോ?</summary><p>അതെ. 3 coins മുഴുവൻ pay ചെയ്ത് assassination resolve ചെയ്യാം.</p></details>
+          <details><summary>Assassin Contessa കൊണ്ട് block ചെയ്താൽ 3 coins തിരികെ കിട്ടുമോ?</summary><p>ഇല്ല. 3 coins paid ആയി. Target influence lose ചെയ്യില്ല.</p></details>
+          <details><summary>Out ആയ players സംസാരിക്കാമോ?</summary><p>Light jokes okay. പക്ഷേ hidden information പറയുകയോ active players-നെ serious ആയി coach ചെയ്യുകയോ വേണ്ട.</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>16. Staff ശ്രദ്ധിക്കേണ്ട common mistakes</h2>
+          <ul>
+            <li>10+ coins ഉണ്ടെങ്കിൽ Coup mandatory ആണെന്ന് players മറക്കും.</li>
+            <li>Coup block ചെയ്യാൻ ശ്രമിക്കും. Coup block ചെയ്യാൻ പറ്റില്ല.</li>
+            <li>Character action claim ചെയ്യാൻ ആ card കൈയിൽ വേണം എന്ന് കരുതും. Bluff ചെയ്യാം.</li>
+            <li>Cards casually reveal ചെയ്യും. Cards secret ആയിരിക്കണം.</li>
+            <li>Lost influence deck-ലേക്ക് return ചെയ്യും. Lost influence face up ആയി stays.</li>
+            <li>Challenge ജയിച്ച player proven card replace ചെയ്യാൻ മറക്കും.</li>
+          </ul>
+        </section>
+
+        <section class="card third">
+          <h2>17. Best player count</h2>
+          <p><strong>Best:</strong> 4-6 players. Bluffing, table talk, accusations എല്ലാം കൂടുതൽ fun.</p>
+          <p><strong>Okay:</strong> 3 players. Fast ആണ്, പക്ഷേ sharper feel.</p>
+          <p><strong>2 players:</strong> Works, but social bluffing കുറച്ച് tactical feel കൂടുതൽ.</p>
+        </section>
+
+        <section class="card third">
+          <h2>18. Cafe facilitation tips</h2>
+          <ul>
+            <li>ആദ്യ 2 rounds staff അടുത്ത് ഉണ്ടെങ്കിൽ നല്ലത്.</li>
+            <li>Challenge/block ഉണ്ടോ എന്ന് wait ചെയ്യാൻ remind ചെയ്യുക.</li>
+            <li>Player aid cards ഉണ്ടെങ്കിൽ ഓരോരുത്തർക്കും കൊടുക്കുക.</li>
+            <li>Dramatic accusations encourage ചെയ്യുക. അതാണ് vibe.</li>
+          </ul>
+        </section>
+
+        <section class="card third">
+          <h2>19. Coup ആര്ക്കാണ് ഇഷ്ടമാവുക?</h2>
+          <ul>
+            <li>Bluffing, poker, Werewolf, Mafia, Avalon ഇഷ്ടമുള്ളവർക്ക്.</li>
+            <li>Quick “one more round” game വേണമെന്ന groups-ന്.</li>
+            <li>Friends-നെ tease ചെയ്യാനും face read ചെയ്യാനും ഇഷ്ടമുള്ള players-ന്.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>20. Staff cheat sheet</h2>
+          <table>
+            <tr><th>Claim</th><th>Effect</th><th>Counter</th></tr>
+            <tr><td>Income</td><td>1 coin എടുക്കുക</td><td>Challenge ഇല്ല, block ഇല്ല</td></tr>
+            <tr><td>Foreign Aid</td><td>2 coins എടുക്കുക</td><td>Duke block ചെയ്യും</td></tr>
+            <tr><td>Coup</td><td>7 coins pay, target loses influence</td><td>Block ഇല്ല, challenge ഇല്ല</td></tr>
+            <tr><td>Duke</td><td>3 coins എടുക്കുക</td><td>Challenge ചെയ്യാം</td></tr>
+            <tr><td>Assassin</td><td>3 coins pay, target loses influence</td><td>Challenge ചെയ്യാം; Contessa block</td></tr>
+            <tr><td>Captain</td><td>2 coins steal</td><td>Challenge ചെയ്യാം; Captain/Ambassador block</td></tr>
+            <tr><td>Ambassador</td><td>Draw 2, keep any, return 2</td><td>Challenge ചെയ്യാം</td></tr>
+            <tr><td>Contessa</td><td>Action ഇല്ല</td><td>Assassination block; challenge ചെയ്യാം</td></tr>
+          </table>
+        </section>
+      </div>
+    </section>
+
+    <footer>
+      <p class="print-note">Tip: Use the language toggle for training. Print mode shows both English and Malayalam sections.</p>
+      <p>Made for board game cafe staff training in Kochi, Kerala.</p>
+    </footer>
+  </main>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang').forEach(section => section.classList.remove('active'));
+      document.getElementById(lang).classList.add('active');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ml').classList.toggle('active', lang === 'ml');
+      document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+    }
+  </script>
+</body>
+</html>

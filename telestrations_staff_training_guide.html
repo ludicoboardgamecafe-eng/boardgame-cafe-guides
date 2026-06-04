@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telestrations Staff Training Guide | Board Game Cafe Kochi</title>
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --card: #ffffff;
+      --ink: #232323;
+      --muted: #666;
+      --brand: #e66b2e;
+      --brand-dark: #b84d1b;
+      --accent: #167c80;
+      --soft: #ffe6d5;
+      --line: #ead9c8;
+      --good: #e8f7ef;
+      --warn: #fff3c4;
+      --bad: #ffe1df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff2df, var(--bg) 45%, #f9fbf7);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 248, 239, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; color: var(--brand-dark); letter-spacing: .2px; }
+    .toggle {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 6px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    button {
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      background: transparent;
+      color: var(--muted);
+    }
+    button.active { background: var(--brand); color: white; }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px; }
+    .hero {
+      background: linear-gradient(135deg, #fff, #fff3e8);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 12px 35px rgba(70, 38, 10, .08);
+      margin-bottom: 24px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 14px; }
+    h2 { margin-top: 0; color: var(--brand-dark); font-size: 1.55rem; }
+    h3 { color: var(--accent); margin-bottom: 6px; }
+    .sub { font-size: 1.15rem; color: var(--muted); max-width: 850px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(70, 38, 10, .06);
+    }
+    @media (min-width: 800px) {
+      .half { grid-column: span 6; }
+      .third { grid-column: span 4; }
+      .two-third { grid-column: span 8; }
+    }
+    .tagrow { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .tag { background: var(--soft); color: var(--brand-dark); border-radius: 999px; padding: 7px 12px; font-weight: 700; font-size: .92rem; }
+    .flow { counter-reset: step; padding-left: 0; list-style: none; }
+    .flow li { position: relative; padding: 14px 14px 14px 54px; margin: 10px 0; border: 1px solid var(--line); border-radius: 16px; background: #fffdf9; }
+    .flow li::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: white; display: grid; place-items: center; font-weight: 800; }
+    .callout { padding: 15px 17px; border-radius: 16px; border: 1px solid var(--line); margin: 14px 0; }
+    .good { background: var(--good); }
+    .warn { background: var(--warn); }
+    .bad { background: var(--bad); }
+    .script { background: #f2fbfb; border-left: 5px solid var(--accent); padding: 15px 18px; border-radius: 14px; font-style: italic; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; }
+    th, td { border: 1px solid var(--line); padding: 12px; vertical-align: top; }
+    th { background: #fff0e4; text-align: left; }
+    details { border: 1px solid var(--line); border-radius: 15px; padding: 13px 15px; background: #fffdf9; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 800; color: var(--brand-dark); }
+    footer { color: var(--muted); font-size: .92rem; text-align: center; padding-top: 24px; }
+    .lang { display: none; }
+    .lang.active { display: block; }
+    .print-note { font-size: .92rem; color: var(--muted); }
+    @media print {
+      header { position: static; }
+      .toggle, .print-note { display: none; }
+      body { background: white; }
+      .card, .hero { box-shadow: none; break-inside: avoid; }
+      .lang { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Board Game Cafe Staff Guide: Telestrations</div>
+    <div class="toggle" aria-label="Language toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+      <button id="btn-ml" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="en" class="lang active" lang="en">
+      <div class="hero">
+        <h1>Telestrations</h1>
+        <p class="sub">A funny drawing-and-guessing party game. Think “Chinese Whisper” meets “Pictionary”. Players secretly draw a word, pass the book, guess the drawing, pass again, and watch the original word become something completely ridiculous.</p>
+        <div class="tagrow">
+          <span class="tag">Best for groups</span><span class="tag">Very easy to teach</span><span class="tag">No drawing skill needed</span><span class="tag">Big laughs</span><span class="tag">Great cafe table game</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. What is the game?</h2>
+          <p>Telestrations is a party game where each player gets a secret word and a sketchbook. The book keeps moving around the table. On one turn, a player draws the word. On the next turn, another player guesses the drawing. Then someone else draws that guess. This keeps going until each book returns to its owner.</p>
+          <p>The fun is not in perfect art. The fun is in the misunderstanding. A word like “banana split” can become “boat accident”, then “shark party”, and everyone laughs when the book is revealed.</p>
+          <div class="callout good"><strong>Staff mindset:</strong> Sell it as a laugh game, not an art game. Guests who say “I can’t draw” are actually perfect for this game.</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. Quick facts for staff</h2>
+          <table>
+            <tr><th>Type</th><td>Drawing, guessing, party game</td></tr>
+            <tr><th>Players</th><td>Usually 4-8 in the standard box; party pack supports up to 12</td></tr>
+            <tr><th>Time</th><td>About 20-30 minutes, depending on group size and reveal time</td></tr>
+            <tr><th>Age</th><td>Family friendly; best when players can read simple words</td></tr>
+            <tr><th>Skill level</th><td>Beginner. No board game experience needed.</td></tr>
+            <tr><th>Best table</th><td>Friends, families, dates, office groups, mixed groups, first-time gamers</td></tr>
+          </table>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. Components to check before giving the game</h2>
+          <ul>
+            <li>Sketchbooks / dry-erase books, one per player.</li>
+            <li>Dry-erase markers, one per player.</li>
+            <li>Word cards.</li>
+            <li>Die, used to choose which word number on the card.</li>
+            <li>Timer, usually 60 seconds.</li>
+            <li>Cleaning cloths or tissues for wiping books after the game.</li>
+          </ul>
+          <div class="callout warn"><strong>Cafe care:</strong> Always check marker caps, wipe books fully, and do not let wet marker ink touch sofa, clothes, wall, or wooden table edges.</div>
+        </section>
+
+        <section class="card third">
+          <h2>Best pitch to guests</h2>
+          <p class="script">“This is a super funny drawing game. You don’t need to draw well. In fact, bad drawings make it better. You draw, pass, guess, pass, and at the end we reveal how badly the word got changed.”</p>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>Give every player one sketchbook and one marker.</li>
+            <li>Ask everyone to write their name on the front of their book.</li>
+            <li>Give each player one word card. Everyone should use the same side of the card.</li>
+            <li>Roll the die. The number rolled tells everyone which numbered word to use from their card.</li>
+            <li>Each player writes that secret word on page 1 of their own book. Keep it hidden.</li>
+            <li>Everyone turns to the first drawing page and gets ready.</li>
+          </ol>
+          <div class="callout good"><strong>Odd or even players:</strong> The game works with both. With odd players, the final page usually ends as a guess. With even players, it usually ends as a drawing. Both are fine.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. How to play: the full round</h2>
+          <ol class="flow">
+            <li><strong>Draw the secret word.</strong> Flip the timer. Everyone draws their word secretly. No letters, numbers, or talking hints unless the group agrees to house rules.</li>
+            <li><strong>Pass the book.</strong> When time is up, flip to hide your drawing and pass the book to the player on your left.</li>
+            <li><strong>Guess the drawing.</strong> Look only at the previous page. Write what you think the drawing is. Do not peek at earlier pages.</li>
+            <li><strong>Pass again.</strong> Flip to hide your guess and pass left.</li>
+            <li><strong>Draw the guess.</strong> If you see words, draw them. If you see a drawing, guess it. Keep alternating.</li>
+            <li><strong>Stop when books return home.</strong> When your own book comes back to you, the round is over.</li>
+            <li><strong>Reveal the story.</strong> Each owner opens their book and shows the chain: original word → drawing → guess → drawing → guess. This is the funniest part.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>6. Scoring options</h2>
+          <p>For a cafe, the easiest recommendation is: <strong>play without scoring</strong>. The reveal is the reward. It keeps the mood casual and fast.</p>
+          <h3>Friendly scoring, if guests ask</h3>
+          <ul>
+            <li>After revealing your book, give 1 point to your favourite sketch in that book.</li>
+            <li>Give 1 point to your favourite guess in that book.</li>
+            <li>Give yourself 1 point if the final guess matches your original secret word.</li>
+          </ul>
+          <h3>Competitive scoring, optional</h3>
+          <p>Some groups like giving points when guesses match the original word or drawings are correctly guessed. Keep it light. This game is better when people are not too serious.</p>
+        </section>
+
+        <section class="card half">
+          <h2>7. House rules we recommend for the cafe</h2>
+          <ul>
+            <li><strong>No letters or numbers in drawings</strong>, unless playing with kids or beginners who need help.</li>
+            <li><strong>No explaining your drawing while people are guessing.</strong> Silence makes it funnier.</li>
+            <li><strong>Always write a guess.</strong> Even a wrong guess is better than a blank page.</li>
+            <li><strong>Keep reveal friendly.</strong> Laugh with people, not at people.</li>
+            <li><strong>Use simple custom words for kids.</strong> Example: mango, elephant, train, rain, coconut tree.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>8. How staff should teach it in 60 seconds</h2>
+          <p class="script">“Everyone takes one book, marker, and card. Roll the die and write that numbered word secretly in your book. Start by drawing it. When the timer ends, pass left. If the page you receive has a drawing, write a guess. If it has words, draw it. Don’t look at older pages. Keep passing until your own book comes back. Then each person reveals the full chain. The goal is just to make everyone laugh.”</p>
+          <div class="callout warn"><strong>Check understanding:</strong> Ask one player, “If you see a drawing, what do you do?” They should answer, “Guess it.” Ask, “If you see words?” They should answer, “Draw it.”</div>
+        </section>
+
+        <section class="card half">
+          <h2>9. Common guest questions</h2>
+          <details><summary>Can I write words in my drawing?</summary><p>Recommended answer: “Usually no. Try to draw without letters or numbers. But for kids or first-timers, we can relax the rule.”</p></details>
+          <details><summary>What if I can’t draw?</summary><p>“Perfect. Bad drawings make this game funnier. Stick figures are fully allowed.”</p></details>
+          <details><summary>Can I skip a word?</summary><p>“Yes, if the word feels too hard. Pick another word from the card or ask staff for an easier word.”</p></details>
+          <details><summary>Do we have to use the timer?</summary><p>“The timer keeps the game moving and makes the drawings funnier. For a relaxed group, you can be a little flexible.”</p></details>
+          <details><summary>Can kids play?</summary><p>“Yes, if they can read or if an adult helps with the word. Use easier words and allow small hints if needed.”</p></details>
+          <details><summary>How many rounds should we play?</summary><p>“One round is enough to understand the game. Most groups play 2-3 rounds because the reveals are funny.”</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>10. Staff troubleshooting</h2>
+          <table>
+            <tr><th>Problem</th><th>What staff should do</th></tr>
+            <tr><td>Players are confused about passing</td><td>Tell everyone: “Always pass left after every page.” Stand near the table for the first two passes.</td></tr>
+            <tr><td>Someone peeks at older pages</td><td>Gently say: “Only look at the immediately previous page. The surprise is the whole game.”</td></tr>
+            <tr><td>A guest draws too slowly</td><td>Say: “Simple is better. Stick figures are enough.”</td></tr>
+            <tr><td>Books are messy</td><td>Pause before starting and wipe pages fully. Wet or stained pages confuse players.</td></tr>
+            <tr><td>Group is too quiet</td><td>Encourage reveal reactions: “Show the original word first, then reveal one page at a time.”</td></tr>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2>11. Cafe facilitation tips</h2>
+          <ul>
+            <li>Recommend Telestrations to guests who want a loud, funny, low-pressure game.</li>
+            <li>It is great while waiting for food because rules are quick and turns are simultaneous.</li>
+            <li>For couples or 2-3 players, suggest another game. Telestrations shines with 4+ players.</li>
+            <li>For shy groups, tell them scoring is optional. This removes pressure.</li>
+            <li>During reveal, tell the owner to show pages slowly. The comedy builds page by page.</li>
+            <li>Clean the books immediately after return. Dry-erase ink left for long can become harder to clean.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>12. Mini example round</h2>
+          <p><strong>Secret word:</strong> Coconut tree</p>
+          <p><strong>Player 1 draws:</strong> A tree with coconuts.</p>
+          <p><strong>Player 2 guesses:</strong> “Palm beach”.</p>
+          <p><strong>Player 3 draws:</strong> Sea, sand, and a tree.</p>
+          <p><strong>Player 4 guesses:</strong> “Kerala vacation”.</p>
+          <p><strong>Reveal moment:</strong> Everyone laughs because “coconut tree” became “Kerala vacation”. That is exactly how the game should feel.</p>
+        </section>
+      </div>
+      <footer>Training reference created for cafe staff. Rule details cross-checked with publicly available Telestrations rule summaries and rulebook references.</footer>
+    </section>
+
+    <section id="ml" class="lang" lang="ml">
+      <div class="hero">
+        <h1>ടെലസ്ട്രേഷൻസ്</h1>
+        <p class="sub">ഇത് ഒരു അടിപൊളി drawing + guessing party game ആണ്. “Chinese Whisper” നും “Pictionary” നും ഇടയിലെ ഒരു ഫണ്ണി മിക്സ് എന്ന് പറയാം. ഒരാൾ ഒരു വാക്ക് വരയ്ക്കും, അടുത്തയാൾ അത് guess ചെയ്യും, പിന്നെ അടുത്തയാൾ ആ guess വരയ്ക്കും. അവസാനം original word എങ്ങനെ മുഴുവൻ മാറി പോയി എന്ന് കാണുന്നതാണ് ഏറ്റവും രസകരം.</p>
+        <div class="tagrow">
+          <span class="tag">ഗ്രൂപ്പുകൾക്ക് ബെസ്റ്റ്</span><span class="tag">പെട്ടെന്ന് പഠിപ്പിക്കാം</span><span class="tag">drawing skill വേണ്ട</span><span class="tag">കിടിലൻ ചിരി</span><span class="tag">കഫേയ്ക്ക് perfect</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. ഈ ഗെയിം എന്താണ്?</h2>
+          <p>Telestrations ഒരു party game ആണ്. ഓരോ player-നും ഒരു secret word ഉം ഒരു sketchbook ഉം കിട്ടും. Book ടേബിളിൽ ചുറ്റി നടക്കും. ഒരാൾ word draw ചെയ്യും. അടുത്തയാൾ drawing നോക്കി guess എഴുതും. പിന്നെ മറ്റൊരാൾ ആ guess draw ചെയ്യും. Book വീണ്ടും owner-ന്റെ അടുത്ത് എത്തുമ്പോൾ round തീരും.</p>
+          <p>ഇവിടെ perfect drawing ഒന്നും വേണ്ട. തെറ്റിദ്ധാരണയാണ് fun. “banana split” എന്ന് തുടങ്ങിയ word “boat accident”, പിന്നെ “shark party” ആയി മാറാം. അതാണ് game-ന്റെ comedy.</p>
+          <div class="callout good"><strong>Staff mindset:</strong> ഇത് art game അല്ല, laugh game ആണ്. “എനിക്ക് വരയ്ക്കാൻ അറിയില്ല” എന്ന് പറയുന്ന guests-ന് ഈ game super ആണ്.</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. Staff അറിഞ്ഞിരിക്കേണ്ട quick facts</h2>
+          <table>
+            <tr><th>Game type</th><td>Drawing, guessing, party game</td></tr>
+            <tr><th>Players</th><td>സാധാരണ box: 4-8 players; party pack: 12 വരെ</td></tr>
+            <tr><th>Time</th><td>ഏകദേശം 20-30 minutes</td></tr>
+            <tr><th>Age</th><td>Family friendly; simple words വായിക്കാൻ അറിയുന്നവർക്ക് best</td></tr>
+            <tr><th>Skill level</th><td>Beginner. Board game experience വേണ്ട.</td></tr>
+            <tr><th>Best table</th><td>Friends, families, dates, office groups, first-time gamers</td></tr>
+          </table>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. Game കൊടുക്കുന്നതിന് മുമ്പ് components check ചെയ്യുക</h2>
+          <ul>
+            <li>ഓരോ player-നും ഒരു sketchbook / dry-erase book.</li>
+            <li>ഓരോ player-നും ഒരു dry-erase marker.</li>
+            <li>Word cards.</li>
+            <li>Die - card-ലെ ഏത് number word എടുക്കണം എന്ന് തീരുമാനിക്കാൻ.</li>
+            <li>Timer - സാധാരണ 60 seconds.</li>
+            <li>Cleaning cloths / tissues - game കഴിഞ്ഞ് books തുടയ്ക്കാൻ.</li>
+          </ul>
+          <div class="callout warn"><strong>Cafe care:</strong> Marker caps അടച്ചിട്ടുണ്ടോ, books clean ആണോ എന്ന് check ചെയ്യുക. Marker ink sofa, dress, wall, wooden table edges എന്നിവയിൽ പറ്റാതെ ശ്രദ്ധിക്കുക.</div>
+        </section>
+
+        <section class="card third">
+          <h2>Guests-നോട് പറയാൻ best pitch</h2>
+          <p class="script">“ഇത് ഒരു super funny drawing game ആണ്. നന്നായി വരയ്ക്കാൻ അറിയേണ്ട. Actually മോശം drawings ആയാൽ കൂടുതൽ fun. നിങ്ങൾ draw ചെയ്യും, pass ചെയ്യും, guess ചെയ്യും, വീണ്ടും pass ചെയ്യും. അവസാനം word എങ്ങനെ മാറി പോയി എന്ന് reveal ചെയ്യും.”</p>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>ഓരോ player-നും ഒരു book ഉം ഒരു marker ഉം കൊടുക്കുക.</li>
+            <li>എല്ലാവരും book-ന്റെ front page-ൽ സ്വന്തം പേര് എഴുതണം.</li>
+            <li>ഓരോ player-നും ഒരു word card കൊടുക്കുക. എല്ലാവരും card-ന്റെ same side use ചെയ്യണം.</li>
+            <li>Die roll ചെയ്യുക. കിട്ടിയ number card-ലെ word number ആണ്.</li>
+            <li>ഓരോ player-നും സ്വന്തം book-ന്റെ page 1-ൽ secret word എഴുതണം. മറ്റുള്ളവർ കാണരുത്.</li>
+            <li>എല്ലാവരും first drawing page-ലേക്ക് മാറി ready ആവുക.</li>
+          </ol>
+          <div class="callout good"><strong>Odd/even players:</strong> Players odd ആണെങ്കിലും even ആണെങ്കിലും കളിക്കാം. Odd players ആണെങ്കിൽ book സാധാരണ guess-ൽ അവസാനിക്കും. Even players ആണെങ്കിൽ drawing-ൽ അവസാനിക്കും. രണ്ടും okay.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. എങ്ങനെ കളിക്കാം: full round</h2>
+          <ol class="flow">
+            <li><strong>Secret word draw ചെയ്യുക.</strong> Timer start ചെയ്യുക. എല്ലാവരും സ്വന്തം word secret ആയി draw ചെയ്യണം. Recommended rule: drawings-ൽ letters/numbers വേണ്ട.</li>
+            <li><strong>Book pass ചെയ്യുക.</strong> Time കഴിഞ്ഞാൽ drawing hide ചെയ്ത് book left side player-ന് pass ചെയ്യുക.</li>
+            <li><strong>Drawing guess ചെയ്യുക.</strong> കിട്ടിയ book-ൽ previous page മാത്രം നോക്കുക. Drawing എന്താണെന്ന് guess എഴുതുക. പഴയ pages നോക്കരുത്.</li>
+            <li><strong>വീണ്ടും pass ചെയ്യുക.</strong> Guess hide ചെയ്ത് book ഇടത്തേക്ക് pass ചെയ്യുക.</li>
+            <li><strong>Guess draw ചെയ്യുക.</strong> Words കണ്ടാൽ draw ചെയ്യുക. Drawing കണ്ടാൽ guess ചെയ്യുക. ഇങ്ങനെ alternate ചെയ്യും.</li>
+            <li><strong>Book owner-ന് തിരികെ എത്തുമ്പോൾ stop.</strong> നിങ്ങളുടെ സ്വന്തം book തിരികെ കിട്ടിയാൽ round തീർന്നു.</li>
+            <li><strong>Story reveal ചെയ്യുക.</strong> Book owner original word → drawing → guess → drawing → guess എന്ന order-ൽ എല്ലാം കാണിക്കും. ഇതാണ് funniest part.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>6. Scoring options</h2>
+          <p>Cafe-ൽ easiest recommendation: <strong>scoring ഇല്ലാതെ കളിക്കുക</strong>. Reveal തന്നെയാണ് reward. Mood casual ആയിരിക്കും.</p>
+          <h3>Friendly scoring, guests ചോദിച്ചാൽ</h3>
+          <ul>
+            <li>നിങ്ങളുടെ book reveal ചെയ്ത ശേഷം, ആ book-ലെ favourite sketch-ന് 1 point കൊടുക്കുക.</li>
+            <li>Favourite guess-ന് 1 point കൊടുക്കുക.</li>
+            <li>Final guess original secret word-നോട് match ആണെങ്കിൽ book owner-ന് 1 point.</li>
+          </ul>
+          <h3>Competitive scoring, optional</h3>
+          <p>ചില groups match ആയ guesses/drawings-ന് points കൊടുക്കും. പക്ഷേ light ആയി keep ചെയ്യുക. ഈ game serious ആക്കുമ്പോൾ fun കുറയും.</p>
+        </section>
+
+        <section class="card half">
+          <h2>7. Cafe-ൽ recommend ചെയ്യുന്ന house rules</h2>
+          <ul>
+            <li><strong>Drawing-ൽ letters/numbers വേണ്ട</strong>, kids അല്ലെങ്കിൽ beginners ആണെങ്കിൽ മാത്രം relax ചെയ്യാം.</li>
+            <li><strong>Drawing explain ചെയ്യരുത്.</strong> Guess ചെയ്യുമ്പോൾ silence വേണം.</li>
+            <li><strong>എപ്പോഴും ഒരു guess എഴുതണം.</strong> Wrong guess പോലും blank page-നേക്കാൾ നല്ലതാണ്.</li>
+            <li><strong>Friendly reveal.</strong> ആളുകളെ കളിയാക്കാതെ എല്ലാവരും കൂടി ചിരിക്കണം.</li>
+            <li><strong>Kids-ന് simple custom words കൊടുക്കാം.</strong> Example: മാമ്പഴം, ആന, train, മഴ, തെങ്ങ്.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>8. Staff 60 seconds-ൽ explain ചെയ്യേണ്ട script</h2>
+          <p class="script">“ഓരോരുത്തരും ഒരു book, marker, card എടുക്കുക. Die roll ചെയ്ത number-ലെ word secret ആയി book-ൽ എഴുതുക. ആദ്യം ആ word draw ചെയ്യണം. Timer കഴിഞ്ഞാൽ book left-ലേക്ക് pass ചെയ്യുക. Drawing കിട്ടിയാൽ guess എഴുതുക. Words കിട്ടിയാൽ draw ചെയ്യുക. പഴയ pages നോക്കരുത്. സ്വന്തം book തിരികെ കിട്ടും വരെ pass ചെയ്യുക. അവസാനം ഓരോരുത്തരും full chain reveal ചെയ്യും. Goal points അല്ല, ചിരിയാണ്.”</p>
+          <div class="callout warn"><strong>Understanding check:</strong> ഒരു player-നോട് ചോദിക്കുക: “Drawing കണ്ടാൽ എന്ത് ചെയ്യണം?” Answer: “Guess ചെയ്യണം.” “Words കണ്ടാൽ?” Answer: “Draw ചെയ്യണം.”</div>
+        </section>
+
+        <section class="card half">
+          <h2>9. Guests ചോദിക്കുന്ന common questions</h2>
+          <details><summary>Drawing-ൽ words എഴുതാമോ?</summary><p>Recommended answer: “സാധാരണ വേണ്ട. Letters/numbers ഇല്ലാതെ draw ചെയ്യാൻ try ചെയ്യൂ. Kids/first-timers ആണെങ്കിൽ rule relax ചെയ്യാം.”</p></details>
+          <details><summary>എനിക്ക് വരയ്ക്കാൻ അറിയില്ലെങ്കിൽ?</summary><p>“അതുതന്നെ best. Bad drawings ആണ് game funny ആക്കുന്നത്. Stick figures fully allowed.”</p></details>
+          <details><summary>Word skip ചെയ്യാമോ?</summary><p>“Yes. Word വളരെ hard ആണെങ്കിൽ card-ൽ നിന്ന് മറ്റൊരു word എടുക്കാം, അല്ലെങ്കിൽ staff-നോട് easier word ചോദിക്കാം.”</p></details>
+          <details><summary>Timer use ചെയ്യണോ?</summary><p>“Timer game fast ആക്കും, drawings funnier ആക്കും. Relaxed group ആണെങ്കിൽ കുറച്ച് flexible ആകാം.”</p></details>
+          <details><summary>Kids കളിക്കാമോ?</summary><p>“Yes, words വായിക്കാൻ അറിയുന്നെങ്കിൽ. അല്ലെങ്കിൽ adult help ചെയ്യാം. Easy words കൊടുക്കുക.”</p></details>
+          <details><summary>എത്ര rounds കളിക്കണം?</summary><p>“ഒരു round മതി game മനസ്സിലാക്കാൻ. സാധാരണ groups 2-3 rounds കളിക്കും.”</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>10. Staff troubleshooting</h2>
+          <table>
+            <tr><th>Problem</th><th>Staff ചെയ്യേണ്ടത്</th></tr>
+            <tr><td>Players-ന് passing confusion</td><td>“ഓരോ page കഴിഞ്ഞും left-ലേക്ക് pass ചെയ്യണം” എന്ന് പറയുക. First two passes staff nearby നിൽക്കുക.</td></tr>
+            <tr><td>ആരും പഴയ pages നോക്കുന്നു</td><td>Soft ആയി പറയുക: “Just previous page മാത്രം നോക്കൂ. Surprise ആണ് game.”</td></tr>
+            <tr><td>ഒരാൾ വളരെ slow ആയി draw ചെയ്യുന്നു</td><td>“Simple മതി. Stick figures okay.” എന്ന് encourage ചെയ്യുക.</td></tr>
+            <tr><td>Books messy ആണ്</td><td>Game start ചെയ്യുന്നതിന് മുമ്പ് pages clean ആക്കുക.</td></tr>
+            <tr><td>Group quiet ആണ്</td><td>Reveal slowly ചെയ്യാൻ പറയുക: “Original word ആദ്യം കാണിക്കൂ, പിന്നെ ഓരോ page ആയി reveal ചെയ്യൂ.”</td></tr>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2>11. Cafe facilitation tips</h2>
+          <ul>
+            <li>Loud, funny, low-pressure game വേണമെന്ന് പറയുന്ന guests-ന് recommend ചെയ്യുക.</li>
+            <li>Food വരുന്നത് വരെ കളിക്കാൻ നല്ലതാണ്, കാരണം rules quick ആണ്.</li>
+            <li>2-3 players മാത്രം ഉണ്ടെങ്കിൽ മറ്റൊരു game suggest ചെയ്യുക. Telestrations 4+ players-ൽ shine ചെയ്യും.</li>
+            <li>Shy group ആണെങ്കിൽ scoring optional ആണെന്ന് പറയുക. Pressure കുറയും.</li>
+            <li>Reveal ചെയ്യുമ്പോൾ pages slowly കാണിക്കാൻ പറയുക. Comedy step-by-step build ചെയ്യും.</li>
+            <li>Game return കിട്ടിയ ഉടനെ books clean ചെയ്യുക. Dry-erase ink അധികം നേരം വെച്ചാൽ clean ചെയ്യാൻ ബുദ്ധിമുട്ടാകും.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>12. Mini example round</h2>
+          <p><strong>Secret word:</strong> തെങ്ങ്</p>
+          <p><strong>Player 1 draws:</strong> തേങ്ങകളുള്ള ഒരു tree.</p>
+          <p><strong>Player 2 guesses:</strong> “Beach”.</p>
+          <p><strong>Player 3 draws:</strong> കടൽ, മണൽ, ഒരു tree.</p>
+          <p><strong>Player 4 guesses:</strong> “Kerala vacation”.</p>
+          <p><strong>Reveal moment:</strong> “തെങ്ങ്” “Kerala vacation” ആയി മാറി. അതാണ് Telestrations-ന്റെ fun.</p>
+        </section>
+      </div>
+      <footer>Cafe staff training guide. Rule details publicly available Telestrations rule summaries and rulebook references ഉപയോഗിച്ച് cross-check ചെയ്തതാണ്.</footer>
+    </section>
+  </main>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+      document.getElementById(lang).classList.add('active');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ml').classList.toggle('active', lang === 'ml');
+      document.documentElement.lang = lang;
+    }
+  </script>
+</body>
+</html>
