@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kingdomino — Staff Training Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold:    #c9a227;
+            --gold-lt: #f4c430;
+            --brown:   #4a2800;
+            --bg:      #faf3e0;
+            --card:    #ffffff;
+            --text:    #2c1810;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        /* ─── HEADER ─────────────────────────────────────────── */
+        header {
+            background: linear-gradient(135deg, #1a0a00 0%, #4a2800 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+        }
+
+        .header-inner {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            color: var(--gold-lt);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        .header-sub {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-top: 3px;
+        }
+
+        /* Language toggle pill */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .lang-lbl {
+            font-size: 0.9rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.25s;
+            user-select: none;
+        }
+
+        .lang-lbl.on { color: var(--gold-lt); font-weight: 600; }
+
+        .switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            cursor: pointer;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .track {
+            position: absolute;
+            inset: 0;
+            background: var(--gold);
+            border-radius: 26px;
+            transition: background 0.3s;
+        }
+
+        .track::before {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            left: 3px; bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .switch input:checked ~ .track::before { transform: translateX(22px); }
+
+        /* ─── MAIN ────────────────────────────────────────────── */
+        main {
+            max-width: 940px;
+            margin: 32px auto;
+            padding: 0 20px;
+        }
+
+        .content { display: none; }
+        .content.active { display: block; }
+
+        /* ─── SECTION CARDS ───────────────────────────────────── */
+        .section {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 28px 30px;
+            margin-bottom: 26px;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+            border-left: 6px solid var(--gold);
+        }
+
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--brown);
+            margin-bottom: 16px;
+        }
+
+        .section h3 {
+            font-size: 1.05rem;
+            color: var(--brown);
+            margin: 18px 0 8px;
+            font-weight: 600;
+        }
+
+        p { margin-bottom: 12px; }
+
+        ul, ol { padding-left: 24px; margin-bottom: 12px; }
+        li { margin-bottom: 6px; }
+
+        /* ─── HIGHLIGHT BOX ───────────────────────────────────── */
+        .highlight {
+            background: linear-gradient(135deg, #fffbe8, #fff3cc);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 14px 0;
+            font-size: 1.02rem;
+        }
+
+        /* ─── COMPONENT GRID ──────────────────────────────────── */
+        .comp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .comp-item {
+            background: #f5f0e8;
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .comp-item .ico { font-size: 2rem; flex-shrink: 0; }
+        .comp-item strong { display: block; color: var(--brown); font-size: 0.95rem; }
+        .comp-item span { font-size: 0.82rem; color: #666; }
+
+        /* ─── TERRAIN GRID ────────────────────────────────────── */
+        .terrain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .tc {
+            padding: 16px 10px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: white;
+        }
+
+        .tc .e { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+        .tc-wheat { background: linear-gradient(135deg,#b8860b,#f4c430); color: #2c1810; }
+        .tc-forest { background: linear-gradient(135deg,#1b4332,#40916c); }
+        .tc-water  { background: linear-gradient(135deg,#005f99,#00b4d8); }
+        .tc-grass  { background: linear-gradient(135deg,#386641,#80b918); }
+        .tc-swamp  { background: linear-gradient(135deg,#4a0e7f,#7b2d8b); }
+        .tc-mine   { background: linear-gradient(135deg,#1a1a2e,#555); }
+
+        /* ─── STEPS ───────────────────────────────────────────── */
+        .step {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            min-width: 36px;
+            height: 36px;
+            background: var(--gold);
+            color: var(--brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-num.check { background: #40916c; color: white; font-size: 1.1rem; }
+        .step-num.cross { background: #c1121f; color: white; font-size: 1.1rem; }
+
+        /* ─── SCORE EXAMPLE ───────────────────────────────────── */
+        .score-box {
+            background: #edf6ff;
+            border: 2px solid #90c2e7;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 14px 0;
+        }
+
+        .score-box h4 { color: #0a5c99; margin-bottom: 8px; font-size: 1rem; }
+
+        .formula {
+            font-size: 1.15rem;
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        /* ─── TIPS ────────────────────────────────────────────── */
+        .tip {
+            background: #fffbea;
+            border-left: 4px solid var(--gold);
+            padding: 12px 16px;
+            border-radius: 0 10px 10px 0;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .tip::before { content: '💡  '; }
+
+        /* ─── FAQ ─────────────────────────────────────────────── */
+        .faq {
+            background: #f9f7f4;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+
+        .faq-q { font-weight: 600; color: var(--brown); margin-bottom: 6px; }
+        .faq-q::before { content: 'Q  '; color: var(--gold); }
+        .faq-a { font-size: 0.95rem; }
+        .faq-a::before { content: 'A  '; color: #40916c; font-weight: 600; }
+
+        /* ─── VARIANTS ────────────────────────────────────────── */
+        .variant {
+            background: linear-gradient(135deg,#e8f4fd,#dbeafe);
+            border: 2px solid #93c5fd;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin: 12px 0;
+        }
+
+        .variant h4 { color: #1d4ed8; margin-bottom: 8px; font-size: 1rem; }
+
+        /* ─── FOOTER ──────────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 24px 20px 32px;
+            color: #999;
+            font-size: 0.82rem;
+            border-top: 1px solid #e8dfc8;
+            margin-top: 20px;
+        }
+
+        /* ─── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .game-title { font-size: 1.4rem; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            .terrain-grid { grid-template-columns: repeat(2, 1fr); }
+            .section { padding: 20px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div>
+            <div class="game-title">👑 Kingdomino</div>
+            <div class="header-sub">Staff Training Guide &nbsp;·&nbsp; Board Game Cafe, Kochi</div>
+        </div>
+        <div class="lang-toggle">
+            <span class="lang-lbl on" id="lbl-en">English</span>
+            <label class="switch">
+                <input type="checkbox" id="lang-sw">
+                <span class="track"></span>
+            </label>
+            <span class="lang-lbl" id="lbl-ml">മലയാളം</span>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════════
+     ENGLISH
+     ════════════════════════════════════════════════════════════ -->
+<div class="content active" id="en">
+
+    <!-- What is it -->
+    <div class="section">
+        <h2>🏰 What is Kingdomino?</h2>
+        <p>Kingdomino is a super fun, easy-to-learn tile-placing game for <strong>2 to 4 players</strong>. Think of it as dominoes — but make it medieval! Each player is a <strong>king</strong> (or queen!) trying to build the most impressive kingdom by connecting terrain tiles together.</p>
+        <p>A game takes roughly <strong>15–25 minutes</strong> and works great for all ages. Perfect for families, friend groups, couples, or anyone who enjoys a light strategy game.</p>
+        <div class="highlight">
+            🎯 <strong>The Goal:</strong> Build a 5×5 kingdom with the most points by connecting matching terrain tiles and collecting as many crowns as possible!
+        </div>
+    </div>
+
+    <!-- What's in the box -->
+    <div class="section">
+        <h2>📦 What's in the Box?</h2>
+        <div class="comp-grid">
+            <div class="comp-item">
+                <span class="ico">🀱</span>
+                <div><strong>48 Dominoes</strong><span>The main playing tiles</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">🏰</span>
+                <div><strong>4 Castles</strong><span>One starting tile per player</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">👑</span>
+                <div><strong>8 King Meeples</strong><span>2 per player, 4 colours</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">🔢</span>
+                <div><strong>Numbered Tokens</strong><span>Track domino order in line</span></div>
+            </div>
+        </div>
+        <h3>About the Dominoes</h3>
+        <p>Each domino is made of <strong>two square tiles</strong> joined side by side. Every tile shows a terrain type, and some tiles have <strong>crowns</strong> printed on them — those crowns are the key to scoring points! Dominoes are numbered <strong>1 to 48</strong>. Higher numbers mean better terrains (more crowns), which means more competition for them.</p>
+    </div>
+
+    <!-- Terrain types -->
+    <div class="section">
+        <h2>🗺️ The 6 Terrain Types</h2>
+        <p>There are <strong>six different terrains</strong> in Kingdomino. Building large connected regions of the same terrain — and filling them with crowns — is how you rack up points.</p>
+        <div class="terrain-grid">
+            <div class="tc tc-wheat"><span class="e">🌾</span>Wheat Fields</div>
+            <div class="tc tc-forest"><span class="e">🌲</span>Forest</div>
+            <div class="tc tc-water"><span class="e">💧</span>Sea / Water</div>
+            <div class="tc tc-grass"><span class="e">🌿</span>Grassland</div>
+            <div class="tc tc-swamp"><span class="e">🟣</span>Swamp</div>
+            <div class="tc tc-mine"><span class="e">⛏️</span>Mine</div>
+        </div>
+        <p>The <strong>Castle tile</strong> (your starting piece) is a <strong>wild card</strong> — any terrain can be placed next to it, no matching required.</p>
+    </div>
+
+    <!-- Setup -->
+    <div class="section">
+        <h2>🛠️ Setting Up the Game</h2>
+        <div class="step"><div class="step-num">1</div><div>Give each player a <strong>castle tile</strong> and place it face-up in the centre of their play area. This is the starting point of their kingdom.</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Shuffle all 48 dominoes face-down.</strong> If playing with 2 or 3 players, remove some dominoes randomly before the game starts (see the rule booklet for exact counts).</div></div>
+        <div class="step"><div class="step-num">3</div><div>Draw <strong>4 dominoes</strong> (or one per player), flip them face-up, and line them up in a row — sorted by number, <strong>lowest on top</strong>.</div></div>
+        <div class="step"><div class="step-num">4</div><div>Randomly decide who goes first. Each player places their <strong>king meeple</strong> on one of those face-up dominoes — that's their first pick!</div></div>
+        <div class="step"><div class="step-num">5</div><div>Draw <strong>4 more dominoes</strong>, flip them, sort them by number, and line them up as the next row. Now the game begins!</div></div>
+    </div>
+
+    <!-- How to play -->
+    <div class="section">
+        <h2>🎮 How to Play — Turn by Turn</h2>
+        <p>Each round there are <strong>two rows</strong> of dominoes on the table:</p>
+        <ul>
+            <li><strong>Current row</strong> — each domino already has a king meeple on it (claimed last round).</li>
+            <li><strong>New row</strong> — fresh dominoes available for players to claim.</li>
+        </ul>
+        <p>On your turn you always do <strong>two things</strong> in order:</p>
+
+        <h3>Step 1 — Take Your Domino</h3>
+        <p>Pick up the domino from the <em>current row</em> that your king meeple is sitting on. Now place it into your kingdom following these rules:</p>
+
+        <div class="step"><div class="step-num check">✓</div><div>At least one edge of the new domino must touch <strong>a matching terrain</strong> already in your kingdom (e.g. forest touching forest), OR it can touch your castle tile (which is wild).</div></div>
+        <div class="step"><div class="step-num check">✓</div><div>Your entire kingdom — including the new domino — must fit inside a <strong>5×5 grid</strong>. You cannot go outside that boundary.</div></div>
+        <div class="step"><div class="step-num cross">✗</div><div><strong>Can't legally place it?</strong> Simply <strong>discard</strong> the domino. No penalty, but no points either. It happens — especially late in the game!</div></div>
+
+        <h3>Step 2 — Claim Your Next Domino</h3>
+        <p>After placing, move your king meeple onto one of the dominoes in the <em>new row</em>. This reserves that domino for next round.</p>
+
+        <div class="highlight">
+            ⚡ <strong>Staff tip — explain this to players!</strong> The number on the domino you <em>claim</em> determines your turn order next round. Claim a <em>lower-numbered</em> domino this round → go <em>first</em> next round → get first pick of the new row. Sometimes sacrificing a great terrain for a small number is the smarter move!
+        </div>
+
+        <h3>Turn Order</h3>
+        <p>Within a round, the player whose meeple sits on the <strong>lowest-numbered domino</strong> in the current row goes first. That's why picking a weaker domino early can actually be a power move.</p>
+    </div>
+
+    <!-- Scoring -->
+    <div class="section">
+        <h2>🏆 Scoring — How Points Are Counted</h2>
+        <p>Scoring happens <strong>at the end of the game</strong>, after all dominoes have been placed or discarded.</p>
+
+        <div class="score-box">
+            <h4>The Golden Formula</h4>
+            <p class="formula"><strong>Points = Size of Territory × Crowns in that Territory</strong></p>
+        </div>
+
+        <h3>Step by Step</h3>
+        <div class="step"><div class="step-num">1</div><div>Look at each <strong>connected group of identical terrain</strong> (called a "territory") in your kingdom. Count how many tiles are in it.</div></div>
+        <div class="step"><div class="step-num">2</div><div>Count how many <strong>crown symbols 👑</strong> appear on the tiles within that territory.</div></div>
+        <div class="step"><div class="step-num">3</div><div>Multiply: <strong>Tiles × Crowns = Points</strong> for that territory.</div></div>
+        <div class="step"><div class="step-num">4</div><div>Add up every territory's points to get your <strong>total score</strong>.</div></div>
+
+        <div class="score-box">
+            <h4>📌 Example</h4>
+            <p>You have a forest territory with <strong>5 forest tiles</strong>. Two of those tiles carry one crown each. That's <strong>5 × 2 = 10 points</strong> for that territory!</p>
+            <p style="margin-top:8px;"><strong>Important:</strong> A territory with <em>zero crowns scores zero points</em>, no matter how big it is. Crowns are everything!</p>
+        </div>
+
+        <h3>Tiebreakers (same total score)</h3>
+        <ol>
+            <li>Player with the <strong>largest single territory</strong> wins.</li>
+            <li>Still tied? Player with the <strong>most total crowns</strong> wins.</li>
+            <li>Still tied? It's a <strong>shared victory</strong> — celebrate together! 🎉</li>
+        </ol>
+    </div>
+
+    <!-- Variants -->
+    <div class="section">
+        <h2>🎲 Game Variants &amp; Optional Rules</h2>
+        <p>These variants are printed on the back of the rulebook and can be added for extra fun or challenge.</p>
+
+        <div class="variant">
+            <h4>👑 The Mighty Duel (2 players only)</h4>
+            <p>Each player uses <strong>2 king meeples</strong> and picks <strong>2 dominoes per round</strong>. The kingdom expands to a <strong>7×7 grid</strong> instead of 5×5. Games feel bigger and more strategic!</p>
+        </div>
+
+        <div class="variant">
+            <h4>🏅 The Middle Kingdom (+10 bonus)</h4>
+            <p>At the end of the game, if your castle sits <strong>exactly in the centre</strong> of your 5×5 kingdom, you earn a <strong>+10 point bonus</strong>. This forces much trickier placement decisions throughout the game.</p>
+        </div>
+
+        <div class="variant">
+            <h4>🌳 Harmony (+5 bonus)</h4>
+            <p>If you managed to <strong>place all 12 of your dominoes</strong> (none were discarded), you earn a <strong>+5 point bonus</strong>. Rewards thoughtful grid planning right from the start!</p>
+        </div>
+
+        <p style="margin-top:14px;">Variants can be <strong>combined</strong> for an even more challenging experience. Great for players who've tried the base game a few times.</p>
+    </div>
+
+    <!-- Strategy -->
+    <div class="section">
+        <h2>🧠 Strategy Tips to Share with Players</h2>
+        <div class="tip">Focus on building <strong>one or two big territories</strong> with crowns — spreading across many terrain types usually scores less.</div>
+        <div class="tip">A 10-tile territory with just 1 crown scores 10 points. Big territories are powerful even with few crowns!</div>
+        <div class="tip"><strong>Mines</strong> are the rarest terrain and usually carry multiple crowns — they score big even when the mine territory is small.</div>
+        <div class="tip">Sometimes claiming a <strong>lower-numbered domino</strong> (to go first next round) is worth more than grabbing the best terrain this round.</div>
+        <div class="tip">Watch what your opponents are building — grab the terrain tiles <em>they</em> desperately need!</div>
+        <div class="tip">Plan your <strong>5×5 grid from the very beginning</strong>. Running out of legal placements late in the game is painful.</div>
+        <div class="tip">If playing with the Middle Kingdom variant, leave room for your castle to end up in the <strong>centre row and column</strong> of your grid.</div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section">
+        <h2>❓ Common Customer Questions</h2>
+
+        <div class="faq">
+            <div class="faq-q">Can I rotate a domino any way I want?</div>
+            <div class="faq-a">Yes! Rotate it 90°, 180°, or 270° — any direction. Just make sure a matching terrain or the castle is adjacent after placement.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">Does the castle count as a terrain for scoring?</div>
+            <div class="faq-a">No. The castle itself scores zero points and doesn't belong to any terrain territory. But it acts as a wild tile — any terrain can be placed next to it. In the Middle Kingdom variant, centering it gives you +10 bonus points!</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">What if I literally can't place my domino?</div>
+            <div class="faq-a">Discard it — no penalty, no points. It happens naturally near the end of the game as your grid fills up. That's why planning early matters.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">Can two separate forest areas merge into one territory?</div>
+            <div class="faq-a">Only if a new domino physically connects them. Until they touch, they are separate territories and score separately.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">Does the castle have to be in the centre of my kingdom?</div>
+            <div class="faq-a">No — in the standard game, the castle just needs to be somewhere inside your 5×5 grid. Only in the Middle Kingdom variant does centering it earn bonus points.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">How many dominoes do we remove for 2 or 3 players?</div>
+            <div class="faq-a">2 players (standard): remove 24 randomly, play with 24. 3 players: remove 12, play with 36. 4 players: use all 48.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">How many rounds does a game last?</div>
+            <div class="faq-a">12 rounds — each player picks a total of 12 dominoes. The game ends once the last batch of dominoes has been claimed and placed.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">What if two players place their meeples on the same domino?</div>
+            <div class="faq-a">That can't happen — each meeple must go on a different domino. Since there's one domino per player in each row, there's always a unique domino for everyone.</div>
+        </div>
+    </div>
+
+    <!-- Quick ref -->
+    <div class="section">
+        <h2>📋 Quick Reference Card</h2>
+        <div class="highlight" style="text-align:center;">
+            <strong>Players:</strong> 2–4 &nbsp;|&nbsp; <strong>Time:</strong> 15–25 min &nbsp;|&nbsp; <strong>Recommended Age:</strong> 8+
+        </div>
+        <h3>Rules to Remember at a Glance</h3>
+        <ul>
+            <li>📐 Kingdom max size: <strong>5×5 grid</strong></li>
+            <li>🔗 New domino must touch matching terrain <em>or</em> the castle</li>
+            <li>❌ Can't place? → Discard it (no penalty)</li>
+            <li>👑 Score = Territory size × Crowns in that territory</li>
+            <li>0️⃣ Territory with no crowns = 0 points, period</li>
+            <li>🔢 Lower number claimed = go first next round</li>
+            <li>🤝 Tiebreaker: biggest territory → most crowns → shared win</li>
+        </ul>
+    </div>
+
+</div><!-- /en -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     MALAYALAM
+     ════════════════════════════════════════════════════════════ -->
+<div class="content" id="ml">
+
+    <!-- What is it -->
+    <div class="section">
+        <h2>🏰 കിംഗ്ഡോമിനോ എന്താണ്?</h2>
+        <p>കിംഗ്ഡോമിനോ ഒരു രസകരവും, പഠിക്കാൻ എളുപ്പവുമുള്ള ടൈൽ-പ്ലേസിംഗ് ഗെയിമാണ് — <strong>2 മുതൽ 4 വരെ കളിക്കാർക്ക്</strong>. ഡൊമിനോ കളിക്ക് ഒരു മധ്യകാല twist ഇട്ടതു പോലെ ചിന്തിക്കൂ! ഓരോ കളിക്കാരനും ഒരു <strong>രാജാവ്</strong> (അല്ലെങ്കിൽ രാജ്ഞി!) ആണ് — ഭൂ-ടൈലുകൾ ചേർത്ത് ഏറ്റവും മനോഹരമായ രാജ്യം പണിയാൻ ശ്രമിക്കുന്നു.</p>
+        <p>ഒരു ഗെയിം ഏകദേശം <strong>15–25 മിനിറ്റ്</strong> ദൈർഘ്യമുണ്ടാകും. കുടുംബം, സ്നേഹിതർ, ദമ്പതികൾ, ലൈറ്റ് സ്ട്രാറ്റജി ഗെയിം ഇഷ്ടപ്പെടുന്ന ആർക്കും ഇത് ആസ്വദിക്കാം.</p>
+        <div class="highlight">
+            🎯 <strong>ലക്ഷ്യം:</strong> ഒരേ ഭൂ-ടൈലുകൾ ചേർത്ത് കിരീടങ്ങൾ ശേഖരിച്ച്, ഏറ്റവും കൂടുതൽ പോയിന്റ് നേടി 5×5 രാജ്യം പണിക്കുക!
+        </div>
+    </div>
+
+    <!-- Box contents -->
+    <div class="section">
+        <h2>📦 ബോക്സിൽ എന്തൊക്കെ ഉണ്ട്?</h2>
+        <div class="comp-grid">
+            <div class="comp-item">
+                <span class="ico">🀱</span>
+                <div><strong>48 ഡൊമിനോകൾ</strong><span>ഗെയിമിന്റെ പ്രധാന ടൈലുകൾ</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">🏰</span>
+                <div><strong>4 കൊട്ടാരങ്ങൾ</strong><span>ഓരോ കളിക്കാരനും ഒന്ന്</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">👑</span>
+                <div><strong>8 കിംഗ് മീപ്പിളുകൾ</strong><span>ഓരോ കളിക്കാരനും 2 എണ്ണം, 4 നിറങ്ങളിൽ</span></div>
+            </div>
+            <div class="comp-item">
+                <span class="ico">🔢</span>
+                <div><strong>നമ്പർ ടോക്കണുകൾ</strong><span>ഡൊമിനോ ക്രമം ട്രാക്ക് ചെയ്യാൻ</span></div>
+            </div>
+        </div>
+        <h3>ഡൊമിനോകളെ കുറിച്ച്</h3>
+        <p>ഓരോ ഡൊമിനോയിലും <strong>രണ്ട് ചതുര ടൈലുകൾ</strong> ഒന്നിച്ചു ചേർന്നിരിക്കുന്നു. ഓരോ ടൈലിലും ഒരു ഭൂ-പ്രദേശ തരം കാണിക്കുന്നു; ചിലതിൽ <strong>കിരീടങ്ങൾ 👑</strong> ഉണ്ടാകും — ഇവയാണ് പോയിന്റ് നേടാനുള്ള ഒരേ ഒരു വഴി! ഡൊമിനോകൾക്ക് <strong>1 മുതൽ 48 വരെ</strong> നമ്പർ ഉണ്ട്. ഉയർന്ന നമ്പർ = കൂടുതൽ കിരീടങ്ങളുള്ള മികച്ച ഭൂമി = കൂടുതൽ മത്സരം!</p>
+    </div>
+
+    <!-- Terrain types -->
+    <div class="section">
+        <h2>🗺️ 6 ഭൂ-പ്രദേശ തരങ്ങൾ</h2>
+        <p>കിംഗ്ഡോമിനോയിൽ <strong>ആറ് വ്യത്യസ്ത ഭൂ-പ്രദേശ തരങ്ങൾ</strong> ഉണ്ട്. ഒരേ ഭൂ-പ്രദേശം ഒരുമിച്ചു ചേർക്കുന്നതും, ആ region-ൽ കിരീടങ്ങൾ ഒരുക്കുന്നതുമാണ് കൂടുതൽ score നേടുന്ന വഴി!</p>
+        <div class="terrain-grid">
+            <div class="tc tc-wheat"><span class="e">🌾</span>ഗോതമ്പ് വയൽ</div>
+            <div class="tc tc-forest"><span class="e">🌲</span>വനം</div>
+            <div class="tc tc-water"><span class="e">💧</span>കടൽ / ജലം</div>
+            <div class="tc tc-grass"><span class="e">🌿</span>പുൽമേട്</div>
+            <div class="tc tc-swamp"><span class="e">🟣</span>ചതുപ്പ്</div>
+            <div class="tc tc-mine"><span class="e">⛏️</span>ഖനി</div>
+        </div>
+        <p><strong>കൊട്ടാരം ടൈൽ</strong> (നിങ്ങളുടെ ആരംഭ ടൈൽ) ഒരു <strong>wild card</strong> ആണ് — ഏത് ഭൂ-പ്രദേശ തരവും ഇതിനോട് ചേർക്കാം, matching ആവശ്യമില്ല!</p>
+    </div>
+
+    <!-- Setup -->
+    <div class="section">
+        <h2>🛠️ ഗെയിം ആരംഭിക്കുന്നതിന് മുൻപ്</h2>
+        <div class="step"><div class="step-num">1</div><div>ഓരോ കളിക്കാരനും ഒരു <strong>കൊട്ടാരം ടൈൽ</strong> നൽകുക, അവരുടെ കളിക്കൽ ഇടത്തിന്റെ നടുക്ക് വയ്ക്കുക. ഇതാണ് അവരുടെ രാജ്യത്തിന്റെ ആദ്യ ടൈൽ.</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>48 ഡൊമിനോകൾ മുഖം കീഴ്പ്പോട്ട് ഇട്ട് ഇളക്കുക.</strong> 2 അല്ലെങ്കിൽ 3 കളിക്കാർ ഉണ്ടെങ്കിൽ, ചില ഡൊമിനോകൾ ക്രമരഹിതമായി നീക്കം ചെയ്യുക (rulebook നോക്കുക).</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>4 ഡൊമിനോകൾ വലിക്കുക</strong>, മുഖം മുകളിലേക്ക് തിരിക്കുക, <strong>ഏറ്റവും ചെറിയ നമ്പർ മുകളിൽ</strong> ആകത്തക്കവണ്ണം ഒരു നിരയിൽ ക്രമീകരിക്കുക.</div></div>
+        <div class="step"><div class="step-num">4</div><div>ആദ്യം കളിക്കുന്നയാൾ ആരെന്ന് ക്രമരഹിതമായി തീരുമാനിക്കുക. ഓരോ കളിക്കാരനും <strong>കിംഗ് മീപ്പിൾ</strong> ഒരു ഡൊമിനോയിൽ വയ്ക്കുക — ഇതാണ് അവരുടെ ആദ്യ തിരഞ്ഞെടുക്കൽ!</div></div>
+        <div class="step"><div class="step-num">5</div><div><strong>4 ഡൊമിനോ കൂടി വലിക്കുക</strong>, നമ്പർ ക്രമത്തിൽ ക്രമീകരിക്കുക. ഇതാണ് അടുത്ത ഊഴത്തിലെ നിര. ഇനി ഗെയിം തുടങ്ങാം!</div></div>
+    </div>
+
+    <!-- How to play -->
+    <div class="section">
+        <h2>🎮 എങ്ങനെ കളിക്കണം — ഊഴം ഊഴമായി</h2>
+        <p>ഓരോ ഊഴത്തിലും മേശപ്പുറത്ത് <strong>രണ്ട് നിര ഡൊമിനോകൾ</strong> ഉണ്ടാകും:</p>
+        <ul>
+            <li><strong>നിലവിലെ നിര</strong> — കഴിഞ്ഞ ഊഴത്തിൽ claim ചെയ്ത ഡൊമിനോകൾ (ഓരോന്നിലും ഒരു കിംഗ് മീപ്പിൾ ഉണ്ട്).</li>
+            <li><strong>പുതിയ നിര</strong> — ഈ ഊഴം claim ചെയ്യാൻ ഉള്ള പുതിയ ഡൊമിനോകൾ.</li>
+        </ul>
+        <p>നിങ്ങളുടെ ഊഴത്തിൽ <strong>രണ്ട് കാര്യങ്ങൾ</strong> ചെയ്യണം:</p>
+
+        <h3>ഘട്ടം 1 — ഡൊമിനോ എടുക്കുക</h3>
+        <p><em>നിലവിലെ നിര</em>യിൽ നിങ്ങളുടെ കിംഗ് മീപ്പിൾ ഇരിക്കുന്ന ഡൊമിനോ എടുക്കുക. ഇനി ഇത് രാജ്യത്തിൽ place ചെയ്യണം:</p>
+
+        <div class="step"><div class="step-num check">✓</div><div>പുതിയ ഡൊമിനോയുടെ ഒരു വശം, നിങ്ങളുടെ രാജ്യത്തിൽ ഇതിനകം ഉള്ള <strong>ഒരേ ഭൂ-പ്രദേശം</strong> (ഉദാ: വനം — വനം) അല്ലെങ്കിൽ <strong>കൊട്ടാരം</strong> (wild) ആണ് തൊടേണ്ടത്.</div></div>
+        <div class="step"><div class="step-num check">✓</div><div>നിങ്ങളുടെ രാജ്യം പുതിയ ഡൊമിനോ ഉൾപ്പെടെ <strong>5×5 ഗ്രിഡിനകം</strong> ഒതുങ്ങണം. ഈ പരിധിക്ക് പുറത്ത് ടൈൽ വയ്ക്കാൻ കഴിയില്ല.</div></div>
+        <div class="step"><div class="step-num cross">✗</div><div><strong>Place ചെയ്യാൻ കഴിഞ്ഞില്ലേ?</strong> ആ ഡൊമിനോ <strong>discard ചെയ്യുക</strong> — penalty ഇല്ല, പക്ഷേ points ഇല്ല. ഇത് സ്വാഭാവികം!</div></div>
+
+        <h3>ഘട്ടം 2 — അടുത്ത ഡൊമിനോ claim ചെയ്യുക</h3>
+        <p>ഡൊമിനോ place ചെയ്ത ശേഷം, <em>പുതിയ നിരയിലെ</em> ഒരു ഡൊമിനോയിൽ കിംഗ് മീപ്പിൾ വയ്ക്കുക. ഇത് അടുത്ത ഊഴത്തിൽ ആ ഡൊമിനോ നിങ്ങൾക്ക് ഉറപ്പ് ചെയ്യുന്നു.</p>
+
+        <div class="highlight">
+            ⚡ <strong>Staff-ന് ഒരു പ്രധാന കാര്യം — ഇത് customers-നോട് explain ചെയ്യൂ!</strong> ഈ ഊഴം <em>ഏത് ഡൊമിനോ claim</em> ചെയ്യുന്നു എന്നത് അടുത്ത ഊഴത്തിലെ order നിശ്ചയിക്കുന്നു. ഇക്കുറി <em>ചെറിയ നമ്പർ</em> ഡൊമിനോ claim ചെയ്താൽ → അടുത്ത ഊഴം <em>ആദ്യം</em> കളിക്കും → ആദ്യ pick ലഭിക്കും. ചിലപ്പോൾ ഒരു "ദുർബലമായ" ഡൊമിനോ claim ചെയ്യുന്നതാണ് ബുദ്ധി!
+        </div>
+
+        <h3>ഊഴ ക്രമം</h3>
+        <p>ഒരു ഊഴത്തിൽ, <strong>ഏറ്റവും ചെറിയ നമ്പർ ഡൊമിനോ</strong> claim ചെയ്ത കളിക്കാരൻ ആദ്യം കളിക്കുന്നു. ഇതുകൊണ്ടാണ് ചില കേസുകളിൽ ദുർബലമായ ഡൊമിനോ pick ചെയ്യുന്നത് ഒരു power move ആകുന്നത്.</p>
+    </div>
+
+    <!-- Scoring -->
+    <div class="section">
+        <h2>🏆 Score — പോയിന്റ് എങ്ങനെ കണക്കാക്കണം</h2>
+        <p>ഗെയിം <strong>അവസാനം</strong> — എല്ലാ ഡൊമിനോകളും place ചെയ്തോ discard ചെയ്തോ കഴിഞ്ഞ ശേഷം — score കണക്കാക്കുന്നു.</p>
+
+        <div class="score-box">
+            <h4>സ്വർണ്ണ ഫോർമുല</h4>
+            <p class="formula"><strong>പോയിന്റ് = Territory-യുടെ ടൈൽ എണ്ണം × ആ Territory-ലെ കിരീടങ്ങളുടെ എണ്ണം</strong></p>
+        </div>
+
+        <h3>ഘട്ടം ഘട്ടമായി</h3>
+        <div class="step"><div class="step-num">1</div><div>നിങ്ങളുടെ രാജ്യത്തിലെ ഓരോ <strong>ഒന്നിച്ചു ചേർന്ന ഒരേ ഭൂ-പ്രദേശ ഗ്രൂപ്പ്</strong> (territory) നോക്കുക. ആ ഗ്രൂപ്പിൽ എത്ര ടൈലുകൾ ഉണ്ടെന്ന് എണ്ണുക.</div></div>
+        <div class="step"><div class="step-num">2</div><div>ആ territory-ലെ ടൈലുകളിൽ <strong>എത്ര കിരീടങ്ങൾ 👑</strong> ഉണ്ടെന്ന് എണ്ണുക.</div></div>
+        <div class="step"><div class="step-num">3</div><div>ഗുണിക്കുക: <strong>ടൈലുകൾ × കിരീടങ്ങൾ = ആ territory-ക്ക് ലഭിക്കുന്ന points</strong>.</div></div>
+        <div class="step"><div class="step-num">4</div><div>എല്ലാ territory-കളുടെ points <strong>കൂട്ടുക</strong> — ഇതാണ് ആകെ score.</div></div>
+
+        <div class="score-box">
+            <h4>📌 ഉദാഹരണം</h4>
+            <p>നിങ്ങൾക്ക് <strong>5 ടൈലുള്ള ഒരു വന territory</strong> ഉണ്ട്. ആ 5-ൽ 2 ടൈലുകളിൽ ഓരോ കിരീടം ഉണ്ട്. <strong>5 × 2 = 10 points!</strong></p>
+            <p style="margin-top:8px;"><strong>ശ്രദ്ധിക്കുക:</strong> <em>കിരീടം ഇല്ലാത്ത territory — 0 points</em>, എത്ര ടൈൽ ഉണ്ടെങ്കിലും. കിരീടങ്ങളാണ് എല്ലാം!</p>
+        </div>
+
+        <h3>Tie ആകുമ്പോൾ (ഒരേ score ഉള്ള കളിക്കാർ)</h3>
+        <ol>
+            <li><strong>ഏറ്റവും വലിയ ഒറ്റ territory</strong> ഉള്ള കളിക്കാരൻ ജയിക്കുന്നു.</li>
+            <li>ഇനിയും tie ആണെങ്കിൽ, <strong>ആകെ ഏറ്റവും കൂടുതൽ കിരീടം</strong> ഉള്ളവൻ ജയിക്കുന്നു.</li>
+            <li>ഇനിയും tie ആണെങ്കിൽ — <strong>ഒരുമിച്ചു ജയിക്കുന്നു!</strong> 🎉</li>
+        </ol>
+    </div>
+
+    <!-- Variants -->
+    <div class="section">
+        <h2>🎲 ഗെയിം Variants & അധിക നിയമങ്ങൾ</h2>
+        <p>ഇവ rulebook-ന്റെ പിന്നിൽ കൊടുത്തിരിക്കുന്ന ഐച്ഛിക rules ആണ്. തുടക്കക്കാർ base game ആദ്യം പഠിക്കട്ടെ!</p>
+
+        <div class="variant">
+            <h4>👑 The Mighty Duel (2 കളിക്കാർ മാത്രം)</h4>
+            <p>ഓരോ കളിക്കാരനും <strong>2 കിംഗ് മീപ്പിൾ</strong> ഉപയോഗിക്കുന്നു, ഓരോ ഊഴവും <strong>2 ഡൊമിനോ</strong> pick ചെയ്യുന്നു. Kingdom <strong>7×7 ഗ്രിഡ്</strong> ആകുന്നു. ഗെയിം കൂടുതൽ epic ആകുന്നു!</p>
+        </div>
+
+        <div class="variant">
+            <h4>🏅 The Middle Kingdom (+10 ബോണസ്)</h4>
+            <p>ഗെയിം അവസാനം കൊട്ടാരം 5×5 Kingdom-ന്റെ <strong>കൃത്യ കേന്ദ്രത്തിൽ</strong> ഉണ്ടെങ്കിൽ <strong>+10 ബോണസ് points</strong> ലഭിക്കും. ഇത് placement തീരുമാനങ്ങൾ ഏറെ ബുദ്ധിമുട്ടാക്കും!</p>
+        </div>
+
+        <div class="variant">
+            <h4>🌳 Harmony (+5 ബോണസ്)</h4>
+            <p>12 ഡൊമിനോകൾ <strong>ഒന്നും discard ചെയ്യാതെ</strong> place ചെയ്തുകഴിഞ്ഞാൽ <strong>+5 ബോണസ് points</strong> ലഭിക്കും. ശ്രദ്ധയോടെ plan ചെയ്തവർക്ക് reward!</p>
+        </div>
+
+        <p style="margin-top:14px;">ഈ variants ഒരുമിച്ചും use ചെയ്യാം. <strong>Base game നന്നായി അറിയുന്ന കളിക്കാർക്ക് perfect!</strong></p>
+    </div>
+
+    <!-- Strategy -->
+    <div class="section">
+        <h2>🧠 കളിക്കാർക്ക് share ചെയ്യാവുന്ന Strategy Tips</h2>
+        <div class="tip">ഒന്ന് അല്ലെങ്കിൽ രണ്ട് <strong>വലിയ territory-കൾ</strong> കിരീടത്തോടെ ഉണ്ടാക്കൂ — ഒരുപാട് ഭൂ-പ്രദേശ തരങ്ങൾ ഒരുമിച്ചു ഉണ്ടാക്കി ശ്രദ്ധ ചിതറിക്കരുത്.</div>
+        <div class="tip">10 ടൈൽ territory-ൽ ഒരു കിരീടം = 10 points. വലിയ territory-കൾ ആകർഷകമാണ്!</div>
+        <div class="tip"><strong>ഖനി (Mine)</strong> ഏറ്റവും അപൂർവ്വ terrain ആണ്, സാധാരണ ഒന്നിലധികം കിരീടം ഉണ്ടാകും — ചെറുതാണെങ്കിലും ശക്തിമത്തായ territory.</div>
+        <div class="tip">ചിലപ്പോൾ <strong>ചെറിയ നമ്പർ ഡൊമിനോ</strong> (അടുത്ത ഊഴം ആദ്യ pick ലഭിക്കും) claim ചെയ്യുന്നത് ഏറ്റവും നല്ല terrain pick ചെയ്യുന്നതിനേക്കാൾ valuable ആകാം.</div>
+        <div class="tip"><strong>മറ്റ് കളിക്കാർ</strong> എന്ത് ഉണ്ടാക്കുന്നുവെന്ന് ശ്രദ്ധിക്കൂ — അവർക്ക് ആവശ്യമുള്ള ഡൊമിനോ grab ചെയ്യൂ!</div>
+        <div class="tip">തുടക്കം മുതൽ <strong>5×5 ഗ്രിഡ്</strong> ശ്രദ്ധയോടെ plan ചെയ്യൂ — ഇടം തീർന്ന് discard ചെയ്യേണ്ടി വന്നാൽ points നഷ്ടം!</div>
+        <div class="tip">Middle Kingdom variant കളിക്കുന്നുണ്ടെങ്കിൽ, കൊട്ടാരം ഗ്രിഡിന്റെ <strong>center row, center column</strong>-ൽ ആക്കാൻ ആദ്യം ഇടം ഒഴിച്ചിടൂ.</div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section">
+        <h2>❓ Customers ചോദിക്കുന്ന സാധാരണ ചോദ്യങ്ങൾ</h2>
+
+        <div class="faq">
+            <div class="faq-q">ഡൊമിനോ ഏത് ദിശയിലും തിരിക്കാമോ?</div>
+            <div class="faq-a">അതെ! 90°, 180°, 270° — ഏത് ദിശയിലും rotate ചെയ്യാം. ഒരേ ഭൂ-പ്രദേശം അല്ലെങ്കിൽ കൊട്ടാരം ചേർക്കണം എന്ന് ഉറപ്പ് വരുത്തിയാൽ മതി.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">കൊട്ടാരം ഒരു ഭൂ-പ്രദേശ territory ആണോ?</div>
+            <div class="faq-a">ഇല്ല. കൊട്ടാരം ഒരു territory ആയി score ചെയ്യില്ല, ഒരു ഭൂ-പ്രദേശ ഗ്രൂപ്പിലും ഉൾപ്പെടില്ല. പക്ഷേ ഇത് wild tile ആണ് — ഏത് terrain-ഉം ഇതിനോട് ചേർക്കാം. Middle Kingdom variant ഉണ്ടെങ്കിൽ center-ൽ ഉണ്ടെങ്കിൽ +10 bonus!</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">ഡൊമിനോ legally place ചെയ്യാൻ കഴിഞ്ഞില്ലെങ്കിൽ?</div>
+            <div class="faq-a">Discard ചെയ്യണം — penalty ഇല്ല, points ഇല്ല. ഗെയിം അവസാനം ഇത് സ്വാഭാവികമായി സംഭവിക്കും. അതിനാലാണ് 5×5 ഗ്രിഡ് ആദ്യം plan ചെയ്യേണ്ടത്!</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">രണ്ട് വ്യത്യസ്ത forest area-കൾ ഒരു territory ആകുമോ?</div>
+            <div class="faq-a">ഒരു പുതിയ ഡൊമിനോ ഇവ രണ്ടും physically connect ചെയ്താൽ മാത്രം. അല്ലെങ്കിൽ ഇവ two separate territories ആണ്, വേറെ വേറെ score ചെയ്യും.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">കൊട്ടാരം ഗ്രിഡിന്റെ center-ൽ ഉണ്ടാകണോ?</div>
+            <div class="faq-a">Standard game-ൽ, 5×5 ഗ്രിഡിൽ ഏതൊരു സ്ഥലത്തും കൊട്ടാരം ഉണ്ടാകാം. Middle Kingdom variant-ൽ മാത്രം center-ൽ ഉണ്ടെങ്കിൽ bonus points ലഭിക്കുന്നു.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">2 അല്ലെങ്കിൽ 3 കളിക്കാർ ഉണ്ടെങ്കിൽ എത്ര ഡൊമിനോ remove ചെയ്യണം?</div>
+            <div class="faq-a">2 കളിക്കാർ (standard): 24 randomly remove, 24 ഉപയോഗിക്കുക. 3 കളിക്കാർ: 12 remove, 36 ഉപയോഗിക്കുക. 4 കളിക്കാർ: 48 ഡൊമിനോ മുഴുവൻ.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">ഗെയിം എത്ര rounds ഉണ്ടാകും?</div>
+            <div class="faq-a">12 rounds — ഓരോ കളിക്കാരനും ആകെ 12 ഡൊമിനോ pick ചെയ്യും. അവസാന batch place ചെയ്ത ശേഷം ഗെയിം അവസാനിക്കുന്നു.</div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">രണ്ടു കളിക്കാർ ഒരേ ഡൊമിനോ claim ചെയ്താൽ?</div>
+            <div class="faq-a">അത് സംഭവിക്കില്ല — ഓരോ ഡൊമിനോയിലും ഒരു meeple മാത്രം വയ്ക്കാൻ കഴിയൂ. ഓരോ ഡൊമിനോ ഒരു കളിക്കാരന് exclusive ആണ്.</div>
+        </div>
+    </div>
+
+    <!-- Quick ref -->
+    <div class="section">
+        <h2>📋 Quick Reference Card</h2>
+        <div class="highlight" style="text-align:center;">
+            <strong>കളിക്കാർ:</strong> 2–4 &nbsp;|&nbsp; <strong>സമയം:</strong> 15–25 മിനിറ്റ് &nbsp;|&nbsp; <strong>പ്രായം:</strong> 8+
+        </div>
+        <h3>ഓർക്കേണ്ട Rules</h3>
+        <ul>
+            <li>📐 Kingdom പരമാവധി: <strong>5×5 ഗ്രിഡ്</strong></li>
+            <li>🔗 പുതിയ ഡൊമിനോ ഒരേ terrain <em>അല്ലെങ്കിൽ</em> കൊട്ടാരം തൊടണം</li>
+            <li>❌ Place ചെയ്യാൻ കഴിഞ്ഞില്ലേ? → Discard ചെയ്യുക (penalty ഇല്ല)</li>
+            <li>👑 Score = Territory ടൈൽ എണ്ണം × Territory-ലെ കിരീടങ്ങൾ</li>
+            <li>0️⃣ കിരീടം ഇല്ലാത്ത territory = 0 points</li>
+            <li>🔢 ചെറിയ നമ്പർ claim = അടുത്ത ഊഴം ആദ്യം</li>
+            <li>🤝 Tie-breaker: ഏറ്റവും വലിയ territory → ഏറ്റവും കൂടുതൽ കിരീടം → ഒരുമിച്ചു ജയം</li>
+        </ul>
+    </div>
+
+</div><!-- /ml -->
+
+</main>
+
+<footer>
+    Board Game Cafe &nbsp;·&nbsp; Kochi, Kerala &nbsp;·&nbsp; Staff Training Material &nbsp;·&nbsp; Kingdomino © Bruno Cathala / Blue Orange Games
+</footer>
+
+<script>
+    const sw   = document.getElementById('lang-sw');
+    const en   = document.getElementById('en');
+    const ml   = document.getElementById('ml');
+    const lblEn = document.getElementById('lbl-en');
+    const lblMl = document.getElementById('lbl-ml');
+
+    sw.addEventListener('change', () => {
+        const isMl = sw.checked;
+        en.classList.toggle('active', !isMl);
+        ml.classList.toggle('active',  isMl);
+        lblEn.classList.toggle('on', !isMl);
+        lblMl.classList.toggle('on',  isMl);
+        document.documentElement.lang = isMl ? 'ml' : 'en';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+</body>
+</html>
