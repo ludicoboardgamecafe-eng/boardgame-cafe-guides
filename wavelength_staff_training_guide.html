@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wavelength Staff Training Guide | Board Game Cafe Kochi</title>
+  <style>
+    :root {
+      --bg: #f7fbff;
+      --card: #ffffff;
+      --ink: #20232a;
+      --muted: #626b7a;
+      --brand: #6d5dfc;
+      --brand-dark: #4434c7;
+      --accent: #e05c95;
+      --soft: #eceaff;
+      --line: #dfe4f2;
+      --good: #e8f7ef;
+      --warn: #fff3c4;
+      --bad: #ffe1df;
+      --blue: #eaf6ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #edeaff, var(--bg) 45%, #fff7fb);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 251, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; color: var(--brand-dark); letter-spacing: .2px; }
+    .toggle {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 6px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    button {
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      background: transparent;
+      color: var(--muted);
+    }
+    button.active { background: var(--brand); color: white; }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px; }
+    .hero {
+      background: linear-gradient(135deg, #fff, #f3f0ff);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 12px 35px rgba(40, 35, 110, .08);
+      margin-bottom: 24px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 14px; }
+    h2 { margin-top: 0; color: var(--brand-dark); font-size: 1.55rem; }
+    h3 { color: var(--accent); margin-bottom: 6px; }
+    .sub { font-size: 1.15rem; color: var(--muted); max-width: 850px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(40, 35, 110, .06);
+    }
+    @media (min-width: 800px) {
+      .half { grid-column: span 6; }
+      .third { grid-column: span 4; }
+      .two-third { grid-column: span 8; }
+    }
+    .tagrow { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .tag { background: var(--soft); color: var(--brand-dark); border-radius: 999px; padding: 7px 12px; font-weight: 700; font-size: .92rem; }
+    .flow { counter-reset: step; padding-left: 0; list-style: none; }
+    .flow li { position: relative; padding: 14px 14px 14px 54px; margin: 10px 0; border: 1px solid var(--line); border-radius: 16px; background: #fffdf9; }
+    .flow li::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: white; display: grid; place-items: center; font-weight: 800; }
+    .callout { padding: 15px 17px; border-radius: 16px; border: 1px solid var(--line); margin: 14px 0; }
+    .good { background: var(--good); }
+    .warn { background: var(--warn); }
+    .bad { background: var(--bad); }
+    .blue { background: var(--blue); }
+    .script { background: #fff3fa; border-left: 5px solid var(--accent); padding: 15px 18px; border-radius: 14px; font-style: italic; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; }
+    th, td { border: 1px solid var(--line); padding: 12px; vertical-align: top; }
+    th { background: #eeeaff; text-align: left; }
+    details { border: 1px solid var(--line); border-radius: 15px; padding: 13px 15px; background: #fffdf9; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 800; color: var(--brand-dark); }
+    footer { color: var(--muted); font-size: .92rem; text-align: center; padding-top: 24px; }
+    .lang { display: none; }
+    .lang.active { display: block; }
+    .print-note { font-size: .92rem; color: var(--muted); }
+    @media print {
+      header { position: static; }
+      .toggle, .print-note { display: none; }
+      body { background: white; }
+      .card, .hero { box-shadow: none; break-inside: avoid; }
+      .lang { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="brand">Board Game Cafe Kochi · Staff Training</div>
+      <div class="print-note">Tip: use the buttons to switch language. Print mode shows both guides.</div>
+    </div>
+    <div class="toggle" aria-label="Language toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+      <button id="btn-ml" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="en" class="lang active">
+      <div class="hero">
+        <h1>Wavelength</h1>
+        <p class="sub"><strong>Staff training guide</strong> for teaching Wavelength in a fun, simple, café-friendly way. Wavelength is a party guessing game where one player gives a clue, and the team tries to place a dial on a hidden target somewhere between two opposite ideas.</p>
+        <div class="tagrow">
+          <span class="tag">Party Game</span><span class="tag">2-12 players</span><span class="tag">30-45 minutes</span><span class="tag">Best with groups</span><span class="tag">Easy to teach</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. What is Wavelength?</h2>
+          <p>Wavelength is basically a “how well do we think alike?” game. A card gives two opposite ends of a scale, like <strong>Hot ↔ Cold</strong>, <strong>Overrated ↔ Underrated</strong>, or <strong>Normal thing ↔ Weird thing</strong>.</p>
+          <p>One player, called the <strong>Psychic</strong>, secretly sees where the target is on the dial. They give one clue to help their team guess that exact position. The team discusses, turns the dial, and then everyone reveals how close they were.</p>
+          <div class="callout good"><strong>Café pitch:</strong> “It’s like mind-reading, but with arguments about whether biryani is more ‘hot’ or ‘cold’ on a random scale.”</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. What’s inside the box?</h2>
+          <ul>
+            <li><strong>The device:</strong> has the rotating wheel, hidden target, dial, and screen/cover.</li>
+            <li><strong>Spectrum cards:</strong> each card has two opposite ideas.</li>
+            <li><strong>Scoring markers/tokens:</strong> used to track team scores.</li>
+            <li><strong>Rules/reference cards</strong> depending on the copy.</li>
+          </ul>
+          <div class="callout warn"><strong>Staff check before giving the game:</strong> make sure the device turns smoothly, the screen opens/closes properly, and cards are not mixed with other games.</div>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. The main idea in one example</h2>
+          <p>Suppose the card says:</p>
+          <div class="script"><strong>Cheap ↔ Expensive</strong></div>
+          <p>The hidden target is secretly a little toward the “expensive” side. The Psychic might say <strong>“Airport coffee”</strong>. The team should think: “That is expensive, but not luxury-watch expensive.” So they move the dial slightly toward Expensive.</p>
+          <p>If they land near the hidden target, they score points. If they are far away, they score less or zero.</p>
+        </section>
+
+        <section class="card third">
+          <h2>Best for</h2>
+          <ul>
+            <li>Friends who like talking and debating</li>
+            <li>Couples, families, office groups</li>
+            <li>Guests who want low rules, high laughs</li>
+            <li>Mixed gaming experience groups</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>Place the Wavelength device in the middle where everyone can see it.</li>
+            <li>Shuffle the spectrum cards and place them nearby.</li>
+            <li>Split players into two teams. Team size does not have to be perfectly equal.</li>
+            <li>Set both teams’ score markers to zero.</li>
+            <li>Choose a starting team. That team chooses one player to be the first Psychic.</li>
+          </ol>
+          <div class="callout blue"><strong>For 2-3 players:</strong> You can play cooperatively. One person gives the clue, others guess, and the group tries to reach a good total score after several rounds.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. How a round works</h2>
+          <ol class="flow">
+            <li><strong>Psychic closes the screen</strong> so the target is hidden from everyone else.</li>
+            <li><strong>Psychic spins/randomizes the wheel</strong> and secretly looks at where the target is.</li>
+            <li><strong>Draw a spectrum card.</strong> It shows two opposite ends, like “Good habit ↔ Bad habit.”</li>
+            <li><strong>Psychic gives one clue.</strong> The clue should match the target’s position on that spectrum.</li>
+            <li><strong>Team discusses and turns the dial.</strong> Psychic must stay quiet now. No extra hints.</li>
+            <li><strong>Other team guesses left or right</strong> if playing teams. They predict whether the true target is left or right of the dial.</li>
+            <li><strong>Reveal the target.</strong> Open the screen and check the score zone.</li>
+            <li><strong>Award points</strong> to the active team for accuracy, and possibly 1 point to the other team for correct left/right guess.</li>
+            <li>Next team takes a turn with a new Psychic.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>6. How scoring works</h2>
+          <p>The target area has scoring zones. The closer the dial is to the center of the target, the more points the active team gets.</p>
+          <table>
+            <tr><th>Result</th><th>Points</th></tr>
+            <tr><td>Dial lands in the center target zone</td><td>4 points</td></tr>
+            <tr><td>Dial lands in the next ring</td><td>3 points</td></tr>
+            <tr><td>Dial lands in the outer ring</td><td>2 points</td></tr>
+            <tr><td>Dial misses the target zones</td><td>0 points</td></tr>
+            <tr><td>Other team correctly guessed left/right</td><td>1 point</td></tr>
+          </table>
+          <p>First team to reach the target score, commonly <strong>10 points</strong>, wins. If there is a tie, play sudden-death rounds until one team is ahead.</p>
+        </section>
+
+        <section class="card half">
+          <h2>7. Clue rules</h2>
+          <ul>
+            <li>The clue should be a concept, person, place, object, phrase, or example.</li>
+            <li>The clue must fit somewhere between the two ends of the spectrum.</li>
+            <li>No numbers, percentages, coordinates, or direct dial-position clues.</li>
+            <li>No saying “a little left,” “80% hot,” “middle,” or “almost maximum.”</li>
+            <li>After giving the clue, the Psychic should not explain, react, nod, or guide the team.</li>
+          </ul>
+          <div class="callout bad"><strong>Important:</strong> The funniest part is the team discussion. Staff should remind Psychics not to rescue the team with extra hints.</div>
+        </section>
+
+        <section class="card">
+          <h2>8. Staff teaching script</h2>
+          <div class="script">
+            “This game is about guessing what someone means by their clue. Every round has a scale, like Hot to Cold. One player secretly sees where the target is, gives one clue, and the team turns this dial to where they think the hidden target is. Then we reveal it and score based on how close you were. The clue-giver cannot talk after the clue, so the team has to debate and decide. That’s where the fun is.”
+          </div>
+          <p>Then do a tiny demo with a simple spectrum like <strong>Cheap ↔ Expensive</strong>. Do not over-explain. Guests understand quickly once they see one example.</p>
+        </section>
+
+        <section class="card half">
+          <h2>9. Good clue examples</h2>
+          <table>
+            <tr><th>Spectrum</th><th>Target position</th><th>Possible clue</th></tr>
+            <tr><td>Hot ↔ Cold</td><td>Very hot</td><td>“Kochi April afternoon”</td></tr>
+            <tr><td>Cheap ↔ Expensive</td><td>Slightly expensive</td><td>“Movie theatre popcorn”</td></tr>
+            <tr><td>Normal ↔ Weird</td><td>Quite weird</td><td>“Eating dosa with ketchup”</td></tr>
+            <tr><td>Underrated ↔ Overrated</td><td>Middle-ish</td><td>“Pineapple pizza”</td></tr>
+            <tr><td>Easy ↔ Hard</td><td>Hard</td><td>“Finding parking at Lulu Mall on weekend”</td></tr>
+          </table>
+        </section>
+
+        <section class="card half">
+          <h2>10. Bad clue examples</h2>
+          <table>
+            <tr><th>Bad clue</th><th>Why it is bad</th></tr>
+            <tr><td>“70% expensive”</td><td>It directly tells the dial position.</td></tr>
+            <tr><td>“A bit to the right”</td><td>It is not a real clue; it gives location.</td></tr>
+            <tr><td>“More hot than cold”</td><td>Too direct and boring.</td></tr>
+            <tr><td>Giving multiple examples</td><td>Usually becomes extra hints.</td></tr>
+            <tr><td>Explaining after team starts discussing</td><td>Psychic must stay silent after clue.</td></tr>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2>11. Common staff questions & answers</h2>
+          <details><summary>Can the Psychic repeat the clue?</summary><p>Yes, repeating the exact same clue is fine. But no extra explanation or new clue.</p></details>
+          <details><summary>Can the team ask the Psychic questions?</summary><p>They can ask, but the Psychic should not answer after giving the clue. The team must discuss among themselves.</p></details>
+          <details><summary>Can clues be local or personal?</summary><p>Yes, and they are often the funniest. But avoid clues only one player understands unless the group is okay with it.</p></details>
+          <details><summary>Can the clue be a person’s name?</summary><p>Yes, as long as it does not directly describe the dial position.</p></details>
+          <details><summary>What if the clue is confusing?</summary><p>That is normal. The team debates and guesses. The Psychic should not correct them.</p></details>
+          <details><summary>What if players disagree loudly?</summary><p>That is part of Wavelength. Staff can gently say, “Pick one final dial position as a team.”</p></details>
+          <details><summary>Who makes the final decision?</summary><p>The active team should agree together. If they cannot decide, ask them to choose one spokesperson or take a quick vote.</p></details>
+          <details><summary>Can guests play without teams?</summary><p>Yes. In cooperative mode, one person gives clues and everyone else guesses. Track the group’s total score.</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>12. Staff facilitation tips</h2>
+          <ul>
+            <li>Keep the first explanation under 2 minutes.</li>
+            <li>Show the device physically while teaching. It makes the rules click.</li>
+            <li>Encourage local clues: food, Kochi traffic, malls, movies, celebrities.</li>
+            <li>Remind guests: “The clue is not about correct facts; it is about how your friend thinks.”</li>
+            <li>If the table is shy, suggest funny easy cards first.</li>
+            <li>If the table is too competitive, remind them it is a party game.</li>
+          </ul>
+        </section>
+
+        <section class="card half">
+          <h2>13. Common mistakes to watch for</h2>
+          <ul>
+            <li>Psychic accidentally leaves the target visible.</li>
+            <li>Psychic gives two or three clues instead of one.</li>
+            <li>Players use numbers or percentages as clues.</li>
+            <li>The guessing team forgets to make left/right guess.</li>
+            <li>Players move the dial after reveal starts.</li>
+            <li>Teams forget to rotate Psychic each round.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>14. Quick version for busy staff</h2>
+          <div class="callout good">
+            <strong>30-second teach:</strong> “Each round, one person secretly sees a target on this dial. They draw a card with two opposite ideas and give one clue. Their team turns the dial to where they think the hidden target is. Reveal it, score based on closeness, then the next team plays. Clue-giver stays silent after the clue.”
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="ml" class="lang">
+      <div class="hero">
+        <h1>വേവ്ലെങ്ത്</h1>
+        <p class="sub"><strong>സ്റ്റാഫ് ട്രെയിനിംഗ് ഗൈഡ്</strong> — കഫേയിൽ വരുന്ന ഗസ്റ്റുകൾക്ക് Wavelength എളുപ്പത്തിൽ, രസകരമായി പഠിപ്പിക്കാൻ. ഇത് ഒരു പാർട്ടി ഗസ്സിംഗ് ഗെയിം ആണ്. ഒരാൾ ഒരു ക്ലൂ നൽകും; ടീം ആ ക്ലൂ കേട്ട് മറഞ്ഞിരിക്കുന്ന ടാർഗറ്റ് ഡയലിൽ എവിടെയാണെന്ന് കണ്ടെത്താൻ ശ്രമിക്കും.</p>
+        <div class="tagrow">
+          <span class="tag">പാർട്ടി ഗെയിം</span><span class="tag">2-12 കളിക്കാർ</span><span class="tag">30-45 മിനിറ്റ്</span><span class="tag">ഗ്രൂപ്പുകൾക്ക് ബെസ്റ്റ്</span><span class="tag">പഠിപ്പിക്കാൻ എളുപ്പം</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card half">
+          <h2>1. Wavelength എന്താണ്?</h2>
+          <p>Wavelength എന്നത് “നമ്മൾ ഒരേ രീതിയിലാണോ ചിന്തിക്കുന്നത്?” എന്ന ഫീലുള്ള ഗെയിം ആണ്. ഒരു കാർഡിൽ രണ്ട് വിരുദ്ധ വശങ്ങൾ ഉണ്ടാകും. ഉദാഹരണം: <strong>Hot ↔ Cold</strong>, <strong>Overrated ↔ Underrated</strong>, അല്ലെങ്കിൽ <strong>Normal ↔ Weird</strong>.</p>
+          <p>ഒരു കളിക്കാരൻ <strong>Psychic</strong> ആകും. അവൻ/അവൾ രഹസ്യമായി ടാർഗറ്റ് എവിടെയാണെന്ന് കാണും. പിന്നെ ഒരു ക്ലൂ നൽകും. ടീം ആ ക്ലൂ കേട്ട് ഡയൽ ശരിയായ സ്ഥാനത്തേക്ക് തിരിക്കും. Reveal ചെയ്തപ്പോൾ എത്ര അടുത്താണോ, അതനുസരിച്ച് പോയിന്റ് കിട്ടും.</p>
+          <div class="callout good"><strong>കഫേ പിച്ച്:</strong> “ഇത് mind-reading പോലെ ആണ്. പക്ഷേ യഥാർത്ഥത്തിൽ നിങ്ങളുടെ ഫ്രണ്ട്സ് എങ്ങനെ ചിന്തിക്കുന്നു എന്ന് guess ചെയ്യുന്ന ഗെയിം!”</div>
+        </section>
+
+        <section class="card half">
+          <h2>2. ബോക്സിൽ എന്തൊക്കെ ഉണ്ടാകും?</h2>
+          <ul>
+            <li><strong>Device:</strong> rotating wheel, hidden target, dial, screen/cover എന്നിവ ഉള്ള പ്രധാന ഉപകരണം.</li>
+            <li><strong>Spectrum cards:</strong> ഓരോ കാർഡിലും രണ്ട് opposite ideas ഉണ്ടാകും.</li>
+            <li><strong>Scoring markers/tokens:</strong> ടീമുകളുടെ പോയിന്റ് ട്രാക്ക് ചെയ്യാൻ.</li>
+            <li><strong>Rules/reference cards:</strong> കോപ്പിയനുസരിച്ച് ഉണ്ടായേക്കാം.</li>
+          </ul>
+          <div class="callout warn"><strong>സ്റ്റാഫ് ചെക്ക്:</strong> ഗെയിം കൊടുക്കുന്നതിന് മുമ്പ് device ശരിയായി തിരിയുന്നുണ്ടോ, screen open/close ശരിയാണോ, cards എല്ലാം ഉണ്ടോ എന്ന് നോക്കുക.</div>
+        </section>
+
+        <section class="card two-third">
+          <h2>3. ഒരു ചെറിയ ഉദാഹരണം</h2>
+          <p>കാർഡിൽ ഇങ്ങനെ വന്നുവെന്ന് കരുതൂ:</p>
+          <div class="script"><strong>Cheap ↔ Expensive</strong></div>
+          <p>Hidden target “Expensive” ഭാഗത്തേക്ക് അല്പം മാറിയിരിക്കുന്നു. Psychic “Airport coffee” എന്ന് clue പറയുന്നു. ടീം ചിന്തിക്കും: “അതെ, expensive ആണ്, പക്ഷേ luxury watch പോലെ അല്ല.” അതിനാൽ dial കുറച്ച് Expensive ഭാഗത്തേക്ക് മാറ്റും.</p>
+          <p>Reveal ചെയ്തപ്പോൾ target-ന് അടുത്താണെങ്കിൽ പോയിന്റ് കിട്ടും.</p>
+        </section>
+
+        <section class="card third">
+          <h2>ആർക്കാണ് ബെസ്റ്റ്?</h2>
+          <ul>
+            <li>സംസാരിക്കാനും debate ചെയ്യാനും ഇഷ്ടമുള്ള friends</li>
+            <li>കപ്പിൾസ്, families, office groups</li>
+            <li>കുറച്ച് rules, കൂടുതൽ fun വേണമെന്നുള്ള ഗസ്റ്റുകൾ</li>
+            <li>പുതിയവരും experienced gamers-ഉം ഉള്ള mixed group</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>4. Setup</h2>
+          <ol class="flow">
+            <li>Wavelength device എല്ലാവർക്കും കാണാൻ പറ്റുന്ന രീതിയിൽ നടുവിൽ വെക്കുക.</li>
+            <li>Spectrum cards shuffle ചെയ്ത് അടുത്ത് വെക്കുക.</li>
+            <li>കളിക്കാരെ രണ്ട് ടീമുകളാക്കുക. ടീം size കൃത്യമായി equal ആവേണ്ടതില്ല.</li>
+            <li>രണ്ട് ടീമുകളുടെയും score marker zero-യിൽ വെക്കുക.</li>
+            <li>Starting team തിരഞ്ഞെടുക്കുക. ആ ടീം ആദ്യ Psychic-നെ തിരഞ്ഞെടുക്കും.</li>
+          </ol>
+          <div class="callout blue"><strong>2-3 players ആണെങ്കിൽ:</strong> Cooperative ആയി കളിക്കാം. ഒരാൾ clue നൽകും, ബാക്കിയുള്ളവർ guess ചെയ്യും, group total score നോക്കും.</div>
+        </section>
+
+        <section class="card">
+          <h2>5. ഒരു round എങ്ങനെ കളിക്കും?</h2>
+          <ol class="flow">
+            <li><strong>Psychic screen അടയ്ക്കും</strong> — target മറ്റാർക്കും കാണാൻ പാടില്ല.</li>
+            <li><strong>Psychic wheel spin/randomize ചെയ്യും</strong> — target എവിടെയാണെന്ന് രഹസ്യമായി നോക്കും.</li>
+            <li><strong>ഒരു spectrum card എടുക്കുക.</strong> ഉദാഹരണം: “Good habit ↔ Bad habit.”</li>
+            <li><strong>Psychic ഒരു clue നൽകും.</strong> ആ clue target position-നോട് match ആയിരിക്കണം.</li>
+            <li><strong>Team discuss ചെയ്ത് dial തിരിക്കും.</strong> ഇനി Psychic മിണ്ടരുത്. Extra hints ഇല്ല.</li>
+            <li><strong>മറ്റേ ടീം left/right guess ചെയ്യും</strong> — യഥാർത്ഥ target dial-ന്റെ left ആണോ right ആണോ എന്ന്.</li>
+            <li><strong>Reveal ചെയ്യുക.</strong> Screen തുറന്ന് score zone പരിശോധിക്കുക.</li>
+            <li><strong>Points കൊടുക്കുക.</strong> Active team-ന് accuracy points; മറ്റേ ടീമിന് left/right ശരിയാണെങ്കിൽ 1 point.</li>
+            <li>അടുത്ത ടീം പുതിയ Psychic-ുമായി turn എടുക്കും.</li>
+          </ol>
+        </section>
+
+        <section class="card half">
+          <h2>6. Scoring എങ്ങനെ?</h2>
+          <p>Target area-യിൽ scoring zones ഉണ്ടാകും. Dial center target-ന് എത്ര അടുത്താണോ, അത്ര കൂടുതൽ points.</p>
+          <table>
+            <tr><th>Result</th><th>Points</th></tr>
+            <tr><td>Dial center target zone-ൽ വന്നാൽ</td><td>4 points</td></tr>
+            <tr><td>അടുത്ത ring-ൽ വന്നാൽ</td><td>3 points</td></tr>
+            <tr><td>Outer ring-ൽ വന്നാൽ</td><td>2 points</td></tr>
+            <tr><td>Target zones miss ചെയ്താൽ</td><td>0 points</td></tr>
+            <tr><td>മറ്റേ ടീം left/right ശരിയായി guess ചെയ്താൽ</td><td>1 point</td></tr>
+          </table>
+          <p>സാധാരണയായി <strong>10 points</strong> എത്തുന്ന ടീം ജയിക്കും. Tie ആണെങ്കിൽ sudden-death rounds കളിക്കുക.</p>
+        </section>
+
+        <section class="card half">
+          <h2>7. Clue rules</h2>
+          <ul>
+            <li>Clue ഒരു concept, person, place, object, phrase, example എന്നിവയായിരിക്കാം.</li>
+            <li>Clue spectrum-ന്റെ രണ്ട് ends ഇടയിൽ എവിടെയെങ്കിലും fit ആകണം.</li>
+            <li>Numbers, percentages, coordinates, direct dial-position clues പാടില്ല.</li>
+            <li>“കുറച്ച് left”, “80% hot”, “middle”, “almost maximum” പോലുള്ള clue പാടില്ല.</li>
+            <li>Clue നൽകിയ ശേഷം Psychic explain ചെയ്യരുത്, nod ചെയ്യരുത്, guide ചെയ്യരുത്.</li>
+          </ul>
+          <div class="callout bad"><strong>പ്രധാന കാര്യം:</strong> Team discussion ആണ് game-ന്റെ fun. Psychic extra hints കൊടുക്കാതെ ഇരിക്കാൻ staff ശ്രദ്ധിക്കണം.</div>
+        </section>
+
+        <section class="card">
+          <h2>8. Staff teaching script</h2>
+          <div class="script">
+            “ഈ game-ൽ ഓരോ round-ിലും ഒരാൾ ഈ device-ലെ hidden target രഹസ്യമായി കാണും. പിന്നെ രണ്ട് opposite ideas ഉള്ള card എടുക്കും, ഒരു clue നൽകും. Team ആ clue കേട്ട് dial എവിടെയാക്കണമെന്ന് discuss ചെയ്ത് തീരുമാനിക്കും. Reveal ചെയ്തപ്പോൾ target-ന് എത്ര അടുത്താണോ അത്ര points. Clue നൽകിയ ശേഷം clue-giver മിണ്ടാൻ പാടില്ല — team തന്നെ debate ചെയ്ത് തീരുമാനിക്കണം.”
+          </div>
+          <p>പിന്നെ <strong>Cheap ↔ Expensive</strong> പോലുള്ള simple spectrum എടുത്ത് ഒരു ചെറിയ demo കാണിക്കുക. അധികം explain ചെയ്യേണ്ട; ഒരു round കണ്ടാൽ ഗസ്റ്റുകൾക്ക് ഉടൻ മനസ്സിലാകും.</p>
+        </section>
+
+        <section class="card half">
+          <h2>9. Good clue examples</h2>
+          <table>
+            <tr><th>Spectrum</th><th>Target position</th><th>Possible clue</th></tr>
+            <tr><td>Hot ↔ Cold</td><td>Very hot</td><td>“Kochi April afternoon”</td></tr>
+            <tr><td>Cheap ↔ Expensive</td><td>Slightly expensive</td><td>“Movie theatre popcorn”</td></tr>
+            <tr><td>Normal ↔ Weird</td><td>Quite weird</td><td>“ദോശ ketchup-ൽ കഴിക്കുന്നത്”</td></tr>
+            <tr><td>Underrated ↔ Overrated</td><td>Middle-ish</td><td>“Pineapple pizza”</td></tr>
+            <tr><td>Easy ↔ Hard</td><td>Hard</td><td>“Weekend-ൽ Lulu Mall parking കിട്ടുന്നത്”</td></tr>
+          </table>
+        </section>
+
+        <section class="card half">
+          <h2>10. Bad clue examples</h2>
+          <table>
+            <tr><th>Bad clue</th><th>എന്തുകൊണ്ട് bad?</th></tr>
+            <tr><td>“70% expensive”</td><td>Dial position നേരിട്ട് പറഞ്ഞുപോകുന്നു.</td></tr>
+            <tr><td>“കുറച്ച് right”</td><td>ഇത് real clue അല്ല; location clue ആണ്.</td></tr>
+            <tr><td>“Hot-നോട് കൂടുതലാണ്”</td><td>Too direct, fun കുറയും.</td></tr>
+            <tr><td>ഒന്നിലധികം examples കൊടുക്കുന്നത്</td><td>Extra hints ആയി മാറും.</td></tr>
+            <tr><td>Team discuss ചെയ്യുമ്പോൾ explain ചെയ്യുന്നത്</td><td>Psychic clue കഴിഞ്ഞാൽ silent ആയിരിക്കണം.</td></tr>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2>11. Staff FAQ</h2>
+          <details><summary>Psychic clue repeat ചെയ്യാമോ?</summary><p>അതെ, അതേ clue വീണ്ടും repeat ചെയ്യാം. പക്ഷേ പുതിയ explanation അല്ലെങ്കിൽ പുതിയ clue പാടില്ല.</p></details>
+          <details><summary>Team Psychic-നോട് questions ചോദിക്കാമോ?</summary><p>ചോദിക്കാം, പക്ഷേ Psychic answer ചെയ്യരുത്. Team തന്നെ discuss ചെയ്യണം.</p></details>
+          <details><summary>Local അല്ലെങ്കിൽ personal clues കൊടുക്കാമോ?</summary><p>അതെ. അത് പലപ്പോഴും കൂടുതൽ funny ആയിരിക്കും. പക്ഷേ group-ൽ ഒരാൾക്ക് മാത്രം അറിയുന്ന clue ആണെങ്കിൽ avoid ചെയ്യുന്നതാണ് നല്ലത്.</p></details>
+          <details><summary>Clue ഒരു person name ആയിരിക്കാമോ?</summary><p>അതെ, dial position നേരിട്ട് പറഞ്ഞില്ലെങ്കിൽ problem ഇല്ല.</p></details>
+          <details><summary>Clue confusing ആണെങ്കിൽ?</summary><p>അതും game-ന്റെ ഭാഗമാണ്. Team debate ചെയ്ത് guess ചെയ്യണം. Psychic correct ചെയ്യരുത്.</p></details>
+          <details><summary>Players loud ആയി argue ചെയ്താൽ?</summary><p>അതും Wavelength-ന്റെ fun ആണ്. Staff gently പറയാം: “Okay, ഒരു final dial position choose ചെയ്യാം.”</p></details>
+          <details><summary>Final decision ആരെടുക്കും?</summary><p>Team together decide ചെയ്യുക. Decide ചെയ്യാൻ പറ്റുന്നില്ലെങ്കിൽ spokesperson അല്ലെങ്കിൽ quick vote ഉപയോഗിക്കുക.</p></details>
+          <details><summary>Teams ഇല്ലാതെ കളിക്കാമോ?</summary><p>അതെ. Cooperative mode-ൽ ഒരാൾ clue നൽകും, ബാക്കിയുള്ളവർ guess ചെയ്യും. Group total score track ചെയ്യുക.</p></details>
+        </section>
+
+        <section class="card half">
+          <h2>12. Staff facilitation tips</h2>
+          <ul>
+            <li>ആദ്യ explanation 2 മിനിറ്റിനുള്ളിൽ തീർക്കുക.</li>
+            <li>Device കൈയിൽ കാണിച്ചുകൊണ്ട് പഠിപ്പിക്കുക. അങ്ങനെ rules വേഗത്തിൽ മനസ്സിലാകും.</li>
+            <li>Local clues encourage ചെയ്യുക: food, Kochi traffic, malls, movies, celebrities.</li>
+            <li>“Correct answer” ഇല്ല; clue-giver എങ്ങനെ ചിന്തിച്ചു എന്ന് guess ചെയ്യുകയാണ് game.</li>
+            <li>Table shy ആണെങ്കിൽ funny/easy cards ആദ്യം suggest ചെയ്യുക.</li>
+            <li>Table too competitive ആണെങ്കിൽ ഇത് party game ആണെന്ന് remind ചെയ്യുക.</li>
+          </ul>
+        </section>
+
+        <section class="card half">
+          <h2>13. Common mistakes</h2>
+          <ul>
+            <li>Psychic target accidentally visible ആക്കുന്നു.</li>
+            <li>ഒരു clue-ന് പകരം രണ്ട് മൂന്ന് clues നൽകുന്നു.</li>
+            <li>Numbers അല്ലെങ്കിൽ percentages clue ആയി ഉപയോഗിക്കുന്നു.</li>
+            <li>Guessing team left/right guess മറക്കുന്നു.</li>
+            <li>Reveal തുടങ്ങിക്കഴിഞ്ഞ് dial മാറ്റുന്നു.</li>
+            <li>ഓരോ round-ിലും Psychic rotate ചെയ്യാൻ മറക്കുന്നു.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>14. Busy staff quick teach</h2>
+          <div class="callout good">
+            <strong>30-second teach:</strong> “ഓരോ round-ിലും ഒരാൾ hidden target കാണും. രണ്ട് opposite ideas ഉള്ള card എടുക്കും, ഒരു clue നൽകും. Team ആ clue അനുസരിച്ച് dial turn ചെയ്യും. Reveal ചെയ്താൽ എത്ര close ആണോ അത്ര points. Clue-giver clue കഴിഞ്ഞാൽ മിണ്ടാൻ പാടില്ല.”
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer>
+      Made for board game cafe staff training. Always check your physical copy's rulebook if components or scoring tokens differ by edition.
+    </footer>
+  </main>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+      document.getElementById(lang).classList.add('active');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ml').classList.toggle('active', lang === 'ml');
+      document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+    }
+  </script>
+</body>
+</html>

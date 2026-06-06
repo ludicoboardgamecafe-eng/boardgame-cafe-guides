@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downforce Staff Training Guide | Board Game Cafe</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#ffffff; --ink:#20242a; --muted:#5d6775; --brand:#c0392b; --brand2:#2c3e50; --soft:#fff4f2; --line:#e4e7ee; --tip:#fff8df; --ok:#eaf7ef;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;}
+    header{background:linear-gradient(135deg,var(--brand),#e67e22);color:white;padding:34px 18px;text-align:center;}
+    header h1{margin:0;font-size:2.35rem;}
+    header p{margin:8px 0 0;font-size:1.05rem;opacity:.95;}
+    .toggle-wrap{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+    button{border:0;border-radius:999px;padding:10px 18px;margin:4px;cursor:pointer;font-weight:700;background:#edf0f5;color:#222;}
+    button.active{background:var(--brand);color:#fff;}
+    main{max-width:1120px;margin:0 auto;padding:22px;}
+    .lang{display:none;}.lang.active{display:block;}
+    .section{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 18px;padding:22px;box-shadow:0 5px 18px rgba(31,41,55,.05);}
+    h2{margin:0 0 12px;color:var(--brand2);font-size:1.45rem;} h3{margin:18px 0 8px;color:#34495e;}
+    ul,ol{padding-left:24px;} li{margin:5px 0;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+    .mini{background:#fafbfe;border:1px solid var(--line);border-radius:12px;padding:14px;}
+    .tip{background:var(--tip);border-left:6px solid #f1c40f;padding:12px 14px;border-radius:10px;margin:12px 0;}
+    .warn{background:#fff0f0;border-left:6px solid #e74c3c;padding:12px 14px;border-radius:10px;margin:12px 0;}
+    .example{background:var(--ok);border-left:6px solid #27ae60;padding:12px 14px;border-radius:10px;margin:12px 0;}
+    .faq{background:#f2f7ff;border:1px solid #d9e8ff;border-radius:12px;padding:13px;margin:10px 0;}
+    .script{background:var(--soft);border:1px solid #ffd7d1;border-radius:12px;padding:16px;font-size:1.02rem;}
+    table{width:100%;border-collapse:collapse;margin:12px 0;background:#fff;} th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top;} th{background:#f0f2f7;}
+    .badge{display:inline-block;background:#eef0f5;border-radius:8px;padding:3px 8px;margin:2px;font-size:.9rem;color:#394150;}
+    footer{text-align:center;color:var(--muted);font-size:.9rem;padding:24px;}
+  </style>
+  <script>
+    function switchLanguage(lang){
+      document.querySelectorAll('.lang').forEach(el=>el.classList.remove('active'));
+      document.getElementById(lang).classList.add('active');
+      document.querySelectorAll('.toggle-wrap button').forEach(btn=>btn.classList.remove('active'));
+      document.getElementById('btn-'+lang).classList.add('active');
+      document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Downforce Staff Training Guide</h1>
+    <p>For board game cafe staff in Kochi | English + Malayalam</p>
+  </header>
+  <div class="toggle-wrap">
+    <button id="btn-en" class="active" onclick="switchLanguage('en')">English</button>
+    <button id="btn-ml" onclick="switchLanguage('ml')">മലയാളം</button>
+  </div>
+  <main>
+    <section id="en" class="lang active">
+      <div class="section">
+        <h2>1. What is Downforce?</h2>
+        <p><strong>Downforce</strong> is a fast racing board game where players are not just drivers. They are also team owners, card players, and gamblers. Players first <strong>bid</strong> to own cars, then use cards to move all cars around the race track, and during the race they secretly <strong>bet</strong> on which car they think will win.</p>
+        <p>The fun twist is that your cards often move other players' cars too. So you are always asking: “Should I help my own car, block someone else, or make a smart bet on a car that is already doing well?”</p>
+        <div class="tip"><strong>Staff positioning:</strong> Tell guests it feels like Formula 1 mixed with poker-style mind games. It is easy to learn, but the table talk and clever moves make it exciting.</div>
+      </div>
+
+      <div class="section">
+        <h2>2. Quick Facts for Staff</h2>
+        <div class="grid">
+          <div class="mini"><strong>Players:</strong><br>2–6</div>
+          <div class="mini"><strong>Time:</strong><br>30–45 minutes for first-timers</div>
+          <div class="mini"><strong>Difficulty:</strong><br>Easy to medium</div>
+          <div class="mini"><strong>Best for:</strong><br>Families, casual gamers, groups that enjoy competition</div>
+          <div class="mini"><strong>Main skills:</strong><br>Bidding, hand management, timing, bluffing, blocking</div>
+          <div class="mini"><strong>Guest hook:</strong><br>“You can win even if your car does not finish first.”</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>3. Components</h2>
+        <ul>
+          <li>1 double-sided race board</li>
+          <li>6 race cars in different colours</li>
+          <li>48 speed cards</li>
+          <li>6 special power cards</li>
+          <li>6 driver plaques</li>
+          <li>Betting / score sheets</li>
+          <li>Pencil or pen for each player</li>
+        </ul>
+        <div class="warn"><strong>Staff check before giving the game:</strong> Make sure the score sheets and pencils are available. Downforce needs writing for bids and bets.</div>
+      </div>
+
+      <div class="section">
+        <h2>4. The Big Idea: How Do You Win?</h2>
+        <p>Players earn money from three things:</p>
+        <ol>
+          <li><strong>Race prize money</strong> from the cars they own.</li>
+          <li><strong>Betting money</strong> if their secret bets finish in the top positions.</li>
+          <li><strong>Saving money</strong> by not overpaying during the auction.</li>
+        </ol>
+        <p>At the end:</p>
+        <p><strong>Total winnings = race prize money + successful bets − auction money spent</strong></p>
+        <div class="tip">Important staff line: “This is not only about making your car win. You can win by buying cheap, betting smart, and moving the right cars at the right time.”</div>
+      </div>
+
+      <div class="section">
+        <h2>5. Setup</h2>
+        <ol>
+          <li>Place the race board in the middle of the table.</li>
+          <li>Put all 6 cars on the starting spaces.</li>
+          <li>Shuffle the speed cards and deal them to players. In some player counts, leftover cards are returned to the box.</li>
+          <li>Separate the special Speed-8 cards if your edition uses them for auction setup.</li>
+          <li>Shuffle the power cards.</li>
+          <li>Give each player a score sheet and pencil.</li>
+          <li>Keep driver plaques near the board.</li>
+        </ol>
+        <div class="tip"><strong>Teaching shortcut:</strong> Do not explain every power card before the game. Explain that each power bends one rule, then explain individual powers when players receive them.</div>
+      </div>
+
+      <div class="section">
+        <h2>6. Game Structure</h2>
+        <p>Downforce has three connected parts:</p>
+        <table>
+          <tr><th>Part</th><th>What happens?</th><th>Why it matters</th></tr>
+          <tr><td>1. Auction</td><td>Players bid for cars and powers.</td><td>Buying too expensive can lose the game.</td></tr>
+          <tr><td>2. Race</td><td>Players play cards to move cars.</td><td>Cards move multiple cars, not only your own.</td></tr>
+          <tr><td>3. Betting</td><td>Players secretly bet during the race.</td><td>Smart bets can beat race prize money.</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>7. Auction Phase Explained</h2>
+        <p>Before the race starts, the cars are auctioned one by one. Each auction usually shows:</p>
+        <ul>
+          <li>One car colour</li>
+          <li>One special power</li>
+        </ul>
+        <p>Every player secretly chooses one card from hand and reveals it at the same time. The number on that card matching the auctioned car colour is that player's bid.</p>
+        <p>The highest bid wins the car, the driver plaque, and the power card. The winning player records the bid amount on the score sheet. This money is not paid with tokens now; it is subtracted from final earnings.</p>
+        <h3>Tie in auction</h3>
+        <p>If players bid the same amount, check the official tie rules for your edition. Usually, the card with more car symbols wins; if still tied, the card without the wild symbol wins.</p>
+        <div class="example"><strong>Example:</strong> Red car is being auctioned. Kevin reveals a card with Red 5. Anu reveals Red 3. Kevin wins Red for $5M and writes $5M as a cost.</div>
+        <div class="warn"><strong>Common guest confusion:</strong> Players do not lose the card they bid with. Bid cards return to the players' hands after each auction.</div>
+      </div>
+
+      <div class="section">
+        <h2>8. Race Phase: Playing Speed Cards</h2>
+        <p>On your turn, play one speed card from your hand. The card lists car colours and movement numbers.</p>
+        <p>Move the cars in the order shown on the card, from top to bottom, unless a power changes this.</p>
+        <ul>
+          <li>You move every car shown on the card.</li>
+          <li>You may have to move opponent cars.</li>
+          <li>You may even move cars that nobody owns.</li>
+          <li>After resolving the card, discard it.</li>
+        </ul>
+        <div class="example"><strong>Example:</strong> A card says Blue 6, Orange 4, Yellow 1. Move Blue 6 first, then Orange 4, then Yellow 1.</div>
+        <div class="tip">Staff phrase: “Your cards are like race commands. They push several cars forward, so every card helps someone and hurts someone.”</div>
+      </div>
+
+      <div class="section">
+        <h2>9. Wild Cars on Cards</h2>
+        <p>Some cards show a white/wild car. The player who played the card chooses which car colour the wild represents.</p>
+        <ul>
+          <li>The wild cannot normally copy a colour already printed on that same card.</li>
+          <li>If there are two wilds, they must normally be two different colours.</li>
+          <li>You can choose a car even if it cannot move, but that may waste the movement.</li>
+        </ul>
+        <div class="warn">Powers can change wild rules. If a power card says something different, the power card wins.</div>
+      </div>
+
+      <div class="section">
+        <h2>10. Movement Rules</h2>
+        <p>Cars move forward space by space. A car can move straight forward or diagonally forward, depending on the track space.</p>
+        <ul>
+          <li>Cars cannot move sideways or backwards.</li>
+          <li>Cars cannot move through other cars.</li>
+          <li>If a car has a legal move, it must move.</li>
+          <li>If it cannot move the full number, move it as far as possible.</li>
+          <li>You may choose a route that causes the car to get blocked later, as long as each step is legal.</li>
+        </ul>
+        <div class="tip"><strong>Staff demonstration:</strong> When teaching, physically move one car diagonally and one car straight. Guests understand movement much faster by seeing it once.</div>
+      </div>
+
+      <div class="section">
+        <h2>11. Blocking</h2>
+        <p>Blocking is a major part of Downforce. Because cars cannot pass through other cars, a player may move a car into a tight lane to slow down cars behind it.</p>
+        <p>Blocking is legal as long as the move itself is legal.</p>
+        <div class="example"><strong>Example:</strong> If Black is behind Red and the lane is narrow, moving Red only a few spaces may stop Black from using its full movement later.</div>
+        <div class="warn">Do not let guests move a car through an occupied space. Even if the card says 6, the car may only move 2 or 3 if blocked.</div>
+      </div>
+
+      <div class="section">
+        <h2>12. Betting During the Race</h2>
+        <p>There are three betting lines on the track. When the first car crosses a betting line for the first time, finish resolving the entire card first. Then every player secretly writes a bet on their sheet.</p>
+        <ul>
+          <li>Players can bet on their own car.</li>
+          <li>Players can bet on someone else's car.</li>
+          <li>Players can bet on the same car multiple times across betting rounds.</li>
+          <li>Bets pay based on whether that car finishes 1st, 2nd, or 3rd.</li>
+        </ul>
+        <div class="tip">Staff reminder: Betting happens after the full card is resolved, not immediately when a car crosses the line mid-card.</div>
+      </div>
+
+      <div class="section">
+        <h2>13. Finishing the Race</h2>
+        <p>When a car crosses the finish line, place it in the appropriate finishing position area: 1st, 2nd, 3rd, and so on.</p>
+        <ul>
+          <li>Extra movement after crossing the finish line does not matter.</li>
+          <li>Once a car finishes, it does not move again.</li>
+          <li>If all cars owned by a player have finished, that player discards the rest of their cards and stops playing cards.</li>
+          <li>Some cars may not finish if the race ends before they cross the line.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>14. Scoring</h2>
+        <p>At the end, players calculate:</p>
+        <ol>
+          <li>Money earned from owned cars based on finishing position.</li>
+          <li>Money earned from successful bets.</li>
+          <li>Subtract total auction bid amounts.</li>
+        </ol>
+        <p>The player with the most money wins.</p>
+        <div class="example"><strong>Example:</strong> A player earns $18M from race prizes and $9M from bets. They spent $7M in the auction. Final score = 18 + 9 − 7 = $20M.</div>
+        <h3>Tie-breaker</h3>
+        <p>If players are tied, the tied player whose car finished highest wins the tie. If needed, check the exact edition rulebook for final tie resolution.</p>
+      </div>
+
+      <div class="section">
+        <h2>15. Power Cards - Staff Overview</h2>
+        <p>Power cards give special abilities. They are easy to forget, so remind guests to keep them visible.</p>
+        <table>
+          <tr><th>Power</th><th>Simple explanation</th><th>Staff note</th></tr>
+          <tr><td>Aggressive</td><td>Your car may get extra movement when it appears first on a card.</td><td>Good for pushing your car ahead.</td></tr>
+          <tr><td>Cunning</td><td>You control movement of your cars even on other players' turns.</td><td>Owner must remember to use it.</td></tr>
+          <tr><td>Determined</td><td>Your car may get bonus movement in certain conditions.</td><td>Check the card text carefully.</td></tr>
+          <tr><td>Strategic</td><td>You may ignore one car on a card you play.</td><td>Great for avoiding helping rivals.</td></tr>
+          <tr><td>Tricky</td><td>You can change the order of car movement on your card.</td><td>Very strong for blocking.</td></tr>
+          <tr><td>Unpredictable</td><td>Wild choices become more flexible.</td><td>Useful for surprise moves.</td></tr>
+        </table>
+        <div class="warn">Power cards override normal rules when they conflict. Always read the exact power card text aloud if there is doubt.</div>
+      </div>
+
+      <div class="section">
+        <h2>16. 3-Minute Staff Teaching Script</h2>
+        <div class="script">
+          “Downforce is a racing game, but you are also betting on the race. First, we auction the cars. Try not to overpay, because your bid is subtracted at the end. Then we race by playing cards. Each card moves multiple cars, so you may move your own car and other players' cars too. During the race, when a car crosses each betting line, everyone secretly bets on who they think will finish first. At the end you earn money from your cars, your bets, and then subtract what you spent in the auction. Most money wins. So remember: buy smart, race smart, bet smart.”
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>17. How to Help Guests During Play</h2>
+        <ul>
+          <li>During auction, remind them: “High bid wins, but expensive cars can hurt your final score.”</li>
+          <li>During racing, ask: “Are you sure you want to move that opponent car that far?”</li>
+          <li>At betting lines, pause the game and make everyone write secretly.</li>
+          <li>When guests argue about movement, check: forward only, no sideways, no passing through cars.</li>
+          <li>For new groups, explain that blocking is legal and part of the fun.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>18. Common Mistakes</h2>
+        <ul>
+          <li>Forgetting to subtract auction bids at the end.</li>
+          <li>Thinking only car owners can move their cars.</li>
+          <li>Betting immediately when a car crosses a line before finishing the whole card.</li>
+          <li>Moving cars sideways or through other cars.</li>
+          <li>Forgetting power cards.</li>
+          <li>Assuming the race winner always wins the game.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>19. Common Guest Questions</h2>
+        <div class="faq"><strong>Can I move another player's car?</strong><br>Yes. If it is on the card you played, you move it unless a power says otherwise.</div>
+        <div class="faq"><strong>Can I choose not to move a car?</strong><br>Normally no. If the car has a legal move, it must move. Some powers can change this.</div>
+        <div class="faq"><strong>Can I win without owning the winning car?</strong><br>Yes. Good bets and cheap auction prices can win the game.</div>
+        <div class="faq"><strong>Can I bet on the same car more than once?</strong><br>Yes.</div>
+        <div class="faq"><strong>Do I reveal my bets?</strong><br>No. Keep them secret until final scoring.</div>
+        <div class="faq"><strong>What happens if a car cannot move full spaces?</strong><br>Move it as far as legally possible.</div>
+        <div class="faq"><strong>Can cars pass through each other?</strong><br>No.</div>
+        <div class="faq"><strong>What if a car crosses the betting line in the middle of a card?</strong><br>Finish all movements on that card first. Then everyone bets.</div>
+      </div>
+
+      <div class="section">
+        <h2>20. Staff Recommendation</h2>
+        <p>Downforce is great for groups who want something competitive, loud, and interactive but not too complex. It works especially well for friends, families with older kids, and mixed groups where some people are new to board games.</p>
+        <p><strong>Do not recommend first</strong> to guests who dislike direct competition, blocking, or betting-style decisions.</p>
+      </div>
+    </section>
+
+    <section id="ml" class="lang">
+      <div class="section">
+        <h2>1. Downforce എന്താണ്?</h2>
+        <p><strong>Downforce</strong> ഒരു racing board game ആണ്. പക്ഷേ ഇത് വെറും car race മാത്രമല്ല. കളിക്കാർ car owner ആയും, card player ആയും, bet ചെയ്യുന്ന ആളായും കളിക്കും.</p>
+        <p>ആദ്യം cars auction ചെയ്യും. പിന്നെ cards ഉപയോഗിച്ച് cars track-ൽ മുന്നോട്ട് നീക്കും. Race നടക്കുമ്പോൾ ഏത് car ജയിക്കും എന്ന് secret bet ചെയ്യുകയും ചെയ്യും.</p>
+        <div class="tip"><strong>Staff പറയാൻ:</strong> “Formula 1 race പോലെ തോന്നും, പക്ഷേ അതിൽ bidding, betting, mind game എല്ലാം ഉണ്ട്.”</div>
+      </div>
+
+      <div class="section">
+        <h2>2. Staff Quick Facts</h2>
+        <div class="grid">
+          <div class="mini"><strong>Players:</strong><br>2–6</div>
+          <div class="mini"><strong>സമയം:</strong><br>30–45 മിനിറ്റ്</div>
+          <div class="mini"><strong>Difficulty:</strong><br>Easy to Medium</div>
+          <div class="mini"><strong>Best for:</strong><br>Families, friends, competitive groups</div>
+          <div class="mini"><strong>Main skills:</strong><br>Bidding, card play, blocking, betting</div>
+          <div class="mini"><strong>Hook:</strong><br>“നിങ്ങളുടെ car first ആകാതെ പോലും നിങ്ങൾക്ക് ജയിക്കാം.”</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>3. Components</h2>
+        <ul>
+          <li>Double-sided race board</li>
+          <li>6 race cars</li>
+          <li>Speed cards</li>
+          <li>Power cards</li>
+          <li>Driver plaques</li>
+          <li>Betting / score sheets</li>
+          <li>Pencil അല്ലെങ്കിൽ pen</li>
+        </ul>
+        <div class="warn"><strong>Staff check:</strong> Game കൊടുക്കുന്നതിന് മുമ്പ് score sheet ഉം pencil ഉം ഉണ്ടെന്ന് ഉറപ്പാക്കുക.</div>
+      </div>
+
+      <div class="section">
+        <h2>4. എങ്ങനെ ജയിക്കും?</h2>
+        <p>Players പണം earn ചെയ്യുന്നത് മൂന്ന് വഴികളിൽ നിന്നാണ്:</p>
+        <ol>
+          <li>സ്വന്തം cars race-ൽ എത്ര നല്ല position-ൽ finish ചെയ്തു</li>
+          <li>Secret bets ശരിയായി വന്നോ</li>
+          <li>Auction-ൽ അധികം പണം ചെലവാക്കിയില്ലേ</li>
+        </ol>
+        <p><strong>Final score = race prize + bet winnings − auction cost</strong></p>
+        <div class="tip">Staff line: “ഇത് race ജയിക്കുന്ന game മാത്രം അല്ല. Cheap ആയി car വാങ്ങി, smart ആയി bet ചെയ്താലും ജയിക്കാം.”</div>
+      </div>
+
+      <div class="section">
+        <h2>5. Setup</h2>
+        <ol>
+          <li>Race board table-ൽ വയ്ക്കുക.</li>
+          <li>6 cars starting spaces-ൽ വയ്ക്കുക.</li>
+          <li>Speed cards shuffle ചെയ്ത് players-ന് deal ചെയ്യുക.</li>
+          <li>Power cards shuffle ചെയ്യുക.</li>
+          <li>Driver plaques board-ന്റെ അടുത്ത് വയ്ക്കുക.</li>
+          <li>ഓരോ player-നും score sheet, pencil കൊടുക്കുക.</li>
+        </ol>
+        <div class="tip">പുതിയ players-ന് എല്ലാ power cards ആദ്യം വിശദീകരിക്കേണ്ട. കിട്ടുന്നപ്പോൾ മാത്രം explain ചെയ്താൽ മതി.</div>
+      </div>
+
+      <div class="section">
+        <h2>6. Game Structure</h2>
+        <table>
+          <tr><th>ഭാഗം</th><th>എന്താണ് നടക്കുന്നത്?</th><th>എന്തുകൊണ്ട് പ്രധാനമാണ്?</th></tr>
+          <tr><td>Auction</td><td>Cars വാങ്ങാൻ bid ചെയ്യും</td><td>വളരെ expensive ആയി വാങ്ങിയാൽ final score കുറയും</td></tr>
+          <tr><td>Race</td><td>Cards കളിച്ച് cars move ചെയ്യും</td><td>നിങ്ങളുടെ cards മറ്റുള്ളവരുടെ cars-ഉം move ചെയ്യും</td></tr>
+          <tr><td>Betting</td><td>Race നടക്കുമ്പോൾ secret bet ചെയ്യും</td><td>Smart bet game ജയിപ്പിക്കും</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>7. Auction Phase</h2>
+        <p>Race തുടങ്ങുന്നതിന് മുമ്പ് ഓരോ car-വും auction ചെയ്യും. ഒരു car colour ഉം ഒരു power card ഉം കാണിക്കും.</p>
+        <p>ഓരോ player-യും കൈയിലെ ഒരു card secret ആയി choose ചെയ്ത് reveal ചെയ്യും. ആ card-ൽ ആ car colour-ന്റെ number ആണ് bid amount.</p>
+        <p>Highest bid ചെയ്ത player car-ഉം power-ഉം നേടും. Bid amount score sheet-ൽ cost ആയി എഴുതണം.</p>
+        <div class="example"><strong>Example:</strong> Red car auction ആണ്. Rahul-ന്റെ card-ൽ Red 5. Neha-യുടെ card-ൽ Red 3. Rahul Red car $5M-ന് വാങ്ങും.</div>
+        <div class="warn">Bid ചെയ്യാൻ ഉപയോഗിച്ച card കളയുന്നില്ല. അത് player-ന്റെ hand-ലേക്ക് തിരികെ പോകും.</div>
+      </div>
+
+      <div class="section">
+        <h2>8. Race Phase - Speed Cards</h2>
+        <p>നിങ്ങളുടെ turn-ൽ ഒരു speed card play ചെയ്യുക. Card-ൽ car colours ഉം movement numbers ഉം കാണും.</p>
+        <ul>
+          <li>Card-ൽ കാണുന്ന cars എല്ലാം move ചെയ്യണം.</li>
+          <li>നിങ്ങളുടെ car മാത്രം അല്ല, opponent car-ഉം move ചെയ്യേണ്ടി വരാം.</li>
+          <li>Card-ൽ മുകളിൽ നിന്ന് താഴേക്ക് order പാലിക്കുക.</li>
+          <li>Card resolve ചെയ്ത ശേഷം discard ചെയ്യുക.</li>
+        </ul>
+        <div class="example"><strong>Example:</strong> Blue 6, Orange 4, Yellow 1 എന്ന് card പറയുന്നു. ആദ്യം Blue 6, പിന്നെ Orange 4, പിന്നെ Yellow 1 move ചെയ്യുക.</div>
+      </div>
+
+      <div class="section">
+        <h2>9. Wild Cars</h2>
+        <p>ചില cards-ൽ white/wild car ഉണ്ടാകും. അത് ഏത് colour car ആയി ഉപയോഗിക്കണമെന്ന് card കളിച്ച player തീരുമാനിക്കും.</p>
+        <ul>
+          <li>സാധാരണയായി card-ൽ already printed colour wild ആയി choose ചെയ്യാൻ പാടില്ല.</li>
+          <li>രണ്ട് wild ഉണ്ടെങ്കിൽ രണ്ട് different colours വേണം.</li>
+          <li>Power card rules ഇത് മാറ്റാം.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>10. Movement Rules</h2>
+        <ul>
+          <li>Cars forward മാത്രം move ചെയ്യും.</li>
+          <li>Straight forward അല്ലെങ്കിൽ diagonal forward move ചെയ്യാം.</li>
+          <li>Sideways / backwards move ചെയ്യാൻ പാടില്ല.</li>
+          <li>Cars മറ്റൊരു car-ന്റെ through move ചെയ്യാൻ പാടില്ല.</li>
+          <li>Full movement സാധ്യമല്ലെങ്കിൽ കഴിയുന്നത്ര move ചെയ്യുക.</li>
+          <li>Legal move ഉണ്ടെങ്കിൽ car move ചെയ്യണം.</li>
+        </ul>
+        <div class="tip">Staff tip: Movement explain ചെയ്യുമ്പോൾ board-ൽ ഒന്ന് കാണിച്ച് കൊടുത്താൽ guests വേഗം മനസ്സിലാക്കും.</div>
+      </div>
+
+      <div class="section">
+        <h2>11. Blocking</h2>
+        <p>Blocking ഈ game-ന്റെ പ്രധാന fun ആണ്. Cars pass ചെയ്യാൻ കഴിയാത്തതിനാൽ, ഒരു car tight lane-ൽ നിർത്തി പിന്നിലെ cars slow ചെയ്യാം.</p>
+        <p>Move legal ആണെങ്കിൽ blocking allowed ആണ്.</p>
+      </div>
+
+      <div class="section">
+        <h2>12. Betting</h2>
+        <p>Track-ൽ മൂന്ന് betting lines ഉണ്ടാകും. ആദ്യ car ഒരു betting line cross ചെയ്താൽ, ആദ്യം ആ card-ലെ മുഴുവൻ movement പൂർത്തിയാക്കുക. പിന്നെ എല്ലാവരും secret bet എഴുതുക.</p>
+        <ul>
+          <li>സ്വന്തം car-ൽ bet ചെയ്യാം.</li>
+          <li>മറ്റുള്ളവരുടെ car-ൽ bet ചെയ്യാം.</li>
+          <li>ഒരേ car-ൽ പല betting rounds-ലും bet ചെയ്യാം.</li>
+          <li>Bets race result അനുസരിച്ച് money നൽകും.</li>
+        </ul>
+        <div class="warn">Car line cross ചെയ്ത ഉടനെ bet ചെയ്യരുത്. ആ card മുഴുവൻ resolve ചെയ്ത ശേഷം bet ചെയ്യണം.</div>
+      </div>
+
+      <div class="section">
+        <h2>13. Race Finish</h2>
+        <ul>
+          <li>Car finish line cross ചെയ്താൽ finishing position area-ൽ വയ്ക്കുക.</li>
+          <li>Finish line കഴിഞ്ഞ extra movement കാര്യമില്ല.</li>
+          <li>Finish ചെയ്ത car ഇനി move ചെയ്യില്ല.</li>
+          <li>ഒരു player-ന്റെ എല്ലാ cars finish ചെയ്താൽ അവർ ബാക്കി cards discard ചെയ്യും.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>14. Scoring</h2>
+        <ol>
+          <li>Owned cars-ന്റെ race prize കണക്കാക്കുക.</li>
+          <li>Correct bets-ൽ നിന്ന് കിട്ടിയ money ചേർക്കുക.</li>
+          <li>Auction-ൽ ചെലവാക്കിയ bid amount കുറയ്ക്കുക.</li>
+        </ol>
+        <p>ഏറ്റവും കൂടുതൽ money ഉള്ള player ജയിക്കും.</p>
+        <div class="example"><strong>Example:</strong> Race prize $18M, bets $9M, auction cost $7M. Final = 18 + 9 − 7 = $20M.</div>
+      </div>
+
+      <div class="section">
+        <h2>15. Power Cards</h2>
+        <p>Power cards normal rules മാറ്റാം. അതിനാൽ player-ന് കിട്ടിയ power card table-ൽ visible ആയി വയ്ക്കണം.</p>
+        <ul>
+          <li><strong>Aggressive:</strong> സ്വന്തം car-ന് extra push കിട്ടാം.</li>
+          <li><strong>Cunning:</strong> മറ്റുള്ളവരുടെ turn-ലും നിങ്ങളുടെ car എങ്ങനെ move ചെയ്യണമെന്ന് നിങ്ങൾ തീരുമാനിക്കും.</li>
+          <li><strong>Determined:</strong> ചില conditions-ൽ bonus movement.</li>
+          <li><strong>Strategic:</strong> Card-ലെ ഒരു car ignore ചെയ്യാം.</li>
+          <li><strong>Tricky:</strong> Card movement order മാറ്റാം.</li>
+          <li><strong>Unpredictable:</strong> Wild choices കൂടുതൽ flexible ആകും.</li>
+        </ul>
+        <div class="warn">Power card normal rule-ന് വിരുദ്ധമാണെങ്കിൽ power card rule follow ചെയ്യുക.</div>
+      </div>
+
+      <div class="section">
+        <h2>16. 3-Minute Staff Teaching Script</h2>
+        <div class="script">
+          “Downforce ഒരു racing game ആണ്, പക്ഷേ നിങ്ങൾ race-ൽ bet ചെയ്യുകയും ചെയ്യും. ആദ്യം cars auction ചെയ്യും. അധികം bid ചെയ്താൽ അവസാനം അത് score-ൽ നിന്ന് കുറയും. പിന്നെ cards കളിച്ച് cars move ചെയ്യും. Card-ൽ പല cars ഉണ്ടാകും, അതിനാൽ നിങ്ങളുടെ car മാത്രം അല്ല മറ്റുള്ളവരുടെ cars-ഉം move ചെയ്യേണ്ടി വരും. Race നടക്കുമ്പോൾ betting lines cross ചെയ്യുമ്പോൾ എല്ലാവരും secret ആയി winner guess ചെയ്യും. അവസാനം car prize + bet winnings − auction cost കണക്കാക്കി ഏറ്റവും കൂടുതൽ money ഉള്ള player ജയിക്കും.”
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>17. Common Mistakes</h2>
+        <ul>
+          <li>Auction cost അവസാനം subtract ചെയ്യാൻ മറക്കുന്നത്.</li>
+          <li>സ്വന്തം car മാത്രം move ചെയ്യാം എന്ന് കരുതുന്നത്.</li>
+          <li>Betting line cross ചെയ്ത ഉടനെ bet ചെയ്യുന്നത്.</li>
+          <li>Cars sideways move ചെയ്യുന്നത്.</li>
+          <li>Power card മറക്കുന്നത്.</li>
+          <li>Race winner തന്നെയാണ് game winner എന്ന് കരുതുന്നത്.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>18. സാധാരണ Guest Questions</h2>
+        <div class="faq"><strong>മറ്റൊരാളുടെ car move ചെയ്യാമോ?</strong><br>അതെ. നിങ്ങളുടെ card-ൽ ആ car ഉണ്ടെങ്കിൽ move ചെയ്യണം.</div>
+        <div class="faq"><strong>Car move ചെയ്യാതെ വിടാമോ?</strong><br>സാധാരണയായി ഇല്ല. Legal move ഉണ്ടെങ്കിൽ move ചെയ്യണം.</div>
+        <div class="faq"><strong>എന്റെ car ജയിക്കാതെ ഞാൻ game ജയിക്കാമോ?</strong><br>അതെ. Smart betting, cheap auction എന്നിവ കൊണ്ട് ജയിക്കാം.</div>
+        <div class="faq"><strong>ഒരേ car-ൽ പലതവണ bet ചെയ്യാമോ?</strong><br>അതെ.</div>
+        <div class="faq"><strong>Bets secret ആണോ?</strong><br>അതെ. Final scoring വരെ secret ആയി വയ്ക്കുക.</div>
+        <div class="faq"><strong>Car full movement move ചെയ്യാൻ കഴിയില്ലെങ്കിൽ?</strong><br>കഴിയുന്നത്ര legal movement ചെയ്യുക.</div>
+        <div class="faq"><strong>Cars മറ്റൊരു car-ന്റെ through പോകാമോ?</strong><br>ഇല്ല.</div>
+      </div>
+
+      <div class="section">
+        <h2>19. Staff Recommendation</h2>
+        <p>Downforce competitive groups, friends, families, and casual gamers-ന് വളരെ നല്ല choice ആണ്. Table talk, blocking, betting എന്നിവ കാരണം game lively ആയിരിക്കും.</p>
+        <p><strong>Recommend ചെയ്യരുത്:</strong> direct competition, blocking, betting decisions ഇഷ്ടമില്ലാത്ത guests-ന്.</p>
+      </div>
+    </section>
+  </main>
+  <footer>Created for board game cafe staff training. Keep this guide open on a phone/tablet while teaching new guests.</footer>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Taboo Staff Training Guide | Board Game Cafe</title>
+<style>
+:root{--bg:#fff7ed;--card:#ffffff;--ink:#2f241d;--muted:#6b5f58;--brand:#ef4444;--brand2:#f97316;--soft:#ffedd5;--line:#fed7aa;--ok:#16a34a;--warn:#b45309;--bad:#dc2626;}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#fff);color:var(--ink);line-height:1.65} header{background:linear-gradient(135deg,var(--brand),var(--brand2));color:white;padding:34px 20px;text-align:center} header h1{margin:0;font-size:2.2rem} header p{margin:8px auto 0;max-width:850px;font-size:1.05rem;opacity:.95}.bar{position:sticky;top:0;z-index:10;background:rgba(255,247,237,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px;text-align:center}.bar button{border:0;border-radius:999px;padding:10px 18px;margin:4px;font-weight:800;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08)}.bar button.active{background:var(--brand);color:#fff}.wrap{max-width:1100px;margin:0 auto;padding:22px}.lang{display:none}.lang.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card,.section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 8px 22px rgba(124,45,18,.07)}h2{margin:0 0 10px;color:#9a3412;font-size:1.55rem}h3{margin:18px 0 8px;color:#c2410c}.pill{display:inline-block;background:var(--soft);border:1px solid var(--line);padding:5px 10px;border-radius:999px;margin:3px;font-weight:700}.tip{background:#fffbeb;border-left:5px solid #f59e0b;padding:13px 14px;border-radius:12px;margin:12px 0}.rule{background:#fef2f2;border-left:5px solid var(--bad);padding:13px 14px;border-radius:12px;margin:12px 0}.example{background:#f0fdf4;border-left:5px solid var(--ok);padding:13px 14px;border-radius:12px;margin:12px 0}.script{background:#fff7ed;border:1px dashed #fb923c;padding:15px;border-radius:14px;font-size:1.03rem}.toc a{display:inline-block;text-decoration:none;color:#9a3412;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;margin:4px;font-weight:700}table{width:100%;border-collapse:collapse;margin:10px 0;background:#fff}td,th{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:var(--soft)}ul,ol{padding-left:22px}.small{color:var(--muted);font-size:.95rem}.footer{text-align:center;color:var(--muted);padding:24px}.kbd{font-family:ui-monospace,Menlo,monospace;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:2px 6px}.badge{font-size:.85rem;background:#fee2e2;color:#991b1b;border-radius:8px;padding:3px 8px;font-weight:800}
+</style>
+<script>
+function switchLang(lang){document.querySelectorAll('.lang').forEach(x=>x.classList.remove('active'));document.getElementById(lang).classList.add('active');document.querySelectorAll('.bar button').forEach(x=>x.classList.remove('active'));document.getElementById('btn-'+lang).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});} 
+</script>
+</head>
+<body>
+<header>
+<h1>Taboo Staff Training Guide</h1>
+<p>For board game cafe staff in Kochi: a simple, casual, bilingual guide to teach, run, and answer questions about Taboo.</p>
+</header>
+<div class="bar"><button id="btn-en" class="active" onclick="switchLang('en')">English</button><button id="btn-ml" onclick="switchLang('ml')">മലയാളം</button></div>
+<div class="wrap">
+
+<section id="en" class="lang active">
+<div class="section">
+<h2>Quick Staff Snapshot</h2>
+<div class="grid">
+<div class="card"><strong>Game type</strong><br>Party word-guessing game</div>
+<div class="card"><strong>Players</strong><br>Best with 4+ players, usually in 2 teams</div>
+<div class="card"><strong>Time</strong><br>20–40 minutes, flexible</div>
+<div class="card"><strong>Difficulty</strong><br>Very easy to learn, loud and funny</div>
+</div>
+<p><span class="pill">Team game</span><span class="pill">Fast clues</span><span class="pill">No forbidden words</span><span class="pill">Great for groups</span></p>
+</div>
+
+<div class="section toc">
+<h2>Staff Navigation</h2>
+<a href="#en-overview">What it is</a><a href="#en-components">Components</a><a href="#en-setup">Setup</a><a href="#en-play">How to play</a><a href="#en-clues">Clue rules</a><a href="#en-scoring">Scoring</a><a href="#en-faq">FAQs</a><a href="#en-script">Teaching script</a>
+</div>
+
+<div class="section" id="en-overview">
+<h2>What is Taboo?</h2>
+<p>Taboo is a party game where one player tries to make their team guess a secret word, but they cannot say the obvious related words listed on the card.</p>
+<p>Example: the guess word might be <strong>“Pizza”</strong>, but the clue-giver may not be allowed to say words like <strong>cheese, crust, slice, tomato, Italian</strong>. So they must get creative: “This is something you order for a birthday party, usually round, and people fight for the last piece.”</p>
+<div class="tip"><strong>Staff angle:</strong> Sell this as “a fast shouting-and-laughing word game where your brain keeps trying to say the words you are not allowed to say.”</div>
+</div>
+
+<div class="section" id="en-components">
+<h2>Components</h2>
+<ul>
+<li><strong>Taboo cards:</strong> Each card has one guess word and a list of forbidden Taboo words.</li>
+<li><strong>Timer:</strong> Usually a sand timer or app timer.</li>
+<li><strong>Buzzer / squeaker:</strong> Used by the opposite team when the clue-giver breaks a rule.</li>
+<li><strong>Score pad:</strong> To track team points.</li>
+<li><strong>Card holder:</strong> Some versions include a stand/easel.</li>
+</ul>
+<p class="small">Different editions have slightly different components, but the core gameplay is the same.</p>
+</div>
+
+<div class="section" id="en-setup">
+<h2>Setup</h2>
+<ol>
+<li>Split players into <strong>two teams</strong>. Try to balance confident speakers across both teams.</li>
+<li>Place the deck where the clue-giver can draw cards easily.</li>
+<li>Keep the timer and buzzer ready.</li>
+<li>Choose one team to start.</li>
+<li>From the starting team, choose one player as the <strong>clue-giver</strong>.</li>
+<li>The other team should assign one or more players to watch the card and hold the buzzer.</li>
+</ol>
+<div class="tip"><strong>Cafe tip:</strong> For mixed-language groups in Kochi, ask before starting: “English clues only, Malayalam allowed, or both okay?” Decide clearly so no one argues mid-game.</div>
+</div>
+
+<div class="section" id="en-play">
+<h2>How to Play</h2>
+<h3>1. Start the timer</h3>
+<p>The clue-giver picks up the first card. Their job is to make their own team guess the main guess word.</p>
+<h3>2. Give clues without saying forbidden words</h3>
+<p>The clue-giver can describe, explain, joke, compare, or give situational hints. But they cannot say the guess word or any Taboo word shown on the card.</p>
+<h3>3. Team guesses loudly</h3>
+<p>The clue-giver’s teammates shout guesses. There is no turn order inside the team.</p>
+<h3>4. Correct guess = score pile</h3>
+<p>If the team guesses correctly, keep that card as a point for the clue-giver’s team and immediately move to the next card.</p>
+<h3>5. Rule break = buzzer</h3>
+<p>If the clue-giver says a forbidden word or breaks a clue rule, the opposite team buzzes. That card is dead and usually counts for the opposite team.</p>
+<h3>6. Skip if stuck</h3>
+<p>The clue-giver may skip a card if they are stuck. Depending on your house rule or edition, skipped cards may count against the team or go to the opposite team. Pick one rule before the game starts.</p>
+<h3>7. Time ends</h3>
+<p>When time runs out, stop immediately. Count successful cards and penalty cards, then the next team takes a turn.</p>
+</div>
+
+<div class="section" id="en-clues">
+<h2>Important Clue Rules</h2>
+<div class="rule"><strong>Do not say the guess word.</strong> Even part of the word is usually not allowed. For “football,” saying “foot” or “ball” is not okay.</div>
+<div class="rule"><strong>Do not say any Taboo word.</strong> If the forbidden word is “doctor,” saying “doctors” or “doctoring” is also not okay.</div>
+<div class="rule"><strong>No gestures or acting.</strong> This is not charades. No pointing, miming, or hand signals.</div>
+<div class="rule"><strong>No sound effects used as direct clues.</strong> For example, for “dog,” barking like a dog should not be allowed.</div>
+<div class="rule"><strong>No spelling or rhyming tricks.</strong> Do not say “starts with P,” “rhymes with cake,” or spell letters.</div>
+<div class="rule"><strong>No foreign-language loopholes.</strong> If the group decides English-only, do not translate forbidden words into Malayalam/Hindi to sneak around the card. If bilingual play is allowed, staff should clarify that translated forbidden words are also banned.</div>
+<div class="example"><strong>Allowed style:</strong> “You use this in the kitchen to make food hot.” <br><strong>Not allowed:</strong> Pointing to the cafe oven, making microwave sounds, or saying a forbidden listed word.</div>
+</div>
+
+<div class="section" id="en-scoring">
+<h2>Scoring</h2>
+<table><tr><th>What happened?</th><th>Who gets the point?</th></tr><tr><td>Your team guessed the word correctly</td><td>Your team gets 1 point</td></tr><tr><td>You said a Taboo word or broke a clue rule</td><td>Opposite team usually gets 1 point</td></tr><tr><td>You skipped a card</td><td>Use your chosen house rule: no point, or opposite team gets 1 point</td></tr></table>
+<p>After each team has had the same number of turns, the team with more points wins.</p>
+<div class="tip"><strong>Recommended cafe house rule:</strong> For casual guests, skipped cards give <strong>no point</strong> to either team. For competitive groups, skipped cards give <strong>1 point to the opposite team</strong>.</div>
+</div>
+
+<div class="section">
+<h2>How Long Should We Play?</h2>
+<ul>
+<li><strong>Quick cafe round:</strong> Each player gets one turn as clue-giver.</li>
+<li><strong>Standard game:</strong> Play until each player has given clues twice.</li>
+<li><strong>Large group:</strong> Play for a fixed time, like 20 minutes.</li>
+<li><strong>Table waiting game:</strong> Play 3 rounds per team and declare winner.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Common Mistakes New Players Make</h2>
+<ul>
+<li>Accidentally saying part of the guess word.</li>
+<li>Using gestures without realizing it.</li>
+<li>Reading the Taboo words aloud by mistake.</li>
+<li>Arguing after buzzer instead of moving quickly.</li>
+<li>Giving clues that are too long and slow.</li>
+<li>Forgetting that plural/singular forms count as the same word.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Staff Tips for Running Taboo in the Cafe</h2>
+<ul>
+<li>Keep the energy high. Taboo is better when people are laughing and guessing fast.</li>
+<li>Before starting, clearly say what languages are allowed.</li>
+<li>If a group has kids, remove adult/difficult cards if needed.</li>
+<li>For shy players, let them guess first before becoming clue-giver.</li>
+<li>Use phone timer if the sand timer is missing.</li>
+<li>If the buzzer is too annoying for nearby tables, ask them to tap the table or say “buzz” instead.</li>
+</ul>
+</div>
+
+<div class="section" id="en-faq">
+<h2>Common Guest Questions</h2>
+<h3>Can I say a word that sounds similar?</h3><p>No, not as a direct trick. Rhyming and sound clues are usually not allowed.</p>
+<h3>Can I use Malayalam clues?</h3><p>Yes if the group agrees before starting. But translated versions of the guess word or Taboo words should still be banned.</p>
+<h3>Can I say initials or first letter?</h3><p>No. Letter clues, spelling, and “starts with” hints are not allowed.</p>
+<h3>Can I pass?</h3><p>Yes, but decide the skip penalty before starting.</p>
+<h3>What if the opposite team buzzes wrongly?</h3><p>For casual play, just continue. For strict play, staff can say the card stays alive if no rule was broken.</p>
+<h3>Can teammates ask questions?</h3><p>They can shout guesses, but the clue-giver should only respond with more clues, not “yes/no” confirmation unless your group allows it.</p>
+</div>
+
+<div class="section" id="en-script">
+<h2>30-Second Teaching Script</h2>
+<div class="script">“Taboo is a team word game. One person gives clues so their team guesses the word on the card. But below the word there are forbidden words you cannot say. If you say one, the other team buzzes you. Correct guesses score points. Try to get through as many cards as possible before the timer ends.”</div>
+<h2>2-Minute Teaching Script</h2>
+<div class="script">“Split into two teams. On your team’s turn, one player becomes the clue-giver. They pick a card and try to make their team guess the top word. The tricky part is that they cannot say the listed Taboo words, the guess word, parts of the word, spelling hints, rhymes, gestures, or sound effects. The opposite team watches the card and buzzes if a rule is broken. Correct cards go to your team’s score pile. Buzzer cards go to the other team or penalty pile, depending on the rule we choose. When time runs out, count points and swap teams.”</div>
+</div>
+
+<div class="section">
+<h2>Staff Cheat Sheet</h2>
+<table><tr><th>Situation</th><th>Staff ruling</th></tr><tr><td>Player says part of the word</td><td>Buzz / penalty</td></tr><tr><td>Player says plural of Taboo word</td><td>Buzz / penalty</td></tr><tr><td>Player gestures</td><td>Buzz / remind gently</td></tr><tr><td>Player uses Malayalam translation of forbidden word</td><td>Buzz if bilingual-ban rule was explained</td></tr><tr><td>Both teams argue</td><td>Discard card and continue; keep game moving</td></tr><tr><td>Children playing</td><td>Be flexible, focus on fun</td></tr></table>
+</div>
+</section>
+
+<section id="ml" class="lang">
+<div class="section">
+<h2>സ്റ്റാഫിനുള്ള Quick Snapshot</h2>
+<div class="grid"><div class="card"><strong>Game type</strong><br>Party word guessing game</div><div class="card"><strong>Players</strong><br>4+ പേർക്ക് നല്ലത്, സാധാരണ 2 teams</div><div class="card"><strong>Time</strong><br>20–40 മിനിറ്റ്</div><div class="card"><strong>Difficulty</strong><br>വളരെ easy, fun, loud</div></div>
+<p><span class="pill">Team game</span><span class="pill">Fast clues</span><span class="pill">Forbidden words പറയരുത്</span><span class="pill">Groups-ന് super</span></p>
+</div>
+
+<div class="section toc">
+<h2>Staff Navigation</h2>
+<a href="#ml-overview">Game എന്താണ്</a><a href="#ml-components">Components</a><a href="#ml-setup">Setup</a><a href="#ml-play">എങ്ങനെ കളിക്കാം</a><a href="#ml-clues">Clue rules</a><a href="#ml-scoring">Scoring</a><a href="#ml-faq">FAQs</a><a href="#ml-script">Teaching script</a>
+</div>
+
+<div class="section" id="ml-overview">
+<h2>Taboo എന്താണ്?</h2>
+<p>Taboo ഒരു party word game ആണ്. ഒരു player തന്റെ team-നെ card-ലെ main word guess ചെയ്യിക്കാൻ clues കൊടുക്കും. പക്ഷേ card-ൽ താഴെ കാണുന്ന “Taboo words” പറയാൻ പാടില്ല.</p>
+<p>ഉദാഹരണം: Guess word <strong>“Pizza”</strong> ആണെങ്കിൽ, forbidden words <strong>cheese, crust, slice, tomato, Italian</strong> പോലെയായിരിക്കും. അപ്പോൾ clue-giver creative ആയി പറയണം: “Birthday party-ക്ക് order ചെയ്യുന്ന round food, last piece-നു fight വരും!”</p>
+<div class="tip"><strong>Staff angle:</strong> Guests-നോട് പറയാം: “നിങ്ങൾ പറയാൻ ഏറ്റവും തോന്നുന്ന words തന്നെ പറയാൻ പാടില്ലാത്ത funny guessing game.”</div>
+</div>
+
+<div class="section" id="ml-components">
+<h2>Components</h2>
+<ul><li><strong>Taboo cards:</strong> ഓരോ card-ലും guess word + forbidden words.</li><li><strong>Timer:</strong> Sand timer അല്ലെങ്കിൽ phone timer.</li><li><strong>Buzzer / squeaker:</strong> Rule break ചെയ്താൽ opposite team buzz ചെയ്യും.</li><li><strong>Score pad:</strong> Points എഴുതാൻ.</li><li><strong>Card holder:</strong> ചില editions-ൽ ഉണ്ടാകും.</li></ul>
+<p class="small">Edition അനുസരിച്ച് components മാറാം, പക്ഷേ core gameplay same ആണ്.</p>
+</div>
+
+<div class="section" id="ml-setup">
+<h2>Setup</h2>
+<ol><li>Players-നെ <strong>2 teams</strong> ആയി split ചെയ്യുക.</li><li>Card deck clue-giver എളുപ്പത്തിൽ എടുക്കാൻ പറ്റുന്നിടത്ത് വെക്കുക.</li><li>Timer and buzzer ready ആക്കുക.</li><li>ഏത് team തുടങ്ങും എന്ന് തീരുമാനിക്കുക.</li><li>Starting team-ൽ നിന്ന് ഒരാളെ <strong>clue-giver</strong> ആക്കുക.</li><li>Opposite team card നോക്കി buzzer പിടിക്കും.</li></ol>
+<div class="tip"><strong>Cafe tip:</strong> Kochi groups-ൽ game തുടങ്ങുന്നതിന് മുൻപ് ചോദിക്കുക: “English only ആണോ, Malayalam allowed ആണോ, രണ്ടും okay ആണോ?”</div>
+</div>
+
+<div class="section" id="ml-play">
+<h2>എങ്ങനെ കളിക്കാം?</h2>
+<h3>1. Timer start ചെയ്യുക</h3><p>Clue-giver ആദ്യ card എടുക്കും. സ്വന്തം team guess word പറയണം.</p>
+<h3>2. Forbidden words പറയാതെ clues കൊടുക്കുക</h3><p>Explain ചെയ്യാം, compare ചെയ്യാം, funny hints കൊടുക്കാം. പക്ഷേ guess word-ഉം card-ൽ കാണുന്ന Taboo words-ഉം പറയരുത്.</p>
+<h3>3. Team guesses പറയും</h3><p>Team members ഒരുമിച്ച് guesses shout ചെയ്യാം. Team-ൽ turn order ഇല്ല.</p>
+<h3>4. Correct guess = point</h3><p>Team ശരിയായി പറഞ്ഞാൽ card score pile-ൽ വെച്ച് next card എടുക്കുക.</p>
+<h3>5. Rule break = buzzer</h3><p>Clue-giver forbidden word പറഞ്ഞാൽ അല്ലെങ്കിൽ rule break ചെയ്താൽ opposite team buzz ചെയ്യും. ആ card dead.</p>
+<h3>6. Stuck ആണെങ്കിൽ skip ചെയ്യാം</h3><p>Skip penalty game തുടങ്ങുന്നതിന് മുൻപ് തീരുമാനിക്കുക: no point ആക്കാം, അല്ലെങ്കിൽ opposite team-ന് point കൊടുക്കാം.</p>
+<h3>7. Time തീർന്നാൽ stop</h3><p>Timer തീർന്നാൽ ഉടൻ stop. Correct cards count ചെയ്യുക. Next team turn.</p>
+</div>
+
+<div class="section" id="ml-clues">
+<h2>Important Clue Rules</h2>
+<div class="rule"><strong>Guess word പറയരുത്.</strong> Word-ന്റെ part പോലും പറയരുത്. “football” ആണെങ്കിൽ “foot” / “ball” പറയരുത്.</div>
+<div class="rule"><strong>Taboo words പറയരുത്.</strong> “doctor” forbidden word ആണെങ്കിൽ “doctors” പോലുള്ള forms-ഉം വേണ്ട.</div>
+<div class="rule"><strong>Gestures വേണ്ട.</strong> ഇത് charades അല്ല. Pointing, acting, hand signals avoid ചെയ്യുക.</div>
+<div class="rule"><strong>Sound effects വേണ്ട.</strong> “dog” card-നു bark ചെയ്യുന്നത് allowed അല്ല.</div>
+<div class="rule"><strong>Spelling/rhyming hints വേണ്ട.</strong> “P-ൽ തുടങ്ങും”, “cake-നോട് rhyme ചെയ്യും” പോലുള്ള hints allowed അല്ല.</div>
+<div class="rule"><strong>Language loophole വേണ്ട.</strong> Bilingual play ആണെങ്കിൽ forbidden words-ന്റെ Malayalam translation-ഉം banned ആണെന്ന് staff clarify ചെയ്യണം.</div>
+<div class="example"><strong>Allowed:</strong> “Kitchen-ൽ food hot ആക്കാൻ use ചെയ്യുന്ന thing.” <br><strong>Not allowed:</strong> Oven-നോട്ട് point ചെയ്യൽ, microwave sound ഉണ്ടാക്കൽ, forbidden word പറയൽ.</div>
+</div>
+
+<div class="section" id="ml-scoring">
+<h2>Scoring</h2>
+<table><tr><th>എന്ത് സംഭവിച്ചു?</th><th>Point ആർക്കാണ്?</th></tr><tr><td>Team correct word guess ചെയ്തു</td><td>ആ team-ന് 1 point</td></tr><tr><td>Clue-giver Taboo word പറഞ്ഞു / rule break ചെയ്തു</td><td>സാധാരണ opposite team-ന് 1 point</td></tr><tr><td>Card skip ചെയ്തു</td><td>House rule: no point അല്ലെങ്കിൽ opposite team-ന് 1 point</td></tr></table>
+<p>രണ്ട് teams-ക്കും same number turns കഴിഞ്ഞാൽ highest score team ജയിക്കും.</p>
+<div class="tip"><strong>Recommended cafe house rule:</strong> Casual guests ആണെങ്കിൽ skip = no point. Competitive group ആണെങ്കിൽ skip = opposite team gets 1 point.</div>
+</div>
+
+<div class="section">
+<h2>Game എത്ര നേരം കളിക്കാം?</h2>
+<ul><li><strong>Quick cafe round:</strong> ഓരോ player-നും ഒരിക്കൽ clue-giver chance.</li><li><strong>Standard game:</strong> ഓരോ player-നും രണ്ടു clue-giver chances.</li><li><strong>Large group:</strong> 20 minutes fixed time.</li><li><strong>Waiting table game:</strong> ഓരോ team-നും 3 rounds.</li></ul>
+</div>
+
+<div class="section">
+<h2>New players സാധാരണ ചെയ്യുന്ന mistakes</h2>
+<ul><li>Guess word-ന്റെ part accidentally പറയുക.</li><li>Gestures use ചെയ്യുക.</li><li>Taboo words വായിച്ച് പറയുക.</li><li>Buzzer വന്നാൽ argue ചെയ്ത് time waste ചെയ്യുക.</li><li>Clues വളരെ long ആക്കുക.</li><li>Plural/singular forms same word ആണെന്ന് മറക്കുക.</li></ul>
+</div>
+
+<div class="section">
+<h2>Cafe-ൽ Taboo run ചെയ്യാനുള്ള staff tips</h2>
+<ul><li>Energy high ആക്കുക. Fast guessing ആകുമ്പോൾ game fun ആണ്.</li><li>Start ചെയ്യുന്നതിന് മുൻപ് allowed languages confirm ചെയ്യുക.</li><li>Kids ഉണ്ടെങ്കിൽ adult/difficult cards remove ചെയ്യുക.</li><li>Shy players-നെ ആദ്യം guess ചെയ്യാൻ വിടുക; പിന്നെ clue-giver ആക്കുക.</li><li>Sand timer missing ആണെങ്കിൽ phone timer use ചെയ്യുക.</li><li>Buzzer nearby tables-നെ disturb ചെയ്താൽ “buzz” എന്ന് പറയാൻ അല്ലെങ്കിൽ table tap ചെയ്യാൻ പറയുക.</li></ul>
+</div>
+
+<div class="section" id="ml-faq">
+<h2>Common Guest Questions</h2>
+<h3>Similar sounding word പറയാമോ?</h3><p>Direct trick ആയി വേണ്ട. Rhyming / sound clues സാധാരണ allowed അല്ല.</p>
+<h3>Malayalam clues കൊടുക്കാമോ?</h3><p>Group agree ചെയ്താൽ yes. പക്ഷേ guess word അല്ലെങ്കിൽ forbidden words Malayalam-ലേക്ക് translate ചെയ്ത് പറയാൻ പാടില്ല.</p>
+<h3>First letter പറയാമോ?</h3><p>ഇല്ല. Letter clues, spelling, “starts with” hints allowed അല്ല.</p>
+<h3>Pass ചെയ്യാമോ?</h3><p>Yes. പക്ഷേ pass penalty മുൻപ് decide ചെയ്യണം.</p>
+<h3>Opposite team തെറ്റായി buzz ചെയ്താൽ?</h3><p>Casual play ആണെങ്കിൽ continue ചെയ്യുക. Strict play ആണെങ്കിൽ staff card alive ആണെന്ന് പറയാം.</p>
+<h3>Teammates questions ചോദിക്കാമോ?</h3><p>Guesses shout ചെയ്യാം. Clue-giver കൂടുതൽ clues മാത്രം കൊടുക്കുക.</p>
+</div>
+
+<div class="section" id="ml-script">
+<h2>30-Second Teaching Script</h2>
+<div class="script">“Taboo ഒരു team word game ആണ്. ഒരാൾ clues കൊടുത്ത് സ്വന്തം team-നെ card-ലെ word guess ചെയ്യിക്കും. പക്ഷേ card-ൽ താഴെയുള്ള forbidden words പറയാൻ പാടില്ല. പറഞ്ഞാൽ opposite team buzz ചെയ്യും. Correct guesses points. Timer തീരുന്നതിനു മുൻപ് maximum cards guess ചെയ്യുക.”</div>
+<h2>2-Minute Teaching Script</h2>
+<div class="script">“Players രണ്ടു teams ആയി split ചെയ്യുക. Team turn-ൽ ഒരാൾ clue-giver ആകും. അവർ card എടുത്ത് top word team guess ചെയ്യാൻ clues കൊടുക്കും. പക്ഷേ listed Taboo words, guess word, word parts, spelling hints, rhymes, gestures, sound effects ഒന്നും allowed അല്ല. Opposite team card നോക്കി rule break കണ്ടാൽ buzz ചെയ്യും. Correct cards നിങ്ങളുടെ score pile-ലേക്ക് പോകും. Buzz/skip cards penalty rule അനുസരിച്ച് count ചെയ്യും. Timer തീർന്നാൽ points count ചെയ്ത് next team കളിക്കും.”</div>
+</div>
+
+<div class="section">
+<h2>Staff Cheat Sheet</h2>
+<table><tr><th>Situation</th><th>Staff ruling</th></tr><tr><td>Word-ന്റെ part പറഞ്ഞു</td><td>Buzz / penalty</td></tr><tr><td>Taboo word plural ആയി പറഞ്ഞു</td><td>Buzz / penalty</td></tr><tr><td>Gesture ചെയ്തു</td><td>Buzz / gentle reminder</td></tr><tr><td>Forbidden word Malayalam-ൽ പറഞ്ഞു</td><td>Rule explain ചെയ്തിട്ടുണ്ടെങ്കിൽ buzz</td></tr><tr><td>Teams argue ചെയ്യുന്നു</td><td>Card discard ചെയ്ത് continue ചെയ്യിക്കുക</td></tr><tr><td>Kids കളിക്കുന്നു</td><td>Flexible ആയി fun focus ചെയ്യുക</td></tr></table>
+</div>
+</section>
+
+<div class="footer">Prepared for board game cafe staff training. Use house rules consistently and explain language rules before the timer starts.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sushi Go! Staff Training Guide | Board Game Cafe Kochi</title>
+  <style>
+    :root{
+      --bg:#fff8ef; --card:#ffffff; --ink:#24313b; --muted:#667085; --accent:#ef476f; --accent2:#ffd166; --accent3:#06d6a0; --line:#eadfd1;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(135deg,#fff8ef,#fff1f5);color:var(--ink);line-height:1.65}
+    header{padding:28px 18px 20px;background:linear-gradient(135deg,#ef476f,#ff9f1c);color:#fff;text-align:center;position:sticky;top:0;z-index:5;box-shadow:0 6px 24px rgba(0,0,0,.14)}
+    header h1{margin:0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1}
+    header p{margin:8px auto 14px;max-width:900px;font-size:1rem;opacity:.95}
+    .toggle{display:inline-flex;gap:6px;background:rgba(255,255,255,.24);padding:6px;border-radius:999px;backdrop-filter:blur(8px)}
+    .toggle button{border:0;border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:800;color:#fff;background:transparent}
+    .toggle button.active{background:#fff;color:#ef476f}
+    main{max-width:1120px;margin:0 auto;padding:22px 16px 60px}
+    .lang{display:none}.lang.active{display:block}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 8px 30px rgba(36,49,59,.08)}
+    .half{grid-column:span 6}.third{grid-column:span 4}.two{grid-column:span 8}
+    h2{margin:0 0 10px;font-size:1.45rem;color:#b91c4c} h3{margin:18px 0 8px;color:#264653} h4{margin:14px 0 6px;color:#7c2d12}
+    ul,ol{padding-left:23px;margin-top:8px}.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff0f3;color:#b91c4c;font-weight:800;font-size:.85rem;margin:3px}.note{background:#fff7cc;border-left:5px solid var(--accent2);padding:12px 14px;border-radius:14px}.success{background:#eafff7;border-left:5px solid var(--accent3);padding:12px 14px;border-radius:14px}.warn{background:#fff0f0;border-left:5px solid var(--accent);padding:12px 14px;border-radius:14px}
+    table{width:100%;border-collapse:collapse;margin:10px 0;border-radius:14px;overflow:hidden}th,td{padding:10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#ffe2e9;color:#7f1238}.mini{font-size:.92rem;color:var(--muted)}.script{background:#f8fbff;border:1px dashed #9db4d0;padding:14px;border-radius:16px}.tag{font-weight:800;color:#b91c4c}.footer{text-align:center;color:#667085;font-size:.9rem;margin-top:20px}.ml{font-family:"Noto Sans Malayalam","Kartika",system-ui,sans-serif}.score{font-weight:900;color:#ef476f}.kbd{font-family:ui-monospace,Menlo,monospace;background:#f4f4f5;border:1px solid #ddd;padding:2px 6px;border-radius:6px}
+    @media(max-width:780px){.half,.third,.two{grid-column:span 12}header{position:relative}.card{padding:16px}}
+    @media print{header{position:relative}.toggle{display:none}body{background:#fff}.card{box-shadow:none;break-inside:avoid}.lang{display:block}.lang:not(.active){display:none}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🍣 Sushi Go! Staff Training Guide</h1>
+  <p>For board game café staff in Kochi: explain fast, handle questions confidently, and keep the table moving.</p>
+  <div class="toggle" aria-label="Language toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+    <button id="btn-ml" onclick="setLang('ml')">മലയാളം</button>
+  </div>
+</header>
+<main>
+<section id="en" class="lang active">
+  <div class="grid">
+    <div class="card">
+      <span class="pill">2–5 players</span><span class="pill">15 minutes</span><span class="pill">Ages 8+</span><span class="pill">Card drafting</span>
+      <h2>What is Sushi Go!?</h2>
+      <p><strong>Sushi Go!</strong> is a quick card game where everyone is trying to make the tastiest sushi meal. Each turn, players choose one card from their hand, reveal it, and pass the rest to the next player. So the fun is: “Which card do I take now, and what am I accidentally giving to the next person?”</p>
+      <p>It is light, cute, fast, and great for café guests who want something easy but still clever. The main skill is spotting combos before someone else grabs them.</p>
+      <div class="success"><strong>Staff one-liner:</strong> “This is a pick-and-pass sushi combo game. Pick one card, pass the rest, collect sets, score after each round. Highest score after 3 rounds wins.”</div>
+    </div>
+
+    <div class="card half">
+      <h2>Game components</h2>
+      <ul>
+        <li>108 cards total.</li>
+        <li>Tempura, Sashimi, Dumpling cards.</li>
+        <li>Maki Roll cards: 1, 2, and 3 maki icons.</li>
+        <li>Nigiri cards: Egg, Salmon, Squid.</li>
+        <li>Wasabi cards, Chopsticks cards, and Pudding cards.</li>
+        <li>Paper/score sheet and pen for scoring.</li>
+      </ul>
+      <p class="mini">Staff tip: Always check that the deck is shuffled well. Sushi Go! depends on cards being mixed properly.</p>
+    </div>
+
+    <div class="card half">
+      <h2>Goal of the game</h2>
+      <p>Players score points by collecting the best sushi combinations over <strong>3 rounds</strong>. Most cards score at the end of each round. <strong>Pudding</strong> is different: keep pudding cards until the end of the whole game, then score them.</p>
+      <div class="note"><strong>Important:</strong> After each round, discard all played cards except Pudding. Pudding stays in front of players until final scoring.</div>
+    </div>
+
+    <div class="card">
+      <h2>Setup</h2>
+      <ol>
+        <li>Shuffle all 108 cards properly.</li>
+        <li>Deal cards based on player count:</li>
+      </ol>
+      <table>
+        <tr><th>Players</th><th>Cards dealt to each player</th></tr>
+        <tr><td>2 players</td><td>10 cards each</td></tr>
+        <tr><td>3 players</td><td>9 cards each</td></tr>
+        <tr><td>4 players</td><td>8 cards each</td></tr>
+        <tr><td>5 players</td><td>7 cards each</td></tr>
+      </table>
+      <ol start="3">
+        <li>Players keep their hand secret.</li>
+        <li>Put the remaining deck face down in the middle.</li>
+        <li>Choose someone to keep score.</li>
+      </ol>
+    </div>
+
+    <div class="card two">
+      <h2>How a round works</h2>
+      <ol>
+        <li>Everyone secretly chooses <strong>1 card</strong> from their hand and places it face down.</li>
+        <li>Everyone reveals their chosen card at the same time.</li>
+        <li>Pass the remaining hand to the player on the left.</li>
+        <li>Repeat: choose 1 card, reveal, pass.</li>
+        <li>When all cards have been chosen, the round ends and players score their cards.</li>
+      </ol>
+      <div class="warn"><strong>Common staff reminder:</strong> Cards already played stay face up in front of the player. Only the cards still in hand are passed.</div>
+    </div>
+
+    <div class="card third">
+      <h2>Passing direction</h2>
+      <p>In the standard game, pass left each turn. Some groups like alternating direction each round, but for a simple café teach, keep it consistent unless the rulebook/table agrees otherwise.</p>
+      <p class="mini">For beginners, simple is better: “Pick one, pass left.”</p>
+    </div>
+
+    <div class="card">
+      <h2>Card scoring guide</h2>
+      <table>
+        <tr><th>Card</th><th>How it scores</th><th>Staff explanation</th></tr>
+        <tr><td><strong>Tempura</strong></td><td>Pair = <span class="score">5 points</span>. Single = 0.</td><td>“You need exactly pairs. Two tempura is good; one tempura does nothing.”</td></tr>
+        <tr><td><strong>Sashimi</strong></td><td>Set of 3 = <span class="score">10 points</span>. 1 or 2 = 0.</td><td>“Risky but powerful. You must complete three.”</td></tr>
+        <tr><td><strong>Dumpling</strong></td><td>1=1, 2=3, 3=6, 4=10, 5+=15.</td><td>“The more dumplings you collect, the better they get.”</td></tr>
+        <tr><td><strong>Maki Rolls</strong></td><td>Most maki icons = <span class="score">6</span>; second most = <span class="score">3</span>.</td><td>“Count the little maki symbols, not the number of cards.”</td></tr>
+        <tr><td><strong>Egg Nigiri</strong></td><td><span class="score">1 point</span>.</td><td>Simple points.</td></tr>
+        <tr><td><strong>Salmon Nigiri</strong></td><td><span class="score">2 points</span>.</td><td>Better simple points.</td></tr>
+        <tr><td><strong>Squid Nigiri</strong></td><td><span class="score">3 points</span>.</td><td>Best basic nigiri.</td></tr>
+        <tr><td><strong>Wasabi</strong></td><td>Next Nigiri played on it scores triple.</td><td>“Wasabi waits for the next nigiri. Squid on wasabi = 9.”</td></tr>
+        <tr><td><strong>Chopsticks</strong></td><td>Lets you play 2 cards on a future turn, then return Chopsticks to your hand.</td><td>“It gives you a bonus move later, but it scores 0.”</td></tr>
+        <tr><td><strong>Pudding</strong></td><td>End game only: most puddings +6, fewest puddings -6.</td><td>“Don’t score this each round. Save it till the end.”</td></tr>
+      </table>
+    </div>
+
+    <div class="card half">
+      <h2>Important rule details</h2>
+      <h3>Wasabi</h3>
+      <ul>
+        <li>Wasabi has no points by itself.</li>
+        <li>The <strong>next Nigiri</strong> that player plays must go on an empty Wasabi.</li>
+        <li>Only Egg, Salmon, or Squid Nigiri can go on Wasabi.</li>
+        <li>Multiple Wasabi? Fill them in the order they were played.</li>
+      </ul>
+      <p class="note"><strong>Easy example:</strong> Wasabi + Squid Nigiri = 3 × 3 = 9 points.</p>
+    </div>
+
+    <div class="card half">
+      <h2>Chopsticks explained</h2>
+      <p>When a player has Chopsticks already in front of them, on a later turn they may choose <strong>2 cards</strong> from their hand instead of 1. Then they put the Chopsticks card back into that hand before passing it on.</p>
+      <ol>
+        <li>Say “Sushi Go!” before revealing, just for fun.</li>
+        <li>Choose 2 cards.</li>
+        <li>Reveal both cards.</li>
+        <li>Put Chopsticks into the hand you are passing.</li>
+      </ol>
+      <p class="mini">Chopsticks can be used by another player later if it gets passed around.</p>
+    </div>
+
+    <div class="card">
+      <h2>Maki and Pudding tie rules</h2>
+      <h3>Maki Rolls</h3>
+      <ul>
+        <li>Count maki icons on the cards.</li>
+        <li>Most maki icons gets 6 points.</li>
+        <li>Second most gets 3 points.</li>
+        <li>If players tie, split the points evenly, ignoring leftovers.</li>
+        <li>If there is a tie for first, those players split 6 points and second place points are not given.</li>
+      </ul>
+      <h3>Pudding</h3>
+      <ul>
+        <li>Only score after all 3 rounds.</li>
+        <li>Most pudding cards: +6 points.</li>
+        <li>Fewest pudding cards: -6 points.</li>
+        <li>Ties split the reward/penalty evenly, ignoring leftovers.</li>
+        <li>In a 2-player game, do not apply the -6 pudding penalty.</li>
+      </ul>
+    </div>
+
+    <div class="card two">
+      <h2>Staff teaching script: 2-minute version</h2>
+      <div class="script">
+        “This is Sushi Go! It’s a fast card-drafting game. Everyone gets a hand of cards. Every turn, pick one card secretly, reveal together, then pass the rest of your hand to the left. You’re trying to collect sushi combos. Tempura needs pairs, Sashimi needs three, Dumplings get better the more you collect, Nigiri gives direct points, Wasabi triples your next Nigiri, Maki rewards whoever has the most maki icons, and Pudding scores only at the very end. We play 3 rounds. Highest total score wins.”
+      </div>
+    </div>
+
+    <div class="card third">
+      <h2>Best first-round advice</h2>
+      <ul>
+        <li>Take Squid Nigiri if you see it early.</li>
+        <li>Wasabi is great if you can get Nigiri soon.</li>
+        <li>Sashimi is strong but risky.</li>
+        <li>Dumplings are safe and build up nicely.</li>
+        <li>Do not forget Pudding across rounds.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Common guest questions</h2>
+      <h3>“Do we reveal cards one by one?”</h3><p>No. Everyone chooses face down, then reveals together.</p>
+      <h3>“Can I change my card after seeing others reveal?”</h3><p>No. Once everyone reveals, choices are locked.</p>
+      <h3>“Can Wasabi be used on a Nigiri I played earlier?”</h3><p>No. Wasabi only affects the next Nigiri played after the Wasabi.</p>
+      <h3>“Can I choose not to put Nigiri on Wasabi?”</h3><p>No. If you have an empty Wasabi, your next Nigiri must go on it.</p>
+      <h3>“Does Chopsticks score points?”</h3><p>No. It scores 0, but it can help you grab two useful cards later.</p>
+      <h3>“Do Puddings get discarded after each round?”</h3><p>No. Keep all Puddings until the end of the game.</p>
+      <h3>“What happens if scores tie at the end?”</h3><p>The tied player with more Pudding wins. If still tied, they share the win.</p>
+    </div>
+
+    <div class="card half">
+      <h2>Common mistakes to watch for</h2>
+      <ul>
+        <li>Players passing played cards instead of only hand cards.</li>
+        <li>Scoring Pudding every round.</li>
+        <li>Counting Maki cards instead of maki icons.</li>
+        <li>Forgetting that Sashimi needs exactly 3 for 10 points.</li>
+        <li>Leaving Nigiri separate when an empty Wasabi is waiting.</li>
+        <li>Forgetting to return Chopsticks to the hand after using it.</li>
+      </ul>
+    </div>
+
+    <div class="card half">
+      <h2>Café facilitation tips</h2>
+      <ul>
+        <li>For first-timers, play one open practice turn before starting.</li>
+        <li>Keep a visible score sheet. Guests forget round scores easily.</li>
+        <li>Announce at round end: “Score everything except Pudding.”</li>
+        <li>Help children by explaining cards as food combos, not math first.</li>
+        <li>For loud tables, remind everyone to reveal at the same time.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Quick reference: scoring checklist</h2>
+      <ol>
+        <li>Score Tempura pairs.</li>
+        <li>Score Sashimi sets of 3.</li>
+        <li>Score Dumplings by count.</li>
+        <li>Score Nigiri, including Wasabi triples.</li>
+        <li>Score Maki majority and second place.</li>
+        <li>Do not score Chopsticks.</li>
+        <li>Keep Pudding aside until final game scoring.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="ml" class="lang ml">
+  <div class="grid">
+    <div class="card">
+      <span class="pill">2–5 കളിക്കാർ</span><span class="pill">15 മിനിറ്റ്</span><span class="pill">8+ വയസ്</span><span class="pill">കാർഡ് ഡ്രാഫ്റ്റിംഗ്</span>
+      <h2>Sushi Go! എന്താണ്?</h2>
+      <p><strong>Sushi Go!</strong> ഒരു ഫാസ്റ്റ് കാർഡ് ഗെയിമാണ്. ഓരോരുത്തരും കൈയിലെ കാർഡുകളിൽ നിന്ന് ഒരു കാർഡ് തിരഞ്ഞെടുക്കും, എല്ലാവരും ഒരുമിച്ച് കാണിക്കും, ബാക്കി കാർഡുകൾ അടുത്ത ആളിന് പാസ് ചെയ്യും. ലക്ഷ്യം: നല്ല sushi combo-കൾ ഉണ്ടാക്കി പോയിന്റ് നേടുക.</p>
+      <p>കഫേയിൽ പുതിയ കളിക്കാർക്ക് പഠിപ്പിക്കാൻ വളരെ നല്ല ഗെയിം ആണ്. നിയമങ്ങൾ എളുപ്പം, പക്ഷേ ഏത് കാർഡ് ഇപ്പോൾ എടുക്കണം എന്ന് ആലോചിക്കണം.</p>
+      <div class="success"><strong>സ്റ്റാഫ് പറയാൻ പറ്റുന്ന ഒറ്റവരി:</strong> “ഇത് pick-and-pass sushi combo game ആണ്. ഒരു കാർഡ് എടുക്കുക, ബാക്കി പാസ് ചെയ്യുക, combo ഉണ്ടാക്കുക, 3 റൗണ്ട് കഴിഞ്ഞ് കൂടുതൽ സ്കോർ ഉള്ളവർ ജയിക്കും.”</div>
+    </div>
+
+    <div class="card half">
+      <h2>ഗെയിമിലുള്ള സാധനങ്ങൾ</h2>
+      <ul>
+        <li>മൊത്തം 108 കാർഡുകൾ.</li>
+        <li>Tempura, Sashimi, Dumpling കാർഡുകൾ.</li>
+        <li>Maki Roll കാർഡുകൾ: 1, 2, 3 maki ചിഹ്നങ്ങളുള്ളത്.</li>
+        <li>Nigiri കാർഡുകൾ: Egg, Salmon, Squid.</li>
+        <li>Wasabi, Chopsticks, Pudding കാർഡുകൾ.</li>
+        <li>സ്കോർ എഴുതാൻ പേപ്പറും പേനയും.</li>
+      </ul>
+      <p class="mini">സ്റ്റാഫ് ടിപ്പ്: ഡെക്ക് നന്നായി shuffle ചെയ്യണം. ഈ ഗെയിമിൽ കാർഡുകൾ ശരിയായി mix ആയിരിക്കണം.</p>
+    </div>
+
+    <div class="card half">
+      <h2>ലക്ഷ്യം</h2>
+      <p><strong>3 റൗണ്ടുകൾ</strong> കളിക്കും. ഓരോ റൗണ്ടിലും sushi combo-കൾക്ക് പോയിന്റ് കിട്ടും. മിക്ക കാർഡുകളും റൗണ്ട് അവസാനം score ചെയ്യും. <strong>Pudding</strong> മാത്രം വേറെ: അത് കളിയുടെ അവസാനം മാത്രം score ചെയ്യും.</p>
+      <div class="note"><strong>പ്രധാന കാര്യം:</strong> ഓരോ റൗണ്ട് കഴിഞ്ഞും Pudding ഒഴികെ ബാക്കി കളിച്ച കാർഡുകൾ discard ചെയ്യുക. Pudding മുന്നിൽ വെച്ചുതന്നെ ഇരിക്കും.</div>
+    </div>
+
+    <div class="card">
+      <h2>Setup</h2>
+      <ol>
+        <li>108 കാർഡുകളും നന്നായി shuffle ചെയ്യുക.</li>
+        <li>കളിക്കാരുടെ എണ്ണത്തിന് അനുസരിച്ച് കാർഡുകൾ deal ചെയ്യുക:</li>
+      </ol>
+      <table>
+        <tr><th>കളിക്കാർ</th><th>ഓരോരുത്തർക്കും കിട്ടുന്ന കാർഡുകൾ</th></tr>
+        <tr><td>2 പേർ</td><td>10 കാർഡ് വീതം</td></tr>
+        <tr><td>3 പേർ</td><td>9 കാർഡ് വീതം</td></tr>
+        <tr><td>4 പേർ</td><td>8 കാർഡ് വീതം</td></tr>
+        <tr><td>5 പേർ</td><td>7 കാർഡ് വീതം</td></tr>
+      </table>
+      <ol start="3">
+        <li>കൈയിലെ കാർഡുകൾ മറ്റുള്ളവർക്ക് കാണിക്കരുത്.</li>
+        <li>ബാക്കി ഡെക്ക് നടുവിൽ face down ആയി വെക്കുക.</li>
+        <li>ഒരാളെ scorekeeper ആക്കുക.</li>
+      </ol>
+    </div>
+
+    <div class="card two">
+      <h2>ഒരു റൗണ്ട് എങ്ങനെ കളിക്കാം?</h2>
+      <ol>
+        <li>എല്ലാവരും കൈയിൽ നിന്ന് <strong>1 കാർഡ്</strong> രഹസ്യമായി തിരഞ്ഞെടുക്കുക.</li>
+        <li>ആ കാർഡ് face down ആയി വെക്കുക.</li>
+        <li>എല്ലാവരും ഒരുമിച്ച് കാർഡ് reveal ചെയ്യുക.</li>
+        <li>കൈയിലെ ബാക്കി കാർഡുകൾ ഇടത്തേക്ക് pass ചെയ്യുക.</li>
+        <li>കാർഡുകൾ തീരുന്നതുവരെ ഇത് ആവർത്തിക്കുക.</li>
+        <li>അവസാനം ആ റൗണ്ടിലെ cards score ചെയ്യുക.</li>
+      </ol>
+      <div class="warn"><strong>സ്റ്റാഫ് ഓർമ്മിപ്പിക്കുക:</strong> മുന്നിൽ കളിച്ച കാർഡുകൾ പാസ് ചെയ്യരുത്. കൈയിൽ ബാക്കിയുള്ള കാർഡുകൾ മാത്രമാണ് pass ചെയ്യേണ്ടത്.</div>
+    </div>
+
+    <div class="card third">
+      <h2>Pass ചെയ്യുന്ന ദിശ</h2>
+      <p>പുതിയ കളിക്കാർക്ക് ലളിതമായി: ഓരോ turn-ലും ഇടത്തേക്ക് pass ചെയ്യുക. ചിലർ round അനുസരിച്ച് direction മാറ്റാറുണ്ട്, പക്ഷേ café teach-ൽ “pick one, pass left” എന്നത് ഏറ്റവും easy ആണ്.</p>
+    </div>
+
+    <div class="card">
+      <h2>Card scoring guide</h2>
+      <table>
+        <tr><th>Card</th><th>Score</th><th>സ്റ്റാഫ് explanation</th></tr>
+        <tr><td><strong>Tempura</strong></td><td>2 കാർഡ് pair = <span class="score">5 പോയിന്റ്</span>. ഒന്ന് മാത്രം = 0.</td><td>“Tempura pair വേണം.”</td></tr>
+        <tr><td><strong>Sashimi</strong></td><td>3 കാർഡ് set = <span class="score">10 പോയിന്റ്</span>. 1 അല്ലെങ്കിൽ 2 = 0.</td><td>“Risky ആണ്, പക്ഷേ 3 കിട്ടിയാൽ നല്ല score.”</td></tr>
+        <tr><td><strong>Dumpling</strong></td><td>1=1, 2=3, 3=6, 4=10, 5+=15.</td><td>“കൂടുതൽ Dumpling, കൂടുതൽ points.”</td></tr>
+        <tr><td><strong>Maki Rolls</strong></td><td>ഏറ്റവും കൂടുതൽ maki icons = <span class="score">6</span>; രണ്ടാമത്തെ കൂടുതൽ = <span class="score">3</span>.</td><td>“കാർഡുകളുടെ എണ്ണം അല്ല, ചിഹ്നങ്ങളുടെ എണ്ണം count ചെയ്യണം.”</td></tr>
+        <tr><td><strong>Egg Nigiri</strong></td><td><span class="score">1 പോയിന്റ്</span>.</td><td>Simple point.</td></tr>
+        <tr><td><strong>Salmon Nigiri</strong></td><td><span class="score">2 പോയിന്റ്</span>.</td><td>Better point.</td></tr>
+        <tr><td><strong>Squid Nigiri</strong></td><td><span class="score">3 പോയിന്റ്</span>.</td><td>Best basic nigiri.</td></tr>
+        <tr><td><strong>Wasabi</strong></td><td>അടുത്ത Nigiri-യുടെ score triple ആക്കും.</td><td>“Wasabi + Squid = 9.”</td></tr>
+        <tr><td><strong>Chopsticks</strong></td><td>ഭാവിയിലെ ഒരു turn-ൽ 2 കാർഡുകൾ കളിക്കാൻ സഹായിക്കും. Points 0.</td><td>“Bonus move പോലെ.”</td></tr>
+        <tr><td><strong>Pudding</strong></td><td>ഗെയിം അവസാനം മാത്രം: ഏറ്റവും കൂടുതൽ +6, ഏറ്റവും കുറവ് -6.</td><td>“Round-ൽ score ചെയ്യരുത്.”</td></tr>
+      </table>
+    </div>
+
+    <div class="card half">
+      <h2>Wasabi details</h2>
+      <ul>
+        <li>Wasabi ഒറ്റയ്ക്ക് പോയിന്റ് തരില്ല.</li>
+        <li>Wasabi കളിച്ച ശേഷം വരുന്ന <strong>അടുത്ത Nigiri</strong> അതിന്റെ മുകളിൽ വെക്കണം.</li>
+        <li>Egg, Salmon, Squid Nigiri മാത്രം Wasabi-യിൽ വെക്കാം.</li>
+        <li>ഒന്നിലധികം Wasabi ഉണ്ടെങ്കിൽ ആദ്യം കളിച്ച Wasabi ആദ്യം fill ചെയ്യുക.</li>
+      </ul>
+      <p class="note"><strong>ഉദാഹരണം:</strong> Wasabi + Squid Nigiri = 3 × 3 = 9 പോയിന്റ്.</p>
+    </div>
+
+    <div class="card half">
+      <h2>Chopsticks details</h2>
+      <p>Chopsticks മുന്നിൽ ഉണ്ടെങ്കിൽ, പിന്നീട് വരുന്ന ഒരു turn-ൽ 1 കാർഡിന് പകരം <strong>2 കാർഡുകൾ</strong> തിരഞ്ഞെടുക്കാം. ശേഷം Chopsticks ആ കൈയിൽ തിരികെ ഇടണം, പിന്നെ ആ കൈ pass ചെയ്യണം.</p>
+      <ol>
+        <li>Fun ആയി “Sushi Go!” എന്ന് പറയാം.</li>
+        <li>2 cards തിരഞ്ഞെടുക്കുക.</li>
+        <li>രണ്ടും reveal ചെയ്യുക.</li>
+        <li>Chopsticks pass ചെയ്യാൻ പോകുന്ന hand-ൽ തിരികെ ഇടുക.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Maki, Pudding tie rules</h2>
+      <h3>Maki Rolls</h3>
+      <ul>
+        <li>Maki ചിഹ്നങ്ങൾ count ചെയ്യണം.</li>
+        <li>ഏറ്റവും കൂടുതൽ ഉള്ളവർക്ക് 6 points.</li>
+        <li>രണ്ടാമത്തെ കൂടുതൽ ഉള്ളവർക്ക് 3 points.</li>
+        <li>Tie ആണെങ്കിൽ points equally split ചെയ്യും; leftover points ignore ചെയ്യും.</li>
+        <li>First place tie ആണെങ്കിൽ 6 points മാത്രം split ചെയ്യും; second place points കൊടുക്കില്ല.</li>
+      </ul>
+      <h3>Pudding</h3>
+      <ul>
+        <li>3 rounds കഴിഞ്ഞ് മാത്രം score ചെയ്യുക.</li>
+        <li>ഏറ്റവും കൂടുതൽ Pudding: +6.</li>
+        <li>ഏറ്റവും കുറവ് Pudding: -6.</li>
+        <li>Tie ആണെങ്കിൽ points/penalty split ചെയ്യും.</li>
+        <li>2-player game-ൽ -6 Pudding penalty കൊടുക്കേണ്ടതില്ല.</li>
+      </ul>
+    </div>
+
+    <div class="card two">
+      <h2>സ്റ്റാഫ് teaching script: 2 മിനിറ്റ്</h2>
+      <div class="script">
+        “ഇത് Sushi Go! ആണ്. എല്ലാവർക്കും കുറച്ച് കാർഡുകൾ കിട്ടും. ഓരോ turn-ലും ഒരു കാർഡ് രഹസ്യമായി തിരഞ്ഞെടുക്കണം, എല്ലാവരും ഒരുമിച്ച് reveal ചെയ്യണം, പിന്നെ ബാക്കി കൈ ഇടത്തേക്ക് pass ചെയ്യണം. നിങ്ങൾ sushi combo-കൾ collect ചെയ്ത് points നേടണം. Tempura pair വേണം, Sashimi 3 വേണം, Dumpling കൂടുതൽ കിട്ടുമ്പോൾ കൂടുതൽ points, Nigiri direct points, Wasabi അടുത്ത Nigiri triple ചെയ്യും, Maki ഏറ്റവും കൂടുതൽ icons ഉള്ളവർക്ക് points, Pudding അവസാനം മാത്രം score ചെയ്യും. 3 rounds കഴിഞ്ഞ് highest score ജയിക്കും.”
+      </div>
+    </div>
+
+    <div class="card third">
+      <h2>ആദ്യ റൗണ്ടിൽ പറയാൻ പറ്റുന്ന tips</h2>
+      <ul>
+        <li>Squid Nigiri early കിട്ടിയാൽ നല്ലതാണ്.</li>
+        <li>Wasabi എടുത്താൽ ഉടൻ Nigiri നോക്കണം.</li>
+        <li>Sashimi powerful ആണ്, പക്ഷേ risk ഉണ്ട്.</li>
+        <li>Dumpling safe strategy ആണ്.</li>
+        <li>Pudding മറക്കരുത്; അവസാനം score ചെയ്യും.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Guest questions</h2>
+      <h3>“Cards ഒരുമിച്ചാണോ reveal ചെയ്യേണ്ടത്?”</h3><p>അതെ. എല്ലാവരും choose ചെയ്ത ശേഷം ഒരുമിച്ച് reveal ചെയ്യണം.</p>
+      <h3>“മറ്റുള്ളവരുടെ card കണ്ടിട്ട് ഞാൻ card മാറ്റാമോ?”</h3><p>ഇല്ല. Reveal ചെയ്താൽ choice lock ആണ്.</p>
+      <h3>“Wasabi പഴയ Nigiri-ക്ക് ഉപയോഗിക്കാമോ?”</h3><p>ഇല്ല. Wasabi കളിച്ചതിന് ശേഷം വരുന്ന അടുത്ത Nigiri-ക്ക് മാത്രം.</p>
+      <h3>“Wasabi ഉണ്ടെങ്കിലും Nigiri വേറെ വെക്കാമോ?”</h3><p>ഇല്ല. Empty Wasabi ഉണ്ടെങ്കിൽ അടുത്ത Nigiri അതിൽ വെക്കണം.</p>
+      <h3>“Chopsticks points തരുന്നുണ്ടോ?”</h3><p>ഇല്ല. Points 0. പക്ഷേ അടുത്ത turn-ൽ 2 cards കളിക്കാൻ സഹായിക്കും.</p>
+      <h3>“Pudding ഓരോ round കഴിഞ്ഞും discard ചെയ്യണോ?”</h3><p>ഇല്ല. Pudding ഗെയിം അവസാനം വരെ keep ചെയ്യണം.</p>
+      <h3>“Final score tie ആണെങ്കിൽ?”</h3><p>Tie ഉള്ളവരിൽ കൂടുതൽ Pudding ഉള്ളവർ ജയിക്കും. അതിലും tie ആണെങ്കിൽ shared win.</p>
+    </div>
+
+    <div class="card half">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>മുന്നിൽ കളിച്ച cards കൂടി pass ചെയ്യുന്നത്.</li>
+        <li>Pudding ഓരോ round-ലും score ചെയ്യുന്നത്.</li>
+        <li>Maki cards count ചെയ്യുന്നത്; icons ആണ് count ചെയ്യേണ്ടത്.</li>
+        <li>Sashimi-ക്ക് 3 വേണം എന്ന് മറക്കുന്നത്.</li>
+        <li>Wasabi ഉണ്ടെങ്കിലും Nigiri അതിൽ വെക്കാതെ പോകുന്നത്.</li>
+        <li>Chopsticks use ചെയ്ത ശേഷം hand-ൽ തിരികെ ഇടാൻ മറക്കുന്നത്.</li>
+      </ul>
+    </div>
+
+    <div class="card half">
+      <h2>Café facilitation tips</h2>
+      <ul>
+        <li>പുതിയ കളിക്കാർക്ക് ഒരു practice turn കാണിച്ചു തരാം.</li>
+        <li>Score sheet visible ആയി വെക്കുക.</li>
+        <li>Round അവസാനം പറയുക: “Pudding ഒഴികെ എല്ലാം score ചെയ്യാം.”</li>
+        <li>Kids-ന് card combos food combo പോലെ explain ചെയ്യുക.</li>
+        <li>എല്ലാവരും ഒരുമിച്ച് reveal ചെയ്യാൻ remind ചെയ്യുക.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Scoring checklist</h2>
+      <ol>
+        <li>Tempura pairs score ചെയ്യുക.</li>
+        <li>Sashimi sets of 3 score ചെയ്യുക.</li>
+        <li>Dumplings count ചെയ്ത് score ചെയ്യുക.</li>
+        <li>Nigiri score ചെയ്യുക; Wasabi triple നോക്കുക.</li>
+        <li>Maki majority and second place score ചെയ്യുക.</li>
+        <li>Chopsticks score ചെയ്യരുത്.</li>
+        <li>Pudding final scoring വരെ keep ചെയ്യുക.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<p class="footer">Created for board game café staff training. Keep the guide open on a phone/tablet while teaching.</p>
+</main>
+<script>
+  function setLang(lang){
+    document.querySelectorAll('.lang').forEach(el=>el.classList.remove('active'));
+    document.getElementById(lang).classList.add('active');
+    document.getElementById('btn-en').classList.toggle('active', lang==='en');
+    document.getElementById('btn-ml').classList.toggle('active', lang==='ml');
+    document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+  }
+</script>
+</body>
+</html>

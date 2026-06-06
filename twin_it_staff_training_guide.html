@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twin It! Staff Training Guide</title>
+  <style>
+    :root{
+      --bg:#fff8f0; --card:#ffffff; --ink:#273043; --muted:#5d6575;
+      --brand:#ff6b35; --brand2:#3a86ff; --soft:#ffe8d6; --soft2:#e8f1ff;
+      --border:#f3c8a7; --ok:#2a9d8f; --warn:#e76f51;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+    header{background:linear-gradient(135deg,var(--brand),#ffb703);color:white;padding:34px 18px;text-align:center}
+    header h1{margin:0;font-size:2.2rem} header p{margin:8px 0 0;font-size:1.05rem;opacity:.95}
+    .toggle{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--border);padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .toggle button{border:2px solid var(--brand);background:white;color:var(--brand);padding:10px 18px;margin:4px;border-radius:999px;font-weight:700;cursor:pointer;font-size:15px}
+    .toggle button.active{background:var(--brand);color:#fff}
+    main{max-width:1120px;margin:0 auto;padding:22px}
+    .lang{display:none}.lang.active{display:block}
+    .section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 4px 14px rgba(39,48,67,.06)}
+    h2{margin-top:0;color:#b84a20;font-size:1.55rem} h3{color:#2457a6;margin-bottom:6px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .mini{background:var(--soft2);border-left:5px solid var(--brand2);border-radius:12px;padding:14px}
+    .tip{background:#fff4cc;border-left:5px solid #ffb703;border-radius:12px;padding:13px;margin:12px 0}
+    .warning{background:#ffe3dc;border-left:5px solid var(--warn);border-radius:12px;padding:13px;margin:12px 0}
+    .success{background:#ddfff8;border-left:5px solid var(--ok);border-radius:12px;padding:13px;margin:12px 0}
+    .script{background:#f7f7ff;border:1px dashed #7b6cff;border-radius:12px;padding:15px;font-style:italic}
+    table{width:100%;border-collapse:collapse;margin:12px 0;background:#fff} th,td{border:1px solid #ead7c8;padding:10px;text-align:left;vertical-align:top} th{background:var(--soft)}
+    ul,ol{padding-left:23px}.pill{display:inline-block;background:var(--soft);padding:3px 9px;border-radius:999px;margin:3px;font-weight:700;color:#8f391b}
+    .footer{font-size:.9rem;color:var(--muted);text-align:center;padding:18px}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Twin It! Staff Training Guide</h1>
+  <p>For board game café staff in Kochi • Casual teaching guide • English + Malayalam</p>
+</header>
+<div class="toggle">
+  <button id="btn-en" class="active" onclick="showLang('en')">English</button>
+  <button id="btn-ml" onclick="showLang('ml')">മലയാളം</button>
+</div>
+<main>
+<section id="en" class="lang active">
+  <div class="section">
+    <h2>1. What is Twin It!?</h2>
+    <p><strong>Twin It!</strong> is a fast visual matching card game. Players keep revealing colourful pattern cards on the table, and everyone races to spot two identical patterns. When someone finds a match, they quickly place one finger on each matching card and claims the set.</p>
+    <p>The fun comes from speed, memory, and confusion. Many cards look almost the same, so players will shout, laugh, hesitate, and sometimes confidently point at the wrong pair.</p>
+    <div class="success"><strong>Café pitch:</strong> “It’s like a speed version of memory plus pattern spotting. Super quick to learn, very loud, and great as a warm-up game.”</div>
+  </div>
+
+  <div class="section">
+    <h2>2. Quick facts for staff</h2>
+    <div class="grid">
+      <div class="mini"><strong>Players:</strong><br>2–6 players</div>
+      <div class="mini"><strong>Time:</strong><br>About 10–15 minutes</div>
+      <div class="mini"><strong>Age:</strong><br>Kids, families, casual groups</div>
+      <div class="mini"><strong>Game type:</strong><br>Speed, visual matching, party/filler</div>
+      <div class="mini"><strong>Teach time:</strong><br>1–2 minutes</div>
+      <div class="mini"><strong>Staff difficulty:</strong><br>Easy rules, but know the edge cases</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Components</h2>
+    <ul>
+      <li><strong>135 double-sided pattern cards</strong> — patterns may appear once, twice, or three times in the full deck.</li>
+      <li><strong>60-second sand timer</strong> — mainly used in cooperative/team modes depending on the edition.</li>
+      <li><strong>Rule sheet</strong></li>
+    </ul>
+    <div class="tip"><strong>Staff care tip:</strong> Since cards are double-sided, remind guests not to stack claimed cards carelessly face-up in the play area. It can confuse active table cards.</div>
+  </div>
+
+  <div class="section">
+    <h2>4. The core idea</h2>
+    <p>There will be lots of cards visible on the table. Players are watching for <strong>exactly matching patterns</strong>.</p>
+    <ul>
+      <li>If you see two identical patterns, put one finger on each card.</li>
+      <li>If there are three identical cards visible, the set can include all three cards.</li>
+      <li>The player who correctly claims the set takes those cards as a won set.</li>
+    </ul>
+    <div class="warning"><strong>Important:</strong> Similar is not enough. The patterns must be exactly identical.</div>
+  </div>
+
+  <div class="section">
+    <h2>5. Main mode: Competitive game</h2>
+    <h3>Goal</h3>
+    <p>Be the first player to collect <strong>5 sets</strong>. A set is usually a pair of identical cards, but it can be a triple if three identical cards are visible.</p>
+
+    <h3>Setup</h3>
+    <ol>
+      <li>Shuffle all cards well.</li>
+      <li>Deal the cards as evenly as possible to all players.</li>
+      <li>Each player keeps their stack face-down/hidden enough that the next pattern is not studied early, but the stack should be easy to access.</li>
+      <li>Leave the centre of the table open. This becomes the shared pattern area.</li>
+      <li>Choose a starting player. A fun house rule: the player wearing the most colours starts.</li>
+    </ol>
+
+    <h3>Turn flow</h3>
+    <ol>
+      <li>On your turn, reveal the top card from your stack and place it face-up in the centre.</li>
+      <li>Turn the card outward so other players see it at the same time as you.</li>
+      <li>Everyone immediately checks all visible cards for a match.</li>
+      <li>If nobody spots a match, the next player reveals a card.</li>
+      <li>If someone spots a valid match, they claim it.</li>
+      <li>Continue until one player has 5 sets.</li>
+    </ol>
+
+    <div class="tip"><strong>Teaching line:</strong> “You don’t take turns to find matches. Only revealing cards is turn-based. Spotting is real-time — anyone can shout and grab a match anytime.”</div>
+  </div>
+
+  <div class="section">
+    <h2>6. How to claim a match</h2>
+    <ol>
+      <li>Put one finger on each matching card.</li>
+      <li>Say something clear like “Twin!” or “Match!”</li>
+      <li>Other players quickly confirm the patterns are identical.</li>
+      <li>If correct, take the cards and keep them as one set in front of you.</li>
+    </ol>
+    <p>If three identical cards are visible, a player can claim the triple by touching the matching cards. A triple is still one set for the race to 5 sets, unless your house rule scores triples differently.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Chain reactions</h2>
+    <p>Sometimes, when a matching pair is removed, players suddenly notice another match that was already on the table. That is allowed. Keep playing quickly.</p>
+    <div class="tip"><strong>Staff explanation:</strong> “The table is always live. If you see a match at any time, go for it.”</div>
+  </div>
+
+  <div class="section">
+    <h2>8. What happens if players tie?</h2>
+    <p>If two players touch the same matching set at almost the same time, use a simple café-friendly ruling:</p>
+    <ul>
+      <li>If one player clearly touched both cards first, they get it.</li>
+      <li>If it is truly unclear, put the cards back in the centre and continue.</li>
+      <li>For children or casual guests, avoid arguments — replaying the set is usually the best call.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>9. Wrong claims</h2>
+    <p>A wrong claim happens when a player touches two cards that are not actually identical.</p>
+    <p>Recommended café penalty:</p>
+    <ul>
+      <li>First mistake: friendly warning.</li>
+      <li>After that: player skips claiming the next valid set, or returns one won set if the group wants stricter rules.</li>
+    </ul>
+    <div class="warning"><strong>For café play:</strong> Keep penalties light. The game is meant to be fast and funny, not stressful.</div>
+  </div>
+
+  <div class="section">
+    <h2>10. Team mode</h2>
+    <p>Team mode is great for larger or mixed-skill groups.</p>
+    <ol>
+      <li>Split players into teams.</li>
+      <li>Players reveal cards as usual.</li>
+      <li>Anyone can spot a match.</li>
+      <li>Claimed sets count for that player’s team.</li>
+      <li>The first team to the target number of sets wins. Use 5 sets for short games or 7–10 for a longer game.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>11. Cooperative mode</h2>
+    <p>In cooperative mode, everyone works together to find as many valid sets as possible before the timer ends.</p>
+    <ol>
+      <li>Shuffle the deck.</li>
+      <li>Start the 60-second timer.</li>
+      <li>Reveal cards into the centre quickly, one at a time.</li>
+      <li>Everyone helps spot pairs and triples.</li>
+      <li>At the end, count the collected sets.</li>
+    </ol>
+    <p>This mode is excellent for kids, families, and guests who do not like direct competition.</p>
+  </div>
+
+  <div class="section">
+    <h2>12. Staff teaching script</h2>
+    <div class="script">
+      “Twin It! is a super quick pattern-spotting game. We’ll keep flipping cards into the middle. Everyone watches all the visible cards. If you see two cards with exactly the same pattern, put one finger on each and shout ‘match’. If it’s correct, you keep that pair. First player to collect 5 sets wins. Similar patterns don’t count — they must be exactly the same.”
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>13. Common guest questions</h2>
+    <table>
+      <tr><th>Question</th><th>Answer</th></tr>
+      <tr><td>Can I claim a match when it is not my turn?</td><td>Yes. Revealing cards is turn-based, but spotting matches is real-time for everyone.</td></tr>
+      <tr><td>Do the cards need to be beside each other?</td><td>No. They can be anywhere on the table.</td></tr>
+      <tr><td>Can three cards match?</td><td>Yes. Some patterns appear three times, so triples can happen.</td></tr>
+      <tr><td>What if I touch only one card?</td><td>You need to clearly identify the full set. Usually one finger on each matching card.</td></tr>
+      <tr><td>Can I move cards around?</td><td>No. Cards should stay where they are placed unless claimed.</td></tr>
+      <tr><td>Can I cover a card with a new card?</td><td>No. Keep all visible cards separate and easy to see.</td></tr>
+      <tr><td>What if the table gets crowded?</td><td>Spread cards out. Staff can help reset spacing without changing ownership.</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>14. Common mistakes to watch for</h2>
+    <ul>
+      <li>Players think only the active player can claim a match.</li>
+      <li>Players grab similar-looking cards that are not exact matches.</li>
+      <li>Players overlap cards and hide patterns.</li>
+      <li>Players forget that claimed sets should leave the table.</li>
+      <li>Kids may slap cards hard — remind them to use one finger gently.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>15. Café facilitation tips</h2>
+    <ul>
+      <li>Use a medium-sized table. Too large makes it hard for everyone to reach cards.</li>
+      <li>For kids, play cooperative mode first.</li>
+      <li>For loud adult groups, competitive mode works best.</li>
+      <li>Remind guests to keep drinks away from the centre because the game involves quick hand movement.</li>
+      <li>Keep the explanation short. This game is best learned by playing one practice round.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="ml" class="lang">
+  <div class="section">
+    <h2>1. Twin It! എന്താണ്?</h2>
+    <p><strong>Twin It!</strong> ഒരു വേഗത്തിലുള്ള pattern matching card game ആണ്. മേശയിൽ നിറമുള്ള pattern cards തുറന്ന് വയ്ക്കും. എല്ലാവരും ഒരേ പോലെ ഉള്ള രണ്ട് pattern cards കണ്ടെത്താൻ ശ്രമിക്കും.</p>
+    <p>Match കണ്ടാൽ, ആ രണ്ട് cards-ലും ഓരോ വിരൽ വച്ച് “Match!” എന്ന് പറയണം. ശരിയാണെങ്കിൽ ആ pair നിങ്ങൾക്ക് കിട്ടും.</p>
+    <div class="success"><strong>കഫേ pitch:</strong> “ഇത് speed memory + pattern spotting പോലൊരു game ആണ്. പഠിക്കാൻ വളരെ എളുപ്പം, കളിക്കുമ്പോൾ നല്ല fun.”</div>
+  </div>
+
+  <div class="section">
+    <h2>2. Staff quick facts</h2>
+    <div class="grid">
+      <div class="mini"><strong>Players:</strong><br>2–6 പേർ</div>
+      <div class="mini"><strong>Time:</strong><br>10–15 മിനിറ്റ്</div>
+      <div class="mini"><strong>Best for:</strong><br>കുട്ടികൾ, families, casual groups</div>
+      <div class="mini"><strong>Type:</strong><br>Speed, visual matching, party game</div>
+      <div class="mini"><strong>Teach time:</strong><br>1–2 മിനിറ്റ്</div>
+      <div class="mini"><strong>Difficulty:</strong><br>വളരെ easy</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Components</h2>
+    <ul>
+      <li><strong>135 double-sided pattern cards</strong></li>
+      <li><strong>60-second sand timer</strong></li>
+      <li><strong>Rule sheet</strong></li>
+    </ul>
+    <div class="tip"><strong>Staff tip:</strong> Cards double-sided ആണ്. Claimed cards play area-യിൽ കലരാതെ നോക്കണം.</div>
+  </div>
+
+  <div class="section">
+    <h2>4. Game-ന്റെ main idea</h2>
+    <p>മേശയിൽ ഒരുപാട് cards visible ആയിരിക്കും. Players കൃത്യമായി ഒരേ pattern ഉള്ള cards നോക്കും.</p>
+    <ul>
+      <li>രണ്ട് identical pattern കണ്ടാൽ രണ്ടിലും വിരൽ വയ്ക്കുക.</li>
+      <li>മൂന്ന് identical cards ഉണ്ടെങ്കിൽ triple set ആയി claim ചെയ്യാം.</li>
+      <li>Correct ആണെങ്കിൽ ആ set player-ന് കിട്ടും.</li>
+    </ul>
+    <div class="warning"><strong>Important:</strong> Similar pattern മതിയാകില്ല. Exactly same ആയിരിക്കണം.</div>
+  </div>
+
+  <div class="section">
+    <h2>5. Competitive mode</h2>
+    <h3>Goal</h3>
+    <p>ആദ്യം <strong>5 sets</strong> collect ചെയ്യുന്ന player ജയിക്കും. Set സാധാരണ pair ആകാം, ചിലപ്പോൾ triple ആകാം.</p>
+
+    <h3>Setup</h3>
+    <ol>
+      <li>Cards നന്നായി shuffle ചെയ്യുക.</li>
+      <li>Players-ക്ക് ഏകദേശം തുല്യമായി cards divide ചെയ്യുക.</li>
+      <li>ഓരോ player-നും സ്വന്തം card stack മുന്നിൽ വയ്ക്കാം.</li>
+      <li>മേശയുടെ centre open ആക്കുക.</li>
+      <li>ഒരു starting player തിരഞ്ഞെടുക്കുക.</li>
+    </ol>
+
+    <h3>Turn flow</h3>
+    <ol>
+      <li>നിങ്ങളുടെ turn-ൽ top card centre-ൽ തുറന്ന് വയ്ക്കുക.</li>
+      <li>Card എല്ലാവർക്കും ഒരുമിച്ച് കാണുന്ന പോലെ reveal ചെയ്യുക.</li>
+      <li>Everyone visible cards നോക്കി match കണ്ടെത്തും.</li>
+      <li>Match ഇല്ലെങ്കിൽ next player card reveal ചെയ്യും.</li>
+      <li>Match കണ്ടാൽ ആരും claim ചെയ്യാം.</li>
+      <li>5 sets കിട്ടുന്നവൻ ജയിക്കും.</li>
+    </ol>
+    <div class="tip"><strong>Teaching line:</strong> “Cards തുറക്കുന്നത് turn-based ആണ്. പക്ഷേ match കണ്ടെത്തുന്നത് എല്ലാവർക്കും ഒരേസമയം ചെയ്യാം.”</div>
+  </div>
+
+  <div class="section">
+    <h2>6. Match claim ചെയ്യുന്നത് എങ്ങനെ?</h2>
+    <ol>
+      <li>Matching cards രണ്ടിലും ഓരോ വിരൽ വയ്ക്കുക.</li>
+      <li>“Match!” എന്ന് പറയുക.</li>
+      <li>മറ്റുള്ളവർ pattern same ആണോ എന്ന് check ചെയ്യും.</li>
+      <li>Correct ആണെങ്കിൽ cards എടുത്ത് set ആയി മുന്നിൽ വയ്ക്കുക.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>7. Chain reactions</h2>
+    <p>ഒരു pair remove ചെയ്ത ശേഷം മറ്റൊരു match പെട്ടെന്ന് കാണാം. അത് claim ചെയ്യാം. Table എല്ലായ്പ്പോഴും “live” ആണ്.</p>
+    <div class="tip"><strong>Staff explanation:</strong> “എപ്പോൾ match കണ്ടാലും claim ചെയ്യാം.”</div>
+  </div>
+
+  <div class="section">
+    <h2>8. Tie വന്നാൽ?</h2>
+    <ul>
+      <li>ഒരാൾ വ്യക്തമായി ആദ്യം touch ചെയ്താൽ set അവർക്കാണ്.</li>
+      <li>ശരിക്കും unclear ആണെങ്കിൽ cards തിരികെ table-ൽ വച്ച് game continue ചെയ്യുക.</li>
+      <li>Kids/family group ആണെങ്കിൽ argument ഒഴിവാക്കി replay ചെയ്യുന്നതാണ് നല്ലത്.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>9. Wrong claim</h2>
+    <p>രണ്ട് cards exactly same അല്ലാത്തപ്പോൾ claim ചെയ്താൽ അത് wrong claim ആണ്.</p>
+    <p>Café-friendly penalty:</p>
+    <ul>
+      <li>First mistake: friendly warning.</li>
+      <li>Repeated mistake: next valid set claim ചെയ്യാൻ skip ചെയ്യാം.</li>
+    </ul>
+    <div class="warning"><strong>കഫേ play tip:</strong> Penalty light ആക്കുക. Fun ആണ് പ്രധാന്യം.</div>
+  </div>
+
+  <div class="section">
+    <h2>10. Team mode</h2>
+    <ol>
+      <li>Players teams ആയി divide ചെയ്യുക.</li>
+      <li>Cards സാധാരണ പോലെ reveal ചെയ്യുക.</li>
+      <li>ആരും match കണ്ടെത്താം.</li>
+      <li>Claim ചെയ്ത set ആ player-ന്റെ team score-ലേക്ക് പോകും.</li>
+      <li>Target sets ആദ്യം കിട്ടുന്ന team ജയിക്കും.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>11. Cooperative mode</h2>
+    <p>Cooperative mode-ൽ എല്ലാവരും ഒരുമിച്ച് timer തീരുന്നതിന് മുമ്പ് പരമാവധി sets കണ്ടെത്തണം.</p>
+    <ol>
+      <li>Deck shuffle ചെയ്യുക.</li>
+      <li>60-second timer start ചെയ്യുക.</li>
+      <li>Cards centre-ൽ വേഗത്തിൽ reveal ചെയ്യുക.</li>
+      <li>Everyone pairs/triples കണ്ടെത്താൻ help ചെയ്യും.</li>
+      <li>Timer കഴിഞ്ഞാൽ collected sets count ചെയ്യുക.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>12. Staff teaching script</h2>
+    <div class="script">
+      “Twin It! വളരെ easy speed matching game ആണ്. Cards middle-ലേക്ക് തുറന്ന് വയ്ക്കും. എല്ലാവരും visible cards നോക്കും. Exactly same pattern ഉള്ള രണ്ട് cards കണ്ടാൽ രണ്ടിലും വിരൽ വച്ച് ‘Match’ എന്ന് പറയണം. Correct ആണെങ്കിൽ ആ pair നിങ്ങൾക്ക്. ആദ്യം 5 sets കിട്ടുന്ന player ജയിക്കും.”
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>13. Common guest questions</h2>
+    <table>
+      <tr><th>ചോദ്യം</th><th>ഉത്തരം</th></tr>
+      <tr><td>എന്റെ turn അല്ലെങ്കിൽ claim ചെയ്യാമോ?</td><td>അതെ. Match spotting എല്ലാവർക്കും real-time ആണ്.</td></tr>
+      <tr><td>Cards അടുത്തടുത്ത് വേണമോ?</td><td>വേണ്ട. Table-ൽ എവിടെയായാലും match ആകാം.</td></tr>
+      <tr><td>Three cards match ആകുമോ?</td><td>അതെ. ചില patterns മൂന്ന് തവണ ഉണ്ടാകും.</td></tr>
+      <tr><td>Similar pattern മതിയോ?</td><td>ഇല്ല. Exactly same ആയിരിക്കണം.</td></tr>
+      <tr><td>Cards move ചെയ്യാമോ?</td><td>Claim ചെയ്യുമ്പോൾ ഒഴികെ move ചെയ്യരുത്.</td></tr>
+      <tr><td>Table crowded ആയാൽ?</td><td>Cards overlap ചെയ്യാതെ spread ചെയ്യുക.</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>14. New players ചെയ്യുന്ന common mistakes</h2>
+    <ul>
+      <li>Active player മാത്രം claim ചെയ്യാം എന്ന് കരുതുന്നു.</li>
+      <li>Similar-looking cards തെറ്റായി claim ചെയ്യുന്നു.</li>
+      <li>Cards overlap ചെയ്ത് patterns hide ചെയ്യുന്നു.</li>
+      <li>Claimed sets table-ൽ നിന്നും മാറ്റാൻ മറക്കുന്നു.</li>
+      <li>Kids cards അടിച്ച് പിടിക്കും — gentle finger touch മതിയെന്ന് പറയുക.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>15. Café staff tips</h2>
+    <ul>
+      <li>Medium-sized table ഉപയോഗിക്കുക.</li>
+      <li>Kids group ആണെങ്കിൽ cooperative mode ആദ്യം കാണിക്കുക.</li>
+      <li>Loud adult group-ന് competitive mode super ആണ്.</li>
+      <li>Drinks centre-ൽ വയ്ക്കരുത്, കാരണം hands quickly move ചെയ്യും.</li>
+      <li>Long explanation വേണ്ട. One practice round കൊടുത്താൽ മതി.</li>
+    </ul>
+  </div>
+</section>
+</main>
+<div class="footer">Twin It! Staff Training Guide • Created for café training use</div>
+<script>
+function showLang(lang){
+  document.querySelectorAll('.lang').forEach(el=>el.classList.remove('active'));
+  document.getElementById(lang).classList.add('active');
+  document.querySelectorAll('.toggle button').forEach(btn=>btn.classList.remove('active'));
+  document.getElementById('btn-'+lang).classList.add('active');
+  document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+}
+</script>
+</body>
+</html>
