@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concordia Staff Training Guide | Board Game Cafe Kochi</title>
+  <style>
+    :root {
+      --bg: #f7f1e7;
+      --card: #fffaf2;
+      --ink: #2e241d;
+      --muted: #6f6256;
+      --accent: #8b3f1f;
+      --accent2: #c49a4f;
+      --soft: #eadcc9;
+      --green: #4f6f52;
+      --blue: #3f6478;
+      --shadow: 0 10px 28px rgba(60, 38, 20, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff6e8 0, var(--bg) 45%, #efe1cb 100%);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header {
+      padding: 28px 18px 18px;
+      background: linear-gradient(135deg, #693119, #9b5b2d 55%, #c89b4e);
+      color: #fffdf7;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: var(--shadow);
+    }
+    .header-inner { max-width: 1120px; margin: 0 auto; }
+    h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; }
+    .subtitle { margin: 8px 0 18px; color: #ffe9c3; font-size: 1rem; }
+    .toggle-wrap {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+      padding: 10px; border-radius: 999px; width: fit-content;
+    }
+    button.lang-btn {
+      border: 0; padding: 10px 18px; border-radius: 999px; cursor: pointer;
+      background: transparent; color: #fff; font-weight: 700; font-size: .95rem;
+    }
+    button.lang-btn.active { background: #fff8ec; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 60px; }
+    .lang { display: none; }
+    .lang.active { display: block; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      background: rgba(255,250,242,.94); border: 1px solid var(--soft); border-radius: 22px;
+      padding: 20px; box-shadow: var(--shadow); margin-bottom: 18px;
+    }
+    .mini { padding: 16px; }
+    h2 { color: var(--accent); margin: 0 0 12px; font-size: 1.65rem; }
+    h3 { color: #5f2f18; margin: 18px 0 8px; font-size: 1.15rem; }
+    h4 { margin: 12px 0 6px; color: var(--blue); }
+    ul, ol { padding-left: 22px; }
+    li { margin: 6px 0; }
+    .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .pill { background: #f0dfc4; border: 1px solid #d6bd91; color: #573718; padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: .9rem; }
+    .callout { border-left: 5px solid var(--accent2); background: #fff2d9; padding: 14px 16px; border-radius: 14px; margin: 14px 0; }
+    .staff { border-left-color: var(--green); background: #eef6ed; }
+    .warning { border-left-color: #b8452c; background: #fff0eb; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; overflow: hidden; border-radius: 14px; background: #fffdf8; }
+    th, td { border: 1px solid #e5d5bd; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #ead8b9; color: #4a2a13; }
+    .tag { display:inline-block; background:#e8ecef; color:#2c4d5d; padding:2px 8px; border-radius:999px; font-size:.82rem; font-weight:700; }
+    details { background:#fffdf8; border:1px solid #e5d5bd; border-radius:16px; padding:12px 14px; margin:10px 0; }
+    summary { cursor:pointer; font-weight:800; color:#633018; }
+    .footer-note { color: var(--muted); font-size: .92rem; text-align:center; margin-top: 28px; }
+    @media print {
+      header { position: static; }
+      .toggle-wrap { display:none; }
+      .lang { display:block !important; page-break-after: always; }
+      .card { box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>Concordia Staff Training Guide</h1>
+    <p class="subtitle">For board game cafe staff in Kochi: teach clearly, answer confidently, and keep the table moving.</p>
+    <div class="toggle-wrap" aria-label="Language toggle">
+      <button class="lang-btn active" onclick="setLang('en')">English</button>
+      <button class="lang-btn" onclick="setLang('ml')">മലയാളം</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="en" class="lang active">
+  <div class="card">
+    <h2>1. Quick Staff Summary</h2>
+    <p><strong>Concordia</strong> is a calm but deep strategy game about trading and expanding across the Roman Empire. Players build houses in cities, collect goods, buy new action cards, and score at the end through the gods shown on their cards.</p>
+    <div class="pillrow">
+      <span class="pill">Players: 2-5</span><span class="pill">Time: 90-120 min</span><span class="pill">Weight: Medium</span><span class="pill">Main skills: planning, timing, economy</span>
+    </div>
+    <div class="callout staff"><strong>Staff one-liner:</strong> “Concordia is a hand-management Euro game. On your turn, play one card, do that action, and later use Tribune to pick your cards back up. Points are mostly hidden until final scoring.”</div>
+  </div>
+
+  <div class="grid">
+    <div class="card mini"><h3>Best for</h3><p>Guests who like Catan-style expansion but want less dice luck and more planning.</p></div>
+    <div class="card mini"><h3>Not ideal for</h3><p>Guests wanting party games, heavy combat, direct attacking, or very short games.</p></div>
+    <div class="card mini"><h3>Teach difficulty</h3><p>Medium. The turn is simple, but final scoring needs careful explanation.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Theme and Goal</h2>
+    <p>Each player is a Roman trading family. You send colonists by land and sea, build houses in cities, produce goods like brick, food, tools, wine, and cloth, and use money called <strong>sestertii</strong>.</p>
+    <p>The goal is to finish with the most victory points. The twist: points are not scored every turn. Most points come at the very end from the <strong>god symbols on your cards</strong>. So players are building both an empire on the board and a scoring engine in their hand.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Components Staff Should Recognise</h2>
+    <ul>
+      <li><strong>Board:</strong> Two sides. Italia is smaller and good for 2-4 players. Imperium is larger and good for 3-5 players.</li>
+      <li><strong>Player pieces:</strong> Houses, land colonists, sea colonists, scoring marker, and storehouse board.</li>
+      <li><strong>Goods:</strong> Brick, food, tool, wine, cloth. Cloth is the most valuable; brick is the cheapest but very useful.</li>
+      <li><strong>Personality/action cards:</strong> These are both actions during the game and scoring cards at the end.</li>
+      <li><strong>City tokens:</strong> Randomly placed on cities to show what each city produces.</li>
+      <li><strong>Province bonus markers:</strong> Show which good/money bonus is available when a province produces.</li>
+      <li><strong>Concordia card:</strong> Awarded to the player who triggers the end of the game.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Setup: Staff Checklist</h2>
+    <ol>
+      <li>Choose board side based on player count. Use <strong>Italia</strong> for 2-4 and <strong>Imperium</strong> for 3-5.</li>
+      <li>Give each player one storehouse, all pieces in one colour, starting cards, and starting goods/money as shown in the rulebook/player aid.</li>
+      <li>Place each player’s starting colonists in Roma.</li>
+      <li>Place city tokens on matching city spaces according to setup rules.</li>
+      <li>Place province bonus markers on provinces.</li>
+      <li>Prepare the card market: sort personality cards by Roman numeral, shuffle within each group, stack lower numbers on top, and reveal 7 cards.</li>
+      <li>Place the Concordia card near the draw deck.</li>
+      <li>Pick first player and begin clockwise.</li>
+    </ol>
+    <div class="callout warning"><strong>Staff tip:</strong> Do not rush the card-market setup. The game balance depends on the card deck being stacked by Roman numeral groups.</div>
+  </div>
+
+  <div class="card">
+    <h2>5. The Core Turn: Very Simple</h2>
+    <p>On a turn, a player chooses <strong>one card from their hand</strong>, plays it face up on their personal discard pile, and does that card’s action. That is basically the whole turn.</p>
+    <p>Played cards stay in the discard pile. To get them back, the player must later play <strong>Tribune</strong>. This creates the main rhythm of the game: spend actions wisely, then reset at the right time.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Important Actions Explained</h2>
+
+    <h3>Tribune: Take Your Cards Back</h3>
+    <p>Tribune lets the player take all previously played cards back into hand. If they recover more than 3 cards, they get money for the extra cards. They may also buy one new colonist by paying food and tool.</p>
+    <div class="callout staff"><strong>Explain to guests:</strong> “Tribune is your reset button. The longer you wait, the more cards you recover and the more money you may get, but you might run out of good actions.”</div>
+
+    <h3>Architect: Move and Build</h3>
+    <p>The player moves colonists. The number of movement steps depends on how many colonists they already have on the board. After moving, they may build houses in cities next to their colonists, by paying the city cost plus money.</p>
+    <ul>
+      <li>A land colonist connects to land routes.</li>
+      <li>A sea colonist connects to sea routes.</li>
+      <li>Players do not build on routes; they build in cities connected to their colonists.</li>
+      <li>More houses in a city makes later building there more expensive for other players.</li>
+    </ul>
+
+    <h3>Prefect: Produce or Take Money</h3>
+    <p>Prefect has two choices. Either choose an active province to produce, or collect money by flipping bonus markers back to active.</p>
+    <ul>
+      <li>When a province produces, all players with houses in that province produce the matching goods from their cities.</li>
+      <li>The active player also takes the province bonus shown on the marker.</li>
+      <li>Then that province marker is flipped.</li>
+      <li>Instead of producing, the player can collect money based on flipped markers and reset them.</li>
+    </ul>
+    <div class="callout staff"><strong>Cafe teaching line:</strong> “Prefect is not just for you. If you produce a province, everyone with houses there gets goods. Choose timing carefully.”</div>
+
+    <h3>Mercator: Get Money and Trade Goods</h3>
+    <p>The player receives money, then may buy and/or sell up to two types of goods. This is the main way to convert goods into cash or buy missing resources.</p>
+
+    <h3>Senator: Buy Up to Two Cards</h3>
+    <p>The player may buy up to two personality cards from the market. The cost includes the printed goods cost plus any extra goods shown below that card’s market position.</p>
+
+    <h3>Consul: Buy One Card More Cheaply</h3>
+    <p>The player buys one personality card, paying only the printed goods cost on the card and ignoring the extra market-position cost.</p>
+
+    <h3>Diplomat: Copy Another Player’s Top Card</h3>
+    <p>The player copies the action on the top card of another player’s discard pile. This is powerful because it can access an action you do not currently have available.</p>
+
+    <h3>Specialists: Produce One Type of City</h3>
+    <p>Specialist cards produce goods from all of the player’s own houses of one type: Mason for brick, Farmer for food, Smith for tools, Vintner for wine, and Weaver for cloth.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Storehouse and Goods</h2>
+    <p>The storehouse has limited space. Colonists occupy spaces when they are not on the board. Goods also occupy spaces. When a player places new colonists on the board, they free up storage space. When they add colonists back to storage, space becomes tighter.</p>
+    <div class="callout warning"><strong>Common question:</strong> “Can I take goods if my storehouse is full?” No. Players must have space. They may not overfill the storehouse.</div>
+  </div>
+
+  <div class="card">
+    <h2>8. Card Market: Why Buying Cards Matters</h2>
+    <p>New cards give players more action options and more scoring symbols. This is the heart of Concordia. A player who only builds but never buys cards may look strong on the board but can score badly at the end.</p>
+    <p>Cards slide left after purchases, and new cards refill the display up to 7 cards if the deck has cards left.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. End of Game</h2>
+    <p>The game end is triggered in either of two ways:</p>
+    <ul>
+      <li>A player buys the last card from the card market/deck.</li>
+      <li>A player builds their 15th house.</li>
+    </ul>
+    <p>The player who triggers the end receives the Concordia card. Then every other player gets one final turn. After that, final scoring happens.</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Final Scoring: The Gods</h2>
+    <p>This is the most important part for staff to explain clearly. Each personality card has a god. At the end, each god scores in a different way. If a player has multiple cards with the same god, that scoring is multiplied.</p>
+    <table>
+      <thead><tr><th>God</th><th>What it rewards</th><th>Simple explanation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vesta</strong></td><td>Value of goods and money</td><td>Convert remaining goods to money value, add cash, then score.</td></tr>
+        <tr><td><strong>Jupiter</strong></td><td>Non-brick cities</td><td>Rewards houses in more valuable city types, excluding brick cities.</td></tr>
+        <tr><td><strong>Saturnus</strong></td><td>Different provinces</td><td>Rewards spreading to many provinces.</td></tr>
+        <tr><td><strong>Mercurius</strong></td><td>Different goods produced</td><td>Rewards having houses across different production types.</td></tr>
+        <tr><td><strong>Mars</strong></td><td>Colonists on the board</td><td>Rewards having more land/sea colonists deployed.</td></tr>
+        <tr><td><strong>Minerva</strong></td><td>Specific good type</td><td>Rewards houses matching the good type shown on that Minerva card.</td></tr>
+        <tr><td><strong>Concordia</strong></td><td>End-game trigger</td><td>Bonus card for the player who ends the game.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout staff"><strong>How to teach scoring:</strong> Tell players, “Your cards are like secret score multipliers. Buy cards that match what you are doing on the map.”</div>
+  </div>
+
+  <div class="card">
+    <h2>11. Common Rules Questions</h2>
+    <details><summary>Can two players use the same city?</summary><p>Yes, multiple players can have houses in the same city, but the cost gets higher when a city is already occupied.</p></details>
+    <details><summary>Can a player build in a city without a nearby colonist?</summary><p>No. The city must be connected to one of that player’s colonists by the correct land or sea route.</p></details>
+    <details><summary>Does Prefect produce only for the active player?</summary><p>No. It produces for all players with houses in the chosen province. The active player gets the bonus marker benefit.</p></details>
+    <details><summary>Can players keep cards after using them?</summary><p>No. Played cards go to the player’s discard pile and return only when they use Tribune.</p></details>
+    <details><summary>Is Concordia a combat game?</summary><p>No. There is blocking and competition for timing/space, but no attacking or destroying pieces.</p></details>
+    <details><summary>Why are points hidden?</summary><p>Because final scoring depends on cards collected and board position. Staff can help players estimate, but exact scoring usually happens at the end.</p></details>
+  </div>
+
+  <div class="card">
+    <h2>12. Teaching Script for Staff</h2>
+    <ol>
+      <li>“You are Roman trading families trying to build the best network.”</li>
+      <li>“On your turn, play one card and do its action. That is the whole turn structure.”</li>
+      <li>“Cards you play are unavailable until you use Tribune to pick them back up.”</li>
+      <li>“Architect moves and builds. Prefect produces. Mercator trades. Senator and Consul buy more cards.”</li>
+      <li>“Cards are also your end-game scoring. So buy cards that match your strategy.”</li>
+      <li>“The game ends when someone buys the last card or builds all 15 houses.”</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>13. Strategy Tips Staff Can Give Guests</h2>
+    <ul>
+      <li><strong>New players:</strong> Spread to different provinces and buy a few cards early.</li>
+      <li><strong>Money matters:</strong> Running out of cash slows everything down.</li>
+      <li><strong>Do not ignore Tribune:</strong> Timing the reset is a big part of the game.</li>
+      <li><strong>Watch others:</strong> Prefect can accidentally help opponents a lot.</li>
+      <li><strong>Match cards to board:</strong> If you have many colonists, Mars is good. If you spread widely, Saturnus is good.</li>
+      <li><strong>End-game awareness:</strong> If someone has 13-14 houses or the deck is nearly empty, the game is almost over.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>14. Staff Handling Tips in the Cafe</h2>
+    <ul>
+      <li>For first-time players, teach only the starting cards first. Explain extra cards when they appear in the market.</li>
+      <li>Keep a player aid visible near the table.</li>
+      <li>Remind players that final scoring is card-based; otherwise they may feel confused later.</li>
+      <li>At 2 players, use the smaller Italia map unless guests specifically know the game.</li>
+      <li>When guests ask “What should I do?”, give options, not direct moves: “You need money, goods, or more cards. Which one fits your plan?”</li>
+    </ul>
+  </div>
+</section>
+
+<section id="ml" class="lang">
+  <div class="card">
+    <h2>1. സ്റ്റാഫിനുള്ള പെട്ടെന്നുള്ള സംഗ്രഹം</h2>
+    <p><strong>Concordia</strong> റോമൻ സാമ്രാജ്യത്തിന്റെ കാലത്തെ ട്രേഡിംഗ്/എക്സ്പാൻഷൻ സ്ട്രാറ്റജി ഗെയിം ആണ്. കളിക്കാർ നഗരങ്ങളിൽ വീടുകൾ പണിയും, സാധനങ്ങൾ ഉണ്ടാക്കും, പുതിയ ആക്ഷൻ കാർഡുകൾ വാങ്ങും, അവസാനം കാർഡുകളിലെ ദേവന്മാരുടെ സ്കോറിംഗ് പ്രകാരം പോയിന്റ് നേടും.</p>
+    <div class="pillrow">
+      <span class="pill">കളിക്കാർ: 2-5</span><span class="pill">സമയം: 90-120 മിനിറ്റ്</span><span class="pill">കഠിനത: മിഡിയം</span><span class="pill">സ്കിൽ: പ്ലാനിംഗ്, ടൈമിംഗ്, എക്കണോമി</span>
+    </div>
+    <div class="callout staff"><strong>സ്റ്റാഫ് പറയേണ്ട ഒറ്റ വരി:</strong> “Concordia-യിൽ ഓരോ ടേണിലും ഒരു കാർഡ് കളിച്ച് അതിന്റെ ആക്ഷൻ ചെയ്യുകയാണ്. കളിച്ച കാർഡുകൾ തിരികെ കിട്ടാൻ Tribune ഉപയോഗിക്കണം. പ്രധാന പോയിന്റുകൾ അവസാനം ആണ് വരുന്നത്.”</div>
+  </div>
+
+  <div class="grid">
+    <div class="card mini"><h3>ആർക്കാണ് നല്ലത്?</h3><p>Catan പോലുള്ള expansion ഇഷ്ടമുള്ള, പക്ഷേ dice luck കുറച്ച് planning കൂടുതൽ വേണമെന്നുള്ള guests.</p></div>
+    <div class="card mini"><h3>ആർക്കല്ല?</h3><p>Party game, direct attack, combat, അല്ലെങ്കിൽ വളരെ short game വേണമെന്നുള്ളവർക്ക് അത്ര ശരിയല്ല.</p></div>
+    <div class="card mini"><h3>പഠിപ്പിക്കുന്ന കഠിനത</h3><p>Medium. Turn simple ആണ്, പക്ഷേ final scoring നന്നായി explain ചെയ്യണം.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>2. തീമും ലക്ഷ്യവും</h2>
+    <p>ഓരോ കളിക്കാരനും ഒരു റോമൻ trading family ആണ്. Land/sea colonists നീക്കി cities-ൽ houses പണിയും. Brick, food, tool, wine, cloth പോലുള്ള goods ഉണ്ടാക്കും. Money-യെ <strong>sestertii</strong> എന്ന് പറയുന്നു.</p>
+    <p>ലക്ഷ്യം ഏറ്റവും കൂടുതൽ victory points നേടുക. പക്ഷേ twist എന്തെന്നാൽ, points പലതും game നടക്കുമ്പോൾ ഉടനെ വരില്ല. അവസാനം <strong>കാർഡുകളിലെ god symbols</strong> അനുസരിച്ചാണ് ഭൂരിഭാഗം scoring.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. സ്റ്റാഫ് തിരിച്ചറിയേണ്ട components</h2>
+    <ul>
+      <li><strong>Board:</strong> രണ്ട് side. Italia ചെറുതാണ്, 2-4 players-ക്ക് നല്ലത്. Imperium വലുതാണ്, 3-5 players-ക്ക് നല്ലത്.</li>
+      <li><strong>Player pieces:</strong> Houses, land colonists, sea colonists, scoring marker, storehouse board.</li>
+      <li><strong>Goods:</strong> Brick, food, tool, wine, cloth. Cloth വില കൂടിയത്; brick വില കുറവായെങ്കിലും വളരെ useful.</li>
+      <li><strong>Personality/action cards:</strong> Game-ൽ actions തരുന്ന കാർഡുകളും അവസാനം scoring cards-ഉം ഇതേ കാർഡുകളാണ്.</li>
+      <li><strong>City tokens:</strong> ഓരോ city ഏത് good produce ചെയ്യുമെന്ന് കാണിക്കും.</li>
+      <li><strong>Province bonus markers:</strong> ഒരു province produce ചെയ്യുമ്പോൾ active player-ന് കിട്ടുന്ന bonus.</li>
+      <li><strong>Concordia card:</strong> Game end trigger ചെയ്യുന്ന player-ന് കിട്ടുന്ന bonus card.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Setup: സ്റ്റാഫ് Checklist</h2>
+    <ol>
+      <li>Player count അനുസരിച്ച് board side തിരഞ്ഞെടുക്കുക. 2-4 players-ക്ക് <strong>Italia</strong>, 3-5 players-ക്ക് <strong>Imperium</strong>.</li>
+      <li>ഓരോ player-നും storehouse, same colour pieces, starting cards, starting goods/money കൊടുക്കുക.</li>
+      <li>Starting colonists Roma-യിൽ വെക്കുക.</li>
+      <li>Setup rules അനുസരിച്ച് city tokens വെക്കുക.</li>
+      <li>Province bonus markers provinces-ൽ വെക്കുക.</li>
+      <li>Personality cards Roman numeral പ്രകാരം sort ചെയ്യുക, ഓരോ group shuffle ചെയ്യുക, lower numeral മുകളിൽ വരണം. Top 7 cards market-ൽ തുറന്ന് വെക്കുക.</li>
+      <li>Concordia card deck-ന്റെ അടുത്ത് വെക്കുക.</li>
+      <li>First player തീരുമാനിച്ച് clockwise ആയി തുടങ്ങുക.</li>
+    </ol>
+    <div class="callout warning"><strong>ശ്രദ്ധിക്കുക:</strong> Card market setup hurry ചെയ്യരുത്. Roman numeral order game balance-നു പ്രധാനമാണ്.</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Core Turn: വളരെ simple</h2>
+    <p>ഒരു turn-ൽ player തന്റെ hand-ൽ നിന്ന് <strong>ഒരു card</strong> play ചെയ്യും. ആ card-ന്റെ action ചെയ്യും. അത്ര തന്നെ.</p>
+    <p>Play ചെയ്ത cards discard pile-ൽ കിടക്കും. തിരികെ hand-ലേക്ക് എടുക്കാൻ <strong>Tribune</strong> play ചെയ്യണം. ഇതാണ് game-ന്റെ rhythm: actions wisely ഉപയോഗിക്കുക, ശരിയായ സമയത്ത് reset ചെയ്യുക.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. പ്രധാന Actions</h2>
+
+    <h3>Tribune: Cards തിരികെ എടുക്കൽ</h3>
+    <p>Tribune കളിച്ചാൽ player തന്റെ played cards എല്ലാം തിരികെ hand-ലേക്ക് എടുക്കും. 3 cards-ൽ കൂടുതൽ recover ചെയ്‌താൽ extra cards-നു money കിട്ടും. Food + tool കൊടുത്ത് ഒരു പുതിയ colonist വാങ്ങാനും കഴിയും.</p>
+    <div class="callout staff"><strong>Guests-നോട് പറയുക:</strong> “Tribune നിങ്ങളുടെ reset button ആണ്. കൂടുതൽ wait ചെയ്താൽ കൂടുതൽ cards/money കിട്ടാം, പക്ഷേ actions തീർന്നേക്കാം.”</div>
+
+    <h3>Architect: Move ചെയ്യുകയും Build ചെയ്യുകയും</h3>
+    <p>Player colonists move ചെയ്യും. Board-ൽ ഉള്ള colonists എണ്ണം അനുസരിച്ച് movement steps കിട്ടും. Move കഴിഞ്ഞ്, colonist-നോട് connected ആയ cities-ൽ houses build ചെയ്യാം.</p>
+    <ul>
+      <li>Land colonist land route-ലൂടെ cities connect ചെയ്യും.</li>
+      <li>Sea colonist sea route-ലൂടെ cities connect ചെയ്യും.</li>
+      <li>Route-ൽ build ചെയ്യില്ല; route connected city-യിലാണ് house.</li>
+      <li>City-ൽ already houses ഉണ്ടെങ്കിൽ പിന്നീട് build ചെയ്യാൻ cost കൂടും.</li>
+    </ul>
+
+    <h3>Prefect: Produce ചെയ്യുക അല്ലെങ്കിൽ Money എടുക്കുക</h3>
+    <p>Prefect-ൽ രണ്ട് option. Active province choose ചെയ്ത് production നടത്തുക, അല്ലെങ്കിൽ flipped bonus markers reset ചെയ്ത് money എടുക്കുക.</p>
+    <ul>
+      <li>Province produce ചെയ്താൽ, ആ province-ൽ houses ഉള്ള എല്ലാ players-ക്കും goods കിട്ടും.</li>
+      <li>Active player-ന് bonus marker benefit കൂടി കിട്ടും.</li>
+      <li>അതിനുശേഷം ആ province marker flip ചെയ്യും.</li>
+      <li>Produce ചെയ്യാതെ, flipped markers അടിസ്ഥാനത്തിൽ money എടുത്ത് markers reset ചെയ്യാം.</li>
+    </ul>
+    <div class="callout staff"><strong>Cafe teaching line:</strong> “Prefect നിങ്ങൾക്കു മാത്രം അല്ല. ആ province-ൽ house ഉള്ള എല്ലാവർക്കും goods കിട്ടും. Timing ശ്രദ്ധിക്കുക.”</div>
+
+    <h3>Mercator: Money + Trade</h3>
+    <p>Player money വാങ്ങും. പിന്നെ maximum രണ്ട് types goods buy/sell ചെയ്യാം. Missing resources വാങ്ങാനും goods cash ആക്കാനും ഇത് പ്രധാന action ആണ്.</p>
+
+    <h3>Senator: രണ്ട് cards വരെ വാങ്ങുക</h3>
+    <p>Market-ൽ നിന്ന് up to two personality cards വാങ്ങാം. Card-ൽ printed cost + market position-നു താഴെ കാണുന്ന extra goods cost pay ചെയ്യണം.</p>
+
+    <h3>Consul: ഒരു card cheap ആയി വാങ്ങുക</h3>
+    <p>ഒരു personality card വാങ്ങാം. Card-ൽ printed cost മാത്രം pay ചെയ്യണം; market position extra cost ignore ചെയ്യാം.</p>
+
+    <h3>Diplomat: മറ്റൊരാളുടെ top card copy ചെയ്യുക</h3>
+    <p>മറ്റൊരു player-ന്റെ discard pile-ലെ top card action copy ചെയ്യാം. സ്വന്തം hand-ൽ action ഇല്ലാത്തപ്പോൾ ഇത് വളരെ useful ആണ്.</p>
+
+    <h3>Specialists: ഒരു type city produce ചെയ്യുക</h3>
+    <p>Specialist cards സ്വന്തം houses-ൽ നിന്ന് ഒരു specific good produce ചെയ്യും: Mason = brick, Farmer = food, Smith = tool, Vintner = wine, Weaver = cloth.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Storehouse and Goods</h2>
+    <p>Storehouse-ൽ space limited ആണ്. Board-ൽ ഇല്ലാത്ത colonists storehouse space occupy ചെയ്യും. Goods-നും space വേണം. New colonists board-ലേക്ക് പോകുമ്പോൾ storage space free ആകും.</p>
+    <div class="callout warning"><strong>Common question:</strong> “Storehouse full ആണെങ്കിൽ goods എടുക്കാമോ?” ഇല്ല. Space വേണം. Overfill ചെയ്യാൻ പറ്റില്ല.</div>
+  </div>
+
+  <div class="card">
+    <h2>8. Card Market എന്തുകൊണ്ട് പ്രധാനമാണ്?</h2>
+    <p>New cards കൂടുതൽ action options നൽകും, അതോടൊപ്പം കൂടുതൽ scoring symbols കൂടി നൽകും. Board-ൽ മാത്രം build ചെയ്ത് cards വാങ്ങാതെ പോയാൽ അവസാനം score കുറയാം.</p>
+    <p>Cards വാങ്ങിയാൽ market-ൽ ബാക്കിയുള്ള cards left side-ലേക്ക് slide ചെയ്യും; deck-ൽ cards ഉണ്ടെങ്കിൽ market വീണ്ടും 7 cards ആയി refill ചെയ്യും.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Game End</h2>
+    <p>Game end രണ്ട് ways-ൽ trigger ചെയ്യും:</p>
+    <ul>
+      <li>Market/deck-ലെ last card player വാങ്ങുമ്പോൾ.</li>
+      <li>ഒരു player തന്റെ 15th house build ചെയ്യുമ്പോൾ.</li>
+    </ul>
+    <p>End trigger ചെയ്യുന്ന player-ന് Concordia card കിട്ടും. പിന്നെ മറ്റെല്ലാ players-ക്കും ഓരോ final turn. അതിനു ശേഷം final scoring.</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Final Scoring: Gods</h2>
+    <p>ഇതാണ് staff ഏറ്റവും clearly explain ചെയ്യേണ്ട ഭാഗം. ഓരോ personality card-ലും ഒരു god symbol ഉണ്ട്. അവസാനം ഓരോ god വ്യത്യസ്ത രീതിയിൽ points നൽകും. ഒരേ god ഉള്ള cards കൂടുതൽ ഉണ്ടെങ്കിൽ ആ scoring multiply ചെയ്യും.</p>
+    <table>
+      <thead><tr><th>God</th><th>Reward</th><th>Simple Malayalam explanation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vesta</strong></td><td>Goods + money value</td><td>ബാക്കിയുള്ള goods money value ആയി convert ചെയ്ത് cash കൂടെ count ചെയ്യും.</td></tr>
+        <tr><td><strong>Jupiter</strong></td><td>Non-brick cities</td><td>Brick city ഒഴികെയുള്ള valuable cities-ലെ houses reward ചെയ്യും.</td></tr>
+        <tr><td><strong>Saturnus</strong></td><td>Different provinces</td><td>കൂടുതൽ provinces-ലേക്ക് spread ചെയ്താൽ points.</td></tr>
+        <tr><td><strong>Mercurius</strong></td><td>Different goods</td><td>Different production types ഉള്ള houses reward ചെയ്യും.</td></tr>
+        <tr><td><strong>Mars</strong></td><td>Colonists on board</td><td>Board-ൽ കൂടുതൽ colonists ഉണ്ടെങ്കിൽ points.</td></tr>
+        <tr><td><strong>Minerva</strong></td><td>Specific good type</td><td>ആ Minerva card കാണിക്കുന്ന good type-ലെ houses reward ചെയ്യും.</td></tr>
+        <tr><td><strong>Concordia</strong></td><td>End-game trigger</td><td>Game end trigger ചെയ്ത player-ന് bonus.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout staff"><strong>Scoring teach ചെയ്യാൻ:</strong> “നിങ്ങളുടെ cards secret score multipliers പോലെ ആണ്. Map-ൽ നിങ്ങൾ ചെയ്യുന്ന strategy-ക്ക് match ചെയ്യുന്ന cards വാങ്ങുക.”</div>
+  </div>
+
+  <div class="card">
+    <h2>11. Common Rules Questions</h2>
+    <details><summary>ഒരേ city-ൽ പല players-ക്കും house ഉണ്ടാകാമോ?</summary><p>അതെ. പക്ഷേ already occupied city-ൽ build ചെയ്യാൻ cost കൂടും.</p></details>
+    <details><summary>Nearby colonist ഇല്ലാതെ city-ൽ build ചെയ്യാമോ?</summary><p>ഇല്ല. സ്വന്തം colonist land/sea route വഴി connected ആയ city വേണം.</p></details>
+    <details><summary>Prefect active player-ന് മാത്രം production തരാമോ?</summary><p>ഇല്ല. Chosen province-ൽ houses ഉള്ള എല്ലാ players-ക്കും goods കിട്ടും. Active player-ന് bonus marker benefit കൂടി കിട്ടും.</p></details>
+    <details><summary>Played cards hand-ൽ തന്നെ വെക്കാമോ?</summary><p>ഇല്ല. Played cards discard pile-ലേക്ക് പോകും. Tribune ഉപയോഗിച്ചാൽ മാത്രം തിരികെ hand-ലേക്ക് വരും.</p></details>
+    <details><summary>Concordia combat game ആണോ?</summary><p>അല്ല. Blocking/competition ഉണ്ട്, പക്ഷേ attack ചെയ്യൽ, pieces destroy ചെയ്യൽ ഇല്ല.</p></details>
+    <details><summary>Points hidden പോലെയാകുന്നത് എന്തുകൊണ്ട്?</summary><p>Final score cards + board position അനുസരിച്ചാണ്. Exact score സാധാരണ അവസാനം മാത്രമേ clear ആകൂ.</p></details>
+  </div>
+
+  <div class="card">
+    <h2>12. Staff Teaching Script</h2>
+    <ol>
+      <li>“നിങ്ങൾ Roman trading families ആണ്. Best trade network build ചെയ്യുകയാണ് goal.”</li>
+      <li>“ഓരോ turn-ലും ഒരു card play ചെയ്ത് അതിന്റെ action ചെയ്യുക.”</li>
+      <li>“Play ചെയ്ത cards Tribune ഉപയോഗിക്കുന്നതുവരെ തിരികെ ലഭിക്കില്ല.”</li>
+      <li>“Architect move/build, Prefect produce, Mercator trade, Senator/Consul cards buy.”</li>
+      <li>“Cards actions മാത്രമല്ല, final scoring-നും പ്രധാനമാണ്.”</li>
+      <li>“Last card വാങ്ങുമ്പോൾ അല്ലെങ്കിൽ 15 houses build ചെയ്യുമ്പോൾ game end.”</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>13. Guests-ന് കൊടുക്കാവുന്ന Strategy Tips</h2>
+    <ul>
+      <li><strong>New players:</strong> Different provinces-ലേക്ക് spread ചെയ്യുക; early cards വാങ്ങുക.</li>
+      <li><strong>Money important:</strong> Cash ഇല്ലെങ്കിൽ actions slow ആകും.</li>
+      <li><strong>Tribune ignore ചെയ്യരുത്:</strong> Reset timing game-ന്റെ big decision ആണ്.</li>
+      <li><strong>Others-നെ നോക്കുക:</strong> Prefect opponents-നെ കൂടി help ചെയ്യാം.</li>
+      <li><strong>Cards match ചെയ്യുക:</strong> Colonists കൂടുതൽ ആണെങ്കിൽ Mars നല്ലത്. Wide spread ആണെങ്കിൽ Saturnus നല്ലത്.</li>
+      <li><strong>End game ശ്രദ്ധിക്കുക:</strong> ആരെങ്കിലും 13-14 houses ആകുകയോ deck almost empty ആകുകയോ ചെയ്താൽ game almost over.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>14. Cafe Staff Handling Tips</h2>
+    <ul>
+      <li>First-time players-ന് starting cards മാത്രം ആദ്യം teach ചെയ്യുക. Market cards പിന്നീട് explain ചെയ്താൽ മതി.</li>
+      <li>Player aid table-ൽ visible ആക്കുക.</li>
+      <li>Final scoring card-based ആണെന്ന് ഇടയ്ക്ക് remind ചെയ്യുക.</li>
+      <li>2 players ആണെങ്കിൽ usually smaller Italia map ഉപയോഗിക്കുക.</li>
+      <li>Guest “ഞാൻ എന്ത് ചെയ്യണം?” എന്ന് ചോദിച്ചാൽ direct move പറയാതെ options നൽകുക: “Money വേണോ, goods വേണോ, cards വേണോ?”</li>
+    </ul>
+  </div>
+</section>
+
+<p class="footer-note">Prepared as a cafe staff training guide. Always keep the official rulebook nearby for edge cases and expansion-specific rules.</p>
+</main>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+    document.getElementById(lang).classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if (lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+    if (lang === 'ml') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+    document.documentElement.lang = lang === 'ml' ? 'ml' : 'en';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
